@@ -1,0 +1,87 @@
+.container{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    /* background-color: rebeccapurple; */
+    align-items: center;
+    transition: .5s;
+    display: flex;
+    justify-content: center;
+}
+
+.slide {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+    object-fit: scale-down;
+    border-radius: 15px;
+}
+
+.left{
+    width: 3%;
+    height: 15%;
+    position: absolute;
+    font-size: 200%;
+    color: white;
+    font-weight: 999;
+    left: 3%;
+    cursor: pointer;
+    user-select: none;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -o-user-select: none;
+}
+
+.left:hover{
+    font-size: 250%;
+    transform: translate(0,-10%);
+}
+
+.right{
+    width: 3%;
+    height: 15%;
+    position: absolute;
+    font-size: 200%;
+    color: white;
+    font-weight: 999;
+    right: 3%;
+    cursor: pointer;
+    user-select: none;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -o-user-select: none;
+}
+
+.right:hover{
+    font-size: 250%;
+    transform: translate(0,-10%);
+}
+
+.slideNav{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    align-items: center;
+    /* background-color: red; */
+    left: 45%;
+    top: 90%;
+    
+}
+
+.dot{
+    position: relative;
+    margin: 0 4%;
+    cursor: pointer;
+    font-size: 150%;
+    color: white;
+    
+}
+
+.dot:hover{
+    bottom: 1vh;
+    color: #d33438
+}
+
+
