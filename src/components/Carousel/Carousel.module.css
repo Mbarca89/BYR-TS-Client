@@ -1,8 +1,7 @@
-.container{
+.container {
     position: relative;
     width: 100%;
     height: 100%;
-    /* background-color: rebeccapurple; */
     align-items: center;
     transition: .5s;
     display: flex;
@@ -17,49 +16,47 @@
     border-radius: 15px;
 }
 
-.left{
-    width: 3%;
-    height: 15%;
+.left {
+    width: 10%;
+    height: 100%;
     position: absolute;
     font-size: 200%;
     color: white;
     font-weight: 999;
-    left: 3%;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     user-select: none;
-        -moz-user-select: none;
-        -khtml-user-select: none;
-        -webkit-user-select: none;
-        -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    cursor: default;
 }
 
-.left:hover{
-    font-size: 250%;
-    transform: translate(0,-10%);
-}
-
-.right{
-    width: 3%;
-    height: 15%;
+.right {
+    width: 10%;
+    height: 100%;
     position: absolute;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 200%;
     color: white;
     font-weight: 999;
-    right: 3%;
     cursor: pointer;
     user-select: none;
-        -moz-user-select: none;
-        -khtml-user-select: none;
-        -webkit-user-select: none;
-        -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+    cursor: default;
 }
 
-.right:hover{
-    font-size: 250%;
-    transform: translate(0,-10%);
-}
-
-.slideNav{
+.slideNav {
     display: flex;
     justify-content: center;
     position: absolute;
@@ -67,21 +64,19 @@
     /* background-color: red; */
     left: 45%;
     top: 90%;
-    
+
 }
 
-.dot{
+.dot {
     position: relative;
     margin: 0 4%;
     cursor: pointer;
     font-size: 150%;
     color: white;
-    
+
 }
 
-.dot:hover{
+.dot:hover {
     bottom: 1vh;
     color: #d33438
 }
-
-

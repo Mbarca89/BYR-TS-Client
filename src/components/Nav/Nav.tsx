@@ -1,14 +1,14 @@
 import style from './Nav.module.css'
 import logo from '../../img/logo.png'
-import instagram from '../../img/instagram.png'
-import facebook from '../../img/facebook.png'
-import whatsapp from '../../img/whatsapp.png'
+import instagram from '../../img/instagram.webp'
+import facebook from '../../img/facebook.webp'
+import whatsapp from '../../img/whatsapp.webp'
 import { NavLink } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
 const Nav = () => {
 
-    const [mobile, setMobile] = useState(false)
+    const [mobile, setMobile] = useState<boolean>(false)
 
     useEffect(() => {
         window.innerWidth < 576 && setMobile(true)

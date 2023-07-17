@@ -1,0 +1,46 @@
+.admin{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #eaeaea;
+}
+
+.controlPanel {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #eaeaea;
+}
+
+.adminLogin{
+    width: 40%;
+    height: 10%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5%;
+}
+
+.nav{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 10%;
+    background-color: #4e4e4e;
+}
+
+.nav img {
+    width: 5%;
+}
+
+.buttonContainer{
+    width: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5%;
+}

@@ -4,9 +4,7 @@ import inversiones from '../../img/inversiones.jpg'
 import tasaciones from '../../img/tasaciones.png'
 import servicios from '../../img/servicios.jpg'
 
-const Home = () => {
-
- 
+const Home = () => { 
 
     return (
         <div className={style.home}>

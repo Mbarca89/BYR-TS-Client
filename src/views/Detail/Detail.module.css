@@ -1,0 +1,616 @@
+@media screen and (max-width: 576px) {
+    .detail {
+        position: relative;
+        width: 98vw;
+        display: flex;
+        flex-direction: column;
+        gap: 2%;
+        margin-top: 2%;
+    }
+
+    .basicInfo {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+    }
+
+    .photos {
+        position: relative;
+        display: flex;
+        width: 100%;
+        height: 40%;
+    }
+
+    .photoOverlay{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        z-index: 5;
+        animation: loading 1s linear infinite alternate
+    }
+
+    @keyframes loading {
+        0% {
+            background-color: hsl(200, 20%, 70%);
+        }
+        100%{
+            background-color: hsl(200, 20%, 95%);;
+        }
+    }
+
+    .photo {
+        position: relative;
+        width: 100%;
+        border-radius: 15px;
+    }
+
+    .categoryImg {
+        position: absolute;
+        width: 50%;
+        top: 0;
+        right: 0;
+        z-index: 1;
+    }
+
+    .left {
+        width: 10%;
+        height: 100%;
+        position: absolute;
+        font-size: 200%;
+        color: white;
+        font-weight: 999;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        user-select: none;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -o-user-select: none;
+        cursor: default;
+        z-index: 1;
+    }
+
+    .right {
+        width: 10%;
+        height: 100%;
+        position: absolute;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 200%;
+        color: white;
+        font-weight: 999;
+        cursor: pointer;
+        user-select: none;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -o-user-select: none;
+        cursor: default;
+        z-index: 1;
+    }
+
+    .info {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 60%;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 1%;
+        margin-top: 2%;
+    }
+
+    .info hr {
+        position: relative;
+        width: 100%;
+    }
+
+    .name {
+        position: relative;
+        display: flex;
+        width: 100%;
+        height: 8%;
+        align-items: center;
+    }
+
+    .name h2{
+        margin: 0;
+        color: #4a4a4a;
+    }
+
+    .location {
+        position: relative;
+        display: flex;
+        width: 100%;
+        height: 8%;
+        align-items: center;
+    }
+
+    .location h3 {
+        margin: 0;
+        color: #4a4a4a;
+    }
+
+    .infoContainer {
+        position: relative;
+        width: 100%;
+        height: 20%;
+        display: flex;
+        flex-direction: row;
+        gap: 2.5%;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    .infoLogo {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        width: 17%;
+        height: 80%;
+        background-color: rgb(0, 0, 0, .3);
+        border-radius: 5px;
+    }
+
+    .infoContainer img {
+        width: 50%;
+        margin: 0;
+    }
+
+    .infoContainer h4 {
+        margin: 0;
+    }
+
+    .otherInfoContainer {
+        position: relative;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .otherInfoContainer img {
+        position: relative;
+        width: 15%;
+    }
+
+    .otherInfoContainer h4{
+        margin: 3%;
+        font-size: 1.5em;
+        color: #4a4a4a;
+    }
+
+    .whatsappLogo {
+        position: absolute;
+        width: 15%;
+        height: 80%;
+        right: 0;
+        margin: 0;
+    }
+
+    .whatsappLogo img {
+        width: 80%;
+        height: auto;
+    }
+
+    .adittionalInfo {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+        height: 10%;
+    }
+
+    .line {
+        position: relative;
+        align-self: center;
+        width: 90%;
+        height: 0;
+        border: 1px solid #7a2f2f;
+    }
+
+    .otherInfo {
+        position: relative;
+        width: 98%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .otherInfo h4 {
+        margin: 0;
+        margin-top: 2%;
+        align-self: flex-start;
+    }
+
+    .listItem {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        width: 99%;
+        height: 100%;
+        gap: 2%;
+        margin: 0;
+    }
+
+    .listItem img {
+        position: relative;
+        width: 10%;
+        aspect-ratio: 1/1;
+    }
+
+    .services,
+    .amenities,
+    .others {
+        position: relative;
+        display: grid;
+        grid-auto-flow: column;
+        grid-template-columns: repeat(auto-fit, minmax(10px, .5fr));
+        grid-template-rows: repeat(10, .8fr);
+        width: 100%;
+        height: 40%;
+        border: 1px solid;
+        border-radius: 15px;
+        border-color: #4a4a4a;
+        padding: 1%;
+        margin-top: 2%;
+    }
+
+    .otherInfo h5 {
+        margin: 1%;
+        padding: 0;
+    }
+}
+
+
+/* .detail {
+    position: relative;
+    width: 80%;
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+    gap: 2%;
+    padding: 1%;
+    overflow: hidden;
+}
+
+.basicInfo{
+    position: relative;
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: row;
+    gap: 1%;
+}
+
+.photos{
+    position: relative;
+    width: 47.5%;
+    margin-left: 2.5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.photo {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.categoryImg{
+    position: absolute;
+    top: 1%;
+    right: 1%;
+    width: 35%;
+    z-index: 1;
+}
+
+.left {
+    position: absolute;
+    width: 5%;
+    height: 15%;
+    z-index: 1;
+    left: 3%;
+    color: rgb(237, 237, 237);
+    font-size: 2em;
+    text-shadow: 1px 1px black;
+    cursor: pointer;
+    user-select: none;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -o-user-select: none;
+}
+
+.right {
+    position: absolute;
+    z-index: 1;
+    right: 3%;
+    width: 5%;
+    height: 15%;
+    color: rgb(237, 237, 237);
+    font-size: 2em;
+    text-shadow: 1px 1px black;
+    cursor: pointer;
+    user-select: none;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -o-user-select: none;
+}
+
+.info{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 46%;
+    gap: 1%;
+    border: solid 1px;
+    border-radius: 15px;
+    border-color: #4a4a4a;
+}
+
+.info hr {
+    position: relative;
+    width: 90%;
+    margin-left: 2%;
+}
+
+.name {
+    width: 100%;
+    margin-top: 2%;
+    text-align: left;
+    margin-left: 2%;
+}
+
+.name h2 {
+    margin: 0;
+    color: #4a4a4a;
+}
+
+.location {
+    width: 100%;
+    text-align: left;
+    margin-left: 2%;
+}
+
+.location h2 {
+    margin: 0;
+    color: #4a4a4a;
+}
+
+.infoContainer{
+    position: relative;
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 2.5%;
+    margin-left: 2%;
+}
+
+.infoLogo {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    height: 85%;
+    width: 12%;
+    background-color: rgb(0, 0, 0,.3);
+    border-radius: 5px;
+}
+
+.infoLogo img {
+    height: auto;
+    width: 50%;
+}
+
+.infoLogo h4 {
+    margin: 0%;
+    font-size: 1.3em;
+    color: #4a4a4a;
+}
+
+.otherInfoContainer {
+    position: relative;
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 2%;
+}
+
+.otherInfoContainer img {
+    position: relative;
+    width: 15%;
+}
+
+.otherInfoContainer h4 {
+    margin-left: 5%;
+    font-size: 2.5em;
+    color: #4a4a4a;
+}
+
+.otherInfoContainer a {
+    position: relative;
+    right: -15%;
+}
+
+.adittionalInfo {
+    position: relative;
+    width: 95%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: 2%;
+    color: #4a4a4a;
+}
+
+.line {
+    position: relative;
+    align-self: center;
+    width: 90%;
+    height: 0;
+    border: 1px solid #7a2f2f;
+  }
+
+.otherInfo {
+    position: relative;
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2%;
+}
+
+.otherInfo h5 {
+    margin: 1%;
+    padding: 0;
+}
+
+.listItem img {
+    position: relative;
+    width: 10%;
+    height: 35%;
+}
+
+.listItem{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 99%;
+    height: 100%;
+    margin-left: 1%;
+}
+
+.others{
+    position: relative;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(auto-fit, minmax(10px, .5fr));
+    grid-template-rows: repeat(7,auto);
+    row-gap: 1%;
+    width: 30%;
+    height: 95%;
+    border: 1px solid;
+    border-radius: 15px;
+    border-color: #4a4a4a;
+
+}
+
+.amenities {
+    position: relative;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(auto-fit, minmax(10px, .5fr));
+    grid-template-rows: repeat(7,auto);
+    width: 30%;
+    height: 95%;
+    border: 1px solid;
+    border-radius: 15px;
+    border-color: #4a4a4a;
+
+}
+
+.services {
+    position: relative;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(auto-fit, minmax(10px, .5fr));
+    grid-template-rows: repeat(7,auto);
+    width: 30%;
+    height: 95%;
+    border: 1px solid;
+    border-radius: 15px;
+    border-color: #4a4a4a;
+
+}
+
+.gallery {
+    z-index: 3;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(0, 0, 0,.5);
+    border-radius: 25px;
+}
+
+.gallery h1 {
+    position: absolute;
+    cursor: pointer;
+    top: 5%;
+    right: 5%;
+    color: white;
+}
+
+.galleryPhoto{
+    width: 80%;
+    height: 80%;
+    border-radius: 15px;
+}
+
+.galleryLeft {
+    position: absolute;
+    z-index: 1;
+    left: 3%;
+    color: rgb(237, 237, 237);
+    font-size: 3em;
+    text-shadow: 1px 1px black;
+    cursor: pointer;
+    user-select: none;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -o-user-select: none;
+}
+
+.galleryRight {
+    position: absolute;
+    z-index: 1;
+    right: 3%;
+    color: rgb(237, 237, 237);
+    font-size: 3em;
+    text-shadow: 1px 1px black;
+    cursor: pointer;
+    user-select: none;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -o-user-select: none;
+} */

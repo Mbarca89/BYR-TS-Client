@@ -1,0 +1,180 @@
+@media screen and (max-width: 576px) {
+    .rates{
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        margin-top: 2%;
+    }
+    .container{
+        position: relative;
+        width: 98%;
+        height: 90%;
+        background-color: #eaeaea;
+        border-radius: 15px;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .infoContainer{
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+    }
+    
+    .info{
+        width: 80%;
+        text-align: justify;
+    }
+    
+    .info p {
+        color: #4e4e4e;
+    }
+    
+    .comunicate{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .comunicate img {
+        width: 10%;
+    }
+    
+    .comunicate div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 2%;
+    }
+    
+    .comunicate a{
+        text-decoration: none;
+        color: #4e4e4e;
+    }
+    
+    .comunicate p{
+        text-decoration: none;
+        color: #4e4e4e;
+    }
+    
+    .formContainer{
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+       
+    }
+    
+    .form{
+        width: 80%;
+        height: 80%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        row-gap: 2%;
+    }
+    
+    .inputContainer {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 15%;
+        position: relative;
+        align-items: flex-start;
+        margin-top: 2%;
+    }
+    
+    .labelError{
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+        width: 100%;
+        height: 35%;
+        gap: 1%;
+    }
+    
+    .formInput{
+        position: relative;
+        display: flex;
+        justify-content: flex-start;
+        height: 50%;
+        width: 100%;
+    }
+    
+    .formInput input {
+        width: 100%;
+        height: 50%;
+    }
+    
+    .labelError label {
+        position: relative;
+        height: 100%;
+    }
+    
+    .labelError p {
+        margin: 0;
+        position: relative;
+        height: 100%;
+        font-size: .8em;
+        color: rgb(255, 63, 63);
+    }
+    
+    .commentsContainer {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    textarea {
+        width: 100%;
+    }
+    
+    .buttonDiv{
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 2%;
+        width: 20%;
+        height: 5%;
+        background-color: white;
+        border-radius: 10px;
+        transition: .1s ease-out;
+        overflow: hidden;
+        white-space: nowrap;
+        border-bottom: solid;
+        border-bottom-color:#B84644;
+        border-bottom-width: 0;
+    }
+    
+    .buttonDiv button {
+        border: none;
+        font: arial;
+        font-size: 100%;
+        font-weight: 600;
+        padding-left: .2%;
+        padding-right: .2%;
+        color: black;
+        text-decoration: none;
+        background-color: transparent;
+        cursor: default;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+

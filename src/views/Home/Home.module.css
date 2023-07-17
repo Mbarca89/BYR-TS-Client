@@ -1,226 +1,49 @@
-.home {
-  position: relative;
-  width: 80%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  /* background-color: antiquewhite; */
-  overflow-y: scroll;
-}
-
-.home_noNav {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  /* background-color: rgb(255, 255, 255); */
-  overflow-y: scroll;
-  padding: 2%;
-}
-
-.carousel {
-  position: relative;
-  top: 1%;
-  width: 95%;
-  aspect-ratio: 16/9;
-}
-
-.inversiones {
-  position: relative;
-  /* background-color: aqua; */
-  width: 80%;
-  height: 40%;
-  margin-top: 2%;
-}
-
-.inversiones article {
-  height: 100%;
-  text-align: justify;
-  color: #4a4a4a;
-}
-
-.inversiones h2 {
-  color: #7a2f2f;
-}
-
-.inversionesImg {
-  width: 25%;
-  height: auto;
-  border-radius: 100%;
-  shape-outside: circle(45%);
-  margin-right: 2em;
-  shape-margin: 1.5em;
-  float: left;
-  border: 2px solid rgb(154, 5, 5);
-  outline: 2px solid black;
-}
-
-.tasaciones {
-  position: relative;
-  /* background-color: aqua; */
-  width: 80%;
-  height: 40%;
-  margin-top: 2%;
-}
-
-.tasaciones p {
-  height: 100%;
-  text-align: justify;
-  color: #4a4a4a;
-
-}
-
-.tasaciones h2 {
-  text-align: right;
-  color: #7a2f2f;
-}
-
-.tasacionesImg {
-  width: 25%;
-  height: auto;
-  border-radius: 100%;
-  shape-outside: circle(45%);
-  shape-margin: 1.2em;
-  margin-left: 2em;
-  float: right;
-  border: 2px solid rgb(154, 5, 5);
-  outline: 2px solid black;
-}
-
-.servicios {
-  position: relative;
-  /* background-color: aqua; */
-  width: 80%;
-  height: 40%;
-  margin-top: 2%;
-}
-
-.servicios article {
-  height: 100%;
-  text-align: justify;
-  color: #4a4a4a;
-}
-
-.servicios h2 {
-  color: #7a2f2f;
-}
-
-.serviciosImg {
-  width: 25%;
-  height: auto;
-  border-radius: 100%;
-  shape-outside: circle(45%);
-  margin-right: 2em;
-  shape-margin: 1.5em;
-  float: left;
-  border: 2px solid rgb(154, 5, 5);
-  outline: 2px solid black;
-}
-
-@media screen and (max-width:45em) {
-  .home {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 10%;
-    display: none;
-    align-items: center;
+@media screen and (max-width: 576px) {
+  .home{
+    position: relative;
+    display: flex;
     flex-direction: column;
-    background-color: rgb(255, 255, 255);
-    overflow-x: unset;
+    align-items: center;
+    width: 98%;
+    height: 100%;
   }
 
+  .carousel{
+    margin-top: 2%;
+    width: 98%;
+  }
+
+  .servicios,
+  .tasaciones,
   .inversiones{
     position: relative;
-    /* background-color: aqua; */
-    width: 90%;
-    height: 50%;
     margin-top: 2%;
+    width: 98%;
   }
 
-.inversiones article {
+  .servicios,
+  .tasaciones,
+  .inversiones article{
     height: 100%;
     text-align: justify;
-    color: #4a4a4a;
-}
+  }
 
-.inversiones h2 {
-  color: #7a2f2f;
-}
-
-.inversionesImg{
-    width: 25%;
+  .serviciosImg,
+  .inversionesImg{
+    width: 35%;
     height: auto;
     border-radius: 100%;
-    shape-outside: circle(45%);
-    margin-right: 2em;
-    shape-margin: 1.5em;
+    shape-outside: circle(50%);
     float: left;
-    border: 2px solid rgb(154, 5, 5);
-    outline: 2px solid black;
-}
-
-.tasaciones{
-    position: relative;
-    /* background-color: aqua; */
-    width: 80%;
-    height: 55%;
-    margin-top: 2%;
+    margin-right: 1%;
   }
 
-.tasaciones p {
-    height: 100%;
-    text-align: justify;
-    color: #4a4a4a;
-    
-}
-.tasaciones h2 {
-  text-align: right;
-  color: #7a2f2f;
-}
-
-.tasacionesImg{
-    width: 25%;
+  .tasacionesImg{
+    width: 35%;
     height: auto;
     border-radius: 100%;
-    shape-outside: circle(45%);
-    shape-margin: 1.2em;
-    margin-left: 2em;
+    shape-outside: circle(50%);
     float: right;
-    border: 2px solid rgb(154, 5, 5);
-    outline: 2px solid black;
-}
-
-.servicios{
-  position: relative;
-  /* background-color: aqua; */
-  width: 80%;
-  height: 45%;
-  margin-top: 2%;
-}
-
-.servicios article {
-  height: 100%;
-  text-align: justify;
-  color: #4a4a4a;
-}
-
-.servicios h2 {
-  color: #7a2f2f;
-}
-
-.serviciosImg{
-  width: 25%;
-  height: auto;
-  border-radius: 100%;
-  shape-outside: circle(45%);
-  margin-right: 2em;
-  shape-margin: 1.5em;
-  float: left;
-  border: 2px solid rgb(154, 5, 5);
-    outline: 2px solid black;
-}
+    margin-left: 1%;
+  }
 }

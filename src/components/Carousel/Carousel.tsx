@@ -51,17 +51,25 @@ const Carousel = () => {
     }, [currentImg])
 
     console.log(currentImg)
-
     
+    // return (
+    //     isLoaded ? <div className={style.container}>
+    //         {slides[0] && <NavLink className={style.container} to={`/detail/${slides[currentImg].id}`}>
+    //         <img className={style.slide} src={slides[currentImg].image}></img>
+    //         </NavLink>}
+    //         <div className={style.left} onClick={previous}> 〈 </div>
+    //         <div className={style.right} onClick={next}> 〉 </div>
+    //     </div> : <div className={style.container}><ReactLoading type='spinningBubbles' color='#4a4a4a' height={'5%'} width={'5%'} /></div>
+    // )
     return (
-        isLoaded ? <div className={style.container}>
-            {slides[0] && <NavLink className={style.container} to={`/detail/${slides[currentImg].id}`}>
-            <img className={style.slide} src={slides[currentImg].image}></img>
-            </NavLink>}
-            <div className={style.left} onClick={previous}> 〈 </div>
-            <div className={style.right} onClick={next}> 〉 </div>
-        </div> : <div className={style.container}><ReactLoading type='spinningBubbles' color='#4a4a4a' height={'5%'} width={'5%'} /></div>
-    )
+            isLoaded ? <div className={style.container}>
+                {true && <NavLink className={style.container} to={`/detail/${slides[currentImg].id}`}>
+                <img className={style.slide} src={slides[currentImg].image}></img>
+                </NavLink>}
+                <div className={style.left} onClick={previous}> 〈 </div>
+                <div className={style.right} onClick={next}> 〉 </div>
+            </div> : <div className={style.container}><ReactLoading type='spinningBubbles' color='#4a4a4a' height={'5%'} width={'5%'} /></div>
+        )
 }
 
 export default Carousel
