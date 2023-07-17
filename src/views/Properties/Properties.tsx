@@ -7,6 +7,7 @@ import { useFilter } from '../../hooks/useFilter'
 import Pagination from './Pagination';
 import { PropertyDetailType } from '../../types'
 import { MouseEvent, ChangeEvent } from 'react'
+import { notifyError } from '../../components/Toaster/Toaster'
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL
 
@@ -81,8 +82,8 @@ const Properties = () => {
                 const { data } = await axios(`${SERVER_URL}/properties`)
                 setData(data)
                 setShowData(data)
-            } catch (error) {
-                console.log(error)
+            } catch (error:any) {
+                notifyError(error.response.data)
             }
         }
         getProperties()
@@ -169,8 +170,6 @@ const Properties = () => {
         if (!showData[0]) return null
         setCurrentPage(Math.ceil(showData.length / cardsPerPage))
     }
-
-    console.log(currentPage)
 
     return (
         <div className={style.properties}>

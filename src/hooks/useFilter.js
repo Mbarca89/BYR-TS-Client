@@ -6,7 +6,6 @@ export const useFilter = () => {
 
         let cache = data
         result = data
-        console.log(data,type,category,location)
         if (type) {
             result = cache.filter((item) => item.type === type)
             cache = result

@@ -6,17 +6,16 @@ import { useParams } from 'react-router-dom'
 import others from '../../utils/others'
 import services from '../../utils/services'
 import amenities from '../../utils/amenities'
+import { notifyError, notifySuccess } from '../Toaster/Toaster'
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL
 
 interface ImagePreview {
     file: File;
     preview: string;
-  }
+}
 
-const Editor = ({id}:any) => {
-    console.log(id)
-    // const { id } = useParams()
+const Editor = ({ id }: any) => {
     const [isLoaded, setIsloaded] = useState(false)
     const [uploaded, setUploaded] = useState(false)
     const [data, setData] = useState({
@@ -39,7 +38,7 @@ const Editor = ({id}:any) => {
         amenities: Array<string>(),
     })
     const [images, setImages] = useState<FileList | File[]>(new FileList());
-const [selectedImages, setSelectedImages] = useState<ImagePreview[]>([]);
+    const [selectedImages, setSelectedImages] = useState<ImagePreview[]>([]);
     const [propertyImages, setPropertyImages] = useState([])
     const [othersCheck, setOthersCheck] = useState(new Array(others.length).fill(false))
     const [servicesCheck, setServicesCheck] = useState(new Array(services.length).fill(false))
@@ -96,7 +95,7 @@ const [selectedImages, setSelectedImages] = useState<ImagePreview[]>([]);
         getProperty()
     }, [])
 
-    const othersHandler = (event:any, index:number) => {
+    const othersHandler = (event: any, index: number) => {
         let buffer = othersCheck
         buffer[index] = !buffer[index]
         setOthersCheck(buffer)
@@ -113,7 +112,7 @@ const [selectedImages, setSelectedImages] = useState<ImagePreview[]>([]);
         }
     }
 
-    const servicesHandler = (event:any, index:number) => {
+    const servicesHandler = (event: any, index: number) => {
         let buffer = servicesCheck
         buffer[index] = !buffer[index]
         setServicesCheck(buffer)
@@ -130,7 +129,7 @@ const [selectedImages, setSelectedImages] = useState<ImagePreview[]>([]);
         }
     }
 
-    const amenitiesHandler = (event: ChangeEvent<HTMLInputElement>, index:number) => {
+    const amenitiesHandler = (event: ChangeEvent<HTMLInputElement>, index: number) => {
         let buffer = amenitiesCheck
         buffer[index] = !buffer[index]
         setAmenitiesCheck(buffer)
@@ -147,7 +146,7 @@ const [selectedImages, setSelectedImages] = useState<ImagePreview[]>([]);
         }
     }
 
-    const changeHandler = (event:any) => {
+    const changeHandler = (event: any) => {
         setData({
             ...data,
             [event.target.name]: event.target.value
@@ -162,13 +161,13 @@ const [selectedImages, setSelectedImages] = useState<ImagePreview[]>([]);
         }
         try {
             await axios.post(`${SERVER_URL}/properties/edit/${id}`, formData)
-            setUploaded(true)
-        } catch (error) {
-            console.log(error)
+            notifySuccess('Propiedad editada con exito!')
+        } catch (error: any) {
+            notifyError(error.response.data)
         }
     }
 
-    const fileHandler = (event:ChangeEvent<HTMLInputElement>) => {
+    const fileHandler = (event: ChangeEvent<HTMLInputElement>) => {
         setImages((prevImages: FileList | File[]) => [...prevImages, ...(event.target.files || [])]);
         const files: File[] = Array.from(event.target.files || []);
 
@@ -187,7 +186,7 @@ const [selectedImages, setSelectedImages] = useState<ImagePreview[]>([]);
         };
     }, [selectedImages]);
 
-    const deleteImage = (index:number) => {
+    const deleteImage = (index: number) => {
         const newImages = [...images]
         newImages.splice(index, 1)
         setImages(newImages)
@@ -196,20 +195,20 @@ const [selectedImages, setSelectedImages] = useState<ImagePreview[]>([]);
         setSelectedImages(newImagesPreview);
     }
 
-    const deleteImageFromDb = async (index:number, imageId:string) => {
+    const deleteImageFromDb = async (index: number, imageId: string) => {
         try {
             await axios.delete(`${SERVER_URL}/properties/delete/image?id=${id}&imageId=${imageId}`)
             const imagesCache = [...propertyImages]
             imagesCache.splice(index, 1)
             setPropertyImages(imagesCache)
 
-        } catch (error) {
-            console.log(error)
+        } catch (error: any) {
+            notifyError(error.response.data)
         }
     }
 
-    const isFeatured = (event:any) => {
-        if(event.target.checked === true) setData({
+    const isFeatured = (event: any) => {
+        if (event.target.checked === true) setData({
             ...data,
             featured: true
         })
@@ -220,7 +219,7 @@ const [selectedImages, setSelectedImages] = useState<ImagePreview[]>([]);
     }
 
     return (
-        isLoaded ? !uploaded ? <div className={style.uploader}>
+        isLoaded ? <div className={style.uploader}>
             <header>
                 <h2>Editar propiedad</h2>
             </header>
@@ -230,7 +229,7 @@ const [selectedImages, setSelectedImages] = useState<ImagePreview[]>([]);
                     <div className={style.basicInfo}>
                         <div>
                             <label htmlFor="featured">Propiedad destacada</label>
-                            <input type="checkbox" name="featured" onChange={isFeatured} checked={data.featured}/>
+                            <input type="checkbox" name="featured" onChange={isFeatured} checked={data.featured} />
                         </div>
                         <div>
                             <label htmlFor="name">Nombre</label>
@@ -361,7 +360,7 @@ const [selectedImages, setSelectedImages] = useState<ImagePreview[]>([]);
                     </div>
                     <h3>Imagenes seleccionadas</h3>
                     <div className={style.preview}>
-                        {selectedImages.map((image:any, index) => (
+                        {selectedImages.map((image: any, index) => (
                             <div key={index}>
                                 <img src={image.preview} alt="Preview" />
                                 <button className={style.deleteImage} onClick={() => deleteImage(index)}>X</button>
@@ -370,7 +369,7 @@ const [selectedImages, setSelectedImages] = useState<ImagePreview[]>([]);
                     </div>
                     <h3>Imagenes subidas</h3>
                     <div className={style.preview}>
-                        {propertyImages.map((image:any, index) => (
+                        {propertyImages.map((image: any, index) => (
                             <div key={index}>
                                 <img src={image.url} alt="Preview" />
                                 <button className={style.deleteImage} onClick={() => deleteImageFromDb(index, image.id)}>X</button>
@@ -382,8 +381,6 @@ const [selectedImages, setSelectedImages] = useState<ImagePreview[]>([]);
             <footer>
                 <button onClick={submitHandler}>Aceptar</button>
             </footer>
-        </div> : <div>
-            <h1>Propiedad editada con exito!</h1>
         </div> :
             <div>
                 <p>Cargando</p>

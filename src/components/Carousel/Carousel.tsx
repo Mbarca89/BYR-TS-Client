@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from 'react'
 import axios from 'axios'
 import { NavLink } from 'react-router-dom'
 import ReactLoading from 'react-loading'
+import { notifyError } from '../Toaster/Toaster'
 const SERVER_URL = process.env.REACT_APP_SERVER_URL
 
 
@@ -25,8 +26,8 @@ const Carousel = () => {
                     return {image:item.images[0].url,id:item.id}
                 }))
                 setIsloaded(true)
-            } catch (error) {
-                console.log(error)
+            } catch (error:any) {
+                notifyError(error.response.data)
             }
         }
         getFeatured()
@@ -49,8 +50,6 @@ const Carousel = () => {
             resetTimeout()
         }
     }, [currentImg])
-
-    console.log(currentImg)
     
     // return (
     //     isLoaded ? <div className={style.container}>

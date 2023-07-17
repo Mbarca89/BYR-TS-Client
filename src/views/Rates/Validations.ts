@@ -10,8 +10,6 @@ const Validations = (data:Data, eventName:string) => {
         disabled3: true,
     }
 
-    console.log(data, eventName)
-
     if (eventName === 'name') {
         if (data.name.length === 0) {
             res.name = 'El nombre no puede estar vacio'
