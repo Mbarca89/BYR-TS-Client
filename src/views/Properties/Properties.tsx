@@ -82,7 +82,7 @@ const Properties = () => {
                 const { data } = await axios(`${SERVER_URL}/properties`)
                 setData(data)
                 setShowData(data)
-            } catch (error:any) {
+            } catch (error: any) {
                 notifyError(error.response.data)
             }
         }
@@ -173,8 +173,10 @@ const Properties = () => {
 
     return (
         <div className={style.properties}>
+            <div className={style.banner}>
+                
+            </div>
             <div className={style.bar}>
-                <img src={banner} alt="" />
                 <div className={style.buttonContainer}>
                     <div className={style.buttonDiv} >
                         <button name='category' onClick={showCategoryHandler}>Operación</button>
