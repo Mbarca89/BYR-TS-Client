@@ -33,7 +33,7 @@
     -khtml-user-select: none;
     -webkit-user-select: none;
     -o-user-select: none;
-    cursor: default;
+    cursor: pointer;
 }
 
 .right {
@@ -53,7 +53,7 @@
     -khtml-user-select: none;
     -webkit-user-select: none;
     -o-user-select: none;
-    cursor: default;
+    cursor: pointer;
 }
 
 .slideNav {
@@ -79,4 +79,11 @@
 .dot:hover {
     bottom: 1vh;
     color: #d33438
+}
+
+@media screen and (max-width: 576px) {
+    .right,
+    .left{
+        cursor: default;
+    }
 }

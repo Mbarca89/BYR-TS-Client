@@ -35,7 +35,7 @@ const Uploader = () => {
         services: [],
         amenities: [],
     })
-    const [images, setImages] = useState<FileList | File[]>(new FileList());
+    const [images, setImages] = useState<File[]>([]);
     const [selectedImages, setSelectedImages] = useState<ImagePreview[]>()
     const [othersCheck, setOthersCheck] = useState(new Array(others.length).fill(false))
     const [servicesCheck, setServicesCheck] = useState(new Array(services.length).fill(false))

@@ -1,8 +1,6 @@
 import style from './Editor.module.css'
 import axios from 'axios'
 import { useState, useEffect, ChangeEvent } from 'react'
-import { NavLink } from 'react-router-dom'
-import { useParams } from 'react-router-dom'
 import others from '../../utils/others'
 import services from '../../utils/services'
 import amenities from '../../utils/amenities'
@@ -37,7 +35,7 @@ const Editor = ({ id }: any) => {
         services: Array<string>(),
         amenities: Array<string>(),
     })
-    const [images, setImages] = useState<FileList | File[]>(new FileList());
+    const [images, setImages] = useState<File[]>([]);
     const [selectedImages, setSelectedImages] = useState<ImagePreview[]>([]);
     const [propertyImages, setPropertyImages] = useState([])
     const [othersCheck, setOthersCheck] = useState(new Array(others.length).fill(false))

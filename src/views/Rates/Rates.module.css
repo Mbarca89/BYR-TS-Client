@@ -1,5 +1,5 @@
 @media screen and (max-width: 576px) {
-    .rates{
+    .rates {
         position: relative;
         display: flex;
         align-items: center;
@@ -8,7 +8,8 @@
         height: 100%;
         margin-top: 2%;
     }
-    .container{
+
+    .container {
         position: relative;
         width: 98%;
         height: 90%;
@@ -17,8 +18,8 @@
         display: flex;
         flex-direction: column;
     }
-    
-    .infoContainer{
+
+    .infoContainer {
         display: flex;
         flex-direction: column;
         position: relative;
@@ -26,47 +27,52 @@
         height: 100%;
         align-items: center;
     }
-    
-    .info{
+
+    .info {
         width: 80%;
         text-align: justify;
     }
-    
+
     .info p {
         color: #4e4e4e;
     }
-    
-    .comunicate{
+
+    .comunicate {
         display: flex;
         flex-direction: column;
         width: 100%;
         align-items: center;
         justify-content: center;
     }
-    
+
+    .comunicateOptions {
+        display: flex;
+        flex-direction: column;
+    }
+
     .comunicate img {
         width: 10%;
     }
-    
-    .comunicate div {
+
+    .option {
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: center;
         gap: 2%;
     }
-    
-    .comunicate a{
+
+    .comunicate a {
         text-decoration: none;
         color: #4e4e4e;
     }
-    
-    .comunicate p{
+
+    .comunicate p {
         text-decoration: none;
         color: #4e4e4e;
     }
-    
-    .formContainer{
+
+    .formContainer {
         position: relative;
         width: 100%;
         height: 100%;
@@ -74,10 +80,10 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-       
+
     }
-    
-    .form{
+
+    .form {
         width: 80%;
         height: 80%;
         position: relative;
@@ -85,7 +91,7 @@
         flex-direction: column;
         row-gap: 2%;
     }
-    
+
     .inputContainer {
         display: flex;
         flex-direction: column;
@@ -95,8 +101,8 @@
         align-items: flex-start;
         margin-top: 2%;
     }
-    
-    .labelError{
+
+    .labelError {
         position: relative;
         display: flex;
         flex-direction: row;
@@ -105,25 +111,25 @@
         height: 35%;
         gap: 1%;
     }
-    
-    .formInput{
+
+    .formInput {
         position: relative;
         display: flex;
         justify-content: flex-start;
         height: 50%;
         width: 100%;
     }
-    
+
     .formInput input {
         width: 100%;
         height: 50%;
     }
-    
+
     .labelError label {
         position: relative;
         height: 100%;
     }
-    
+
     .labelError p {
         margin: 0;
         position: relative;
@@ -131,19 +137,19 @@
         font-size: .8em;
         color: rgb(255, 63, 63);
     }
-    
+
     .commentsContainer {
         width: 100%;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
     }
-    
+
     textarea {
         width: 100%;
     }
-    
-    .buttonDiv{
+
+    .buttonDiv {
         position: relative;
         display: flex;
         align-items: center;
@@ -157,10 +163,10 @@
         overflow: hidden;
         white-space: nowrap;
         border-bottom: solid;
-        border-bottom-color:#B84644;
+        border-bottom-color: #B84644;
         border-bottom-width: 0;
     }
-    
+
     .buttonDiv button {
         border: none;
         font: arial;
@@ -177,4 +183,376 @@
     }
 }
 
+@media screen and (min-width: 577px) and (max-width: 1025px) {
+    .rates {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 95%;
+        height: 100%;
+        margin: auto;
+        margin-top: 5%;
+    }
 
+    .container {
+        position: relative;
+        width: 98%;
+        height: 90%;
+        background-color: #eaeaea;
+        border-radius: 15px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .infoContainer {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        width: 100%;
+        height: 20%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .info {
+        width: 90%;
+        text-align: justify;
+    }
+
+    .info p {
+        color: #4e4e4e;
+    }
+
+    .formContainer {
+        position: relative;
+        width: 100%;
+        height: 60%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .form {
+        width: 90%;
+        height: 80%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .inputContainer {
+        display: flex;
+        flex-direction: column;
+        gap: 10%;
+        width: 100%;
+        height: 15%;
+        position: relative;
+        align-items: flex-start;
+    }
+
+    .labelError {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+        width: 100%;
+        height: 35%;
+        gap: 1%;
+    }
+
+    .formInput {
+        position: relative;
+        display: flex;
+        justify-content: flex-start;
+        height: 50%;
+        width: 100%;
+    }
+
+    .formInput input {
+        width: 100%;
+        height: 50%;
+    }
+
+    .labelError label {
+        position: relative;
+        height: 100%;
+    }
+
+    .labelError p {
+        margin: 0;
+        position: relative;
+        height: 100%;
+        font-size: .8em;
+        color: rgb(255, 63, 63);
+    }
+
+    .commentsContainer {
+        width: 100%;
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    textarea {
+        width: 99%;
+    }
+
+    .buttonDiv {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 2%;
+        width: 90%;
+        height: 10%;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .buttonDiv button:hover{
+        border-bottom-width: .2em;
+    }
+
+    .buttonDiv button {
+        border: none;
+        font: arial;
+        font-size: 100%;
+        font-weight: 600;
+        padding-left: .2%;
+        padding-right: .2%;
+        color: black;
+        text-decoration: none;
+        background-color: white;
+        cursor: pointer;
+        width: 10%;
+        height: 2em;
+        border-radius: 10px;
+        transition: .05s ease-out;
+        border-bottom: solid;
+        border-bottom-color: #B84644;
+        border-bottom-width: 0em;
+    }
+    
+    .comunicate {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .comunicateOptions {
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .comunicate img {
+        width: 10%;
+    }
+
+    .option {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 2%;
+    }
+
+    .comunicate a {
+        text-decoration: none;
+        color: #4e4e4e;
+    }
+
+    .comunicate p {
+        text-decoration: none;
+        color: #4e4e4e;
+    }
+}
+
+@media screen and (min-width: 1026px) {
+    .rates {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 80%;
+        height: 100vh;
+        margin-left: 20%;
+        margin-top: 1%;
+    }
+
+    .container {
+        position: relative;
+        width: 98%;
+        height: 100%;
+        background-color: #eaeaea;
+        border-radius: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .infoContainer {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        width: 90%;
+        height: 20%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .info {
+        width: 90%;
+        text-align: justify;
+    }
+
+    .info p {
+        color: #4e4e4e;
+    }
+
+    .formContainer {
+        position: relative;
+        width: 90%;
+        height: 60%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .form {
+        width: 90%;
+        height: 80%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .inputContainer {
+        display: flex;
+        flex-direction: column;
+        gap: 10%;
+        width: 100%;
+        height: 15%;
+        position: relative;
+        align-items: flex-start;
+    }
+
+    .labelError {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+        width: 100%;
+        height: 35%;
+        gap: 1%;
+    }
+
+    .formInput {
+        position: relative;
+        display: flex;
+        justify-content: flex-start;
+        height: 50%;
+        width: 100%;
+    }
+
+    .formInput input {
+        width: 100%;
+        height: 50%;
+    }
+
+    .labelError label {
+        position: relative;
+        height: 100%;
+    }
+
+    .labelError p {
+        margin: 0;
+        position: relative;
+        height: 100%;
+        font-size: .8em;
+        color: rgb(255, 63, 63);
+    }
+
+    .commentsContainer {
+        width: 100%;
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    textarea {
+        width: 99%;
+    }
+
+    .buttonDiv {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 2%;
+        width: 90%;
+        height: 10%;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .buttonDiv button:hover{
+        border-bottom-width: .2em;
+    }
+
+    .buttonDiv button {
+        border: none;
+        font: arial;
+        font-size: 100%;
+        font-weight: 600;
+        padding-left: .2%;
+        padding-right: .2%;
+        color: black;
+        text-decoration: none;
+        background-color: white;
+        cursor: pointer;
+        width: 10%;
+        height: 2em;
+        border-radius: 10px;
+        transition: .05s ease-out;
+        border-bottom: solid;
+        border-bottom-color: #B84644;
+        border-bottom-width: 0em;
+    }
+    .comunicate {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 20%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .comunicate img {
+        width: 10%;
+    }
+
+    .comunicate div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 2%;
+    }
+
+    .comunicate a {
+        text-decoration: none;
+        color: #4e4e4e;
+    }
+
+    .comunicate p {
+        text-decoration: none;
+        color: #4e4e4e;
+    }
+}

@@ -17,7 +17,6 @@ export interface Data {
 
 const Rates = () => {
 
-    const [mobile, setMobile] = useState<boolean>(false)
     const [data, setData] = useState<Data>({
         name: '',
         mail: '',
@@ -79,11 +78,7 @@ const Rates = () => {
         }
     }, [data])
 
-    useEffect(() => {
-        window.innerWidth < 576 && setMobile(true)
-    }, [])
-
-    if (mobile) return (
+    return (
         <div className={style.rates}>
             <div className={style.container}>
                 <div className={style.infoContainer}>
@@ -126,43 +121,39 @@ const Rates = () => {
                             <textarea name="comments" id="" cols={30} rows={10} onChange={CommentHandler} value={data.comments}></textarea>
                         </div>
                     </div>
-
                     <div className={style.buttonDiv}>
                         <button>Enviar</button>
                     </div>
-
                 </div>
                 <div className={style.comunicate}>
-                        <h3>Otras formas de comunicarte:</h3>
-                        <div>
+                    <h3>Otras formas de comunicarte:</h3>
+                    <div className={style.comunicateOptions}>
+                        <div className={style.option}>
                             <img src={phone} alt="" />
                             <p>+549 266 570187</p>
                         </div>
-                        <div>
+                        <div className={style.option}>
                             <img src={whatsapp} alt="" />
                             <a href="`https://api.whatsapp.com/send?phone=5492664570187&text=Hola, Necesito asesoramiento sobre una propiedad`" target="_blank" rel="noopener noreferrer">
                                 <p>+549 266 570187</p>
                             </a>
                         </div>
-                        <div>
+                        <div className={style.option}>
                             <img src={instagram} alt="" />
                             <a href={`https://www.instagram.com/byrinmobiliaria/`} target="_blank" rel="noopener noreferrer">
                                 <p>@byrinmobiliaria</p>
                             </a>
                         </div>
-                        <div>
+                        <div className={style.option}>
                             <img src={facebook} alt="" />
                             <a href={`https://www.facebook.com/ByRdesarrollosinmobiliarios`} target="_blank" rel="noopener noreferrer">
                                 <p>Inmobiliaria B&R</p>
                             </a>
                         </div>
                     </div>
+                </div>
             </div>
         </div>
-    )
-
-    return (
-        <div></div>
     )
 }
 
