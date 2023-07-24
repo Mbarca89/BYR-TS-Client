@@ -884,7 +884,7 @@
     .listItem img {
         position: relative;
         width: 10%;
-        height: 35%;
+        aspect-ratio: 1/1;
     }
     
     .listItem{
@@ -903,7 +903,7 @@
         display: grid;
         grid-auto-flow: column;
         grid-template-columns: repeat(auto-fit, minmax(10px, .5fr));
-        grid-template-rows: repeat(7,auto);
+        grid-template-rows: repeat(7,1fr);
         row-gap: 1%;
         width: 100%;
         height: 95%;
@@ -918,7 +918,7 @@
         display: grid;
         grid-auto-flow: column;
         grid-template-columns: repeat(auto-fit, minmax(10px, .5fr));
-        grid-template-rows: repeat(7,auto);
+        grid-template-rows: repeat(7,1fr);
         width: 100%;
         height: 95%;
         border: 1px solid;
@@ -932,7 +932,7 @@
         display: grid;
         grid-auto-flow: column;
         grid-template-columns: repeat(auto-fit, minmax(10px, .5fr));
-        grid-template-rows: repeat(7,auto);
+        grid-template-rows: repeat(7,1fr);
         width: 100%;
         height: 95%;
         border: 1px solid;
@@ -996,21 +996,4 @@
             -webkit-user-select: none;
             -o-user-select: none;
     }
-}
-
-.container{
-    position: relative;
-    width: 50vw;
-    height: 50vh;
-    background-color: #7a2f2f;
-}
-
-.box{
-    position: relative;
-    width: 10%;
-    height: 10%;
-    top: 0;
-    left: 0;
-    background-color: aqua;
-    z-index: 99999999999;
 }
