@@ -12,8 +12,10 @@
     width: 100%;
     height: auto;
     aspect-ratio: 16/9;
-    object-fit: scale-down;
+    background-size: cover;
+    background-repeat: no-repeat;
     border-radius: 15px;
+    transition: ease .1s;
 }
 
 .left {
