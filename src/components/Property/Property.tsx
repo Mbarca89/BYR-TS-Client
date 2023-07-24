@@ -8,7 +8,21 @@ import venta from '../../img/Venta.webp'
 import alquiler from '../../img/Alquiler.webp'
 import { useNavigate } from 'react-router-dom'
 
-const Property = ({id, price, currency, bedrooms, bathrooms, name, location, images, type, size, category }) => {
+interface Props {
+    id: string,
+    price: number,
+    currency: string,
+    bedrooms: number,
+    bathrooms: number,
+    name: string,
+    location: string,
+    images: any[],
+    type:string,
+    size: number,
+    category: string;
+}
+
+const Property = ({id, price, currency, bedrooms, bathrooms, name, location, images, type, size, category }:Props) => {
 
     let type1 = false
     let type2 = false

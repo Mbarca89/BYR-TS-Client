@@ -397,6 +397,7 @@
     .name h2 {
         margin: 0;
         color: #4a4a4a;
+        font-size: 2.3vw;
     }
     
     .location {
@@ -757,6 +758,7 @@
     .name h2 {
         margin: 0;
         color: #4a4a4a;
+        font-size: 2vw;
     }
     
     .location {
@@ -884,6 +886,8 @@
     .listItem img {
         position: relative;
         width: 10%;
+        max-width: 20px;
+        height: auto;
         aspect-ratio: 1/1;
     }
     
@@ -902,7 +906,7 @@
         position: relative;
         display: grid;
         grid-auto-flow: column;
-        grid-template-columns: repeat(auto-fit, minmax(10px, .5fr));
+        grid-template-columns: repeat(auto-fit, minmax(10px, 1fr));
         grid-template-rows: repeat(7,1fr);
         row-gap: 1%;
         width: 100%;
@@ -917,7 +921,7 @@
         position: relative;
         display: grid;
         grid-auto-flow: column;
-        grid-template-columns: repeat(auto-fit, minmax(10px, .5fr));
+        grid-template-columns: repeat(auto-fit, minmax(10px, 1fr));
         grid-template-rows: repeat(7,1fr);
         width: 100%;
         height: 95%;
@@ -931,7 +935,7 @@
         position: relative;
         display: grid;
         grid-auto-flow: column;
-        grid-template-columns: repeat(auto-fit, minmax(10px, .5fr));
+        grid-template-columns: repeat(auto-fit, minmax(10px, 1fr));
         grid-template-rows: repeat(7,1fr);
         width: 100%;
         height: 95%;

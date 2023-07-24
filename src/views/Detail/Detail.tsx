@@ -83,7 +83,7 @@ const Detail = () => {
         setImageLoading(false)
     }
 
-    return (      
+    return (
         !loading ? <div className={style.detail}>
             {showGallery &&
                 <div className={style.gallery}>
@@ -151,39 +151,39 @@ const Detail = () => {
             </div>
             <div className={style.line}></div>
             <div className={style.otherInfo}>
-                <div className={style.otherInfoDiv}>
-                    {propertyData.others.length ? <h4>Otros ambientes:</h4> : null}
-                    {propertyData.others.length ? <div className={style.others}>
+                {propertyData.others.length ? <div className={style.otherInfoDiv}>
+                    <h4>Otros ambientes:</h4>
+                    <div className={style.others}>
                         {propertyData.others.map(item => {
                             return (<div key={item} className={style.listItem}>
                                 <img src={check} alt="" />
                                 <h5>{item}</h5>
                             </div>)
                         })}
-                    </div> : null}
-                </div>
-                <div className={style.otherInfoDiv}>
-                    {propertyData.amenities.length ? <h4>Comodidades:</h4> : null}
-                    {propertyData.amenities.length ? <div className={style.amenities}>
+                    </div>
+                </div> : null}
+                {propertyData.amenities.length ? <div className={style.otherInfoDiv}>
+                    <h4>Comodidades:</h4>
+                    <div className={style.amenities}>
                         {propertyData.amenities.map(item => {
                             return (<div key={item} className={style.listItem}>
                                 <img src={check} alt="" />
                                 <h5>{item}</h5>
                             </div>)
                         })}
-                    </div> : null}
-                </div>
-                <div className={style.otherInfoDiv}>
-                    {propertyData.services.length ? <h4>Servicios:</h4> : null}
-                    {propertyData.others.length ? <div className={style.services}>
+                    </div>
+                </div> : null}
+                {propertyData.services.length ? <div className={style.otherInfoDiv}>
+                    <h4>Servicios:</h4>
+                    <div className={style.services}>
                         {propertyData.services.map(item => {
                             return (<div key={item} className={style.listItem}>
                                 <img src={check} alt="" />
                                 <h5>{item}</h5>
                             </div>)
                         })}
-                    </div> : null}
-                </div>
+                    </div>
+                </div> : null}
             </div>
         </div> :
             <div className={style.detail}><ReactLoading type='spinningBubbles' color='#4a4a4a' height={'5%'} width={'5%'} /></div>
