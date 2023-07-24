@@ -3,7 +3,7 @@ import { useState } from 'react'
 import Uploader from '../../components/Uploader/Uploader'
 import List from '../../components/List/List'
 import { ChangeEvent, MouseEvent } from 'react'
-const logo = require('../../img/logo.png')
+const logo = require('../../img/logo.webp')
 const ADMIN_USER = process.env.REACT_APP_ADMIN_USER
 const ADMIN_PASSWORD = process.env.REACT_APP_ADMIN_PASSWORD
 

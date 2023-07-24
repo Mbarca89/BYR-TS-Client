@@ -1,10 +1,10 @@
 import style from './Rates.module.css'
 import { useState, useEffect } from 'react'
 import Validations from './Validations'
-import whatsapp from '../../img/whatsapp.png'
-import facebook from '../../img/facebook.png'
-import instagram from '../../img/instagram.png'
-import phone from '../../img/phone.png'
+import whatsapp from '../../img/whatsapp.webp'
+import facebook from '../../img/facebook.webp'
+import instagram from '../../img/instagram.webp'
+import phone from '../../img/phone.webp'
 import { ChangeEvent } from 'react'
 
 export interface Data {

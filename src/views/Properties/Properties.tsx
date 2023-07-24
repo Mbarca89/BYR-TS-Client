@@ -1,7 +1,7 @@
 import style from './Properties.module.css'
 import Property from '../../components/Property/Property'
 import axios from 'axios'
-import banner from '../../img/background.jpg'
+import banner from '../../img/background.webp'
 import { MouseEventHandler, useEffect, useState } from 'react'
 import { useFilter } from '../../hooks/useFilter'
 import Pagination from './Pagination';

@@ -1,8 +1,8 @@
 import style from './Home.module.css'
 import Carousel from '../../components/Carousel/Carousel'
-import inversiones from '../../img/inversiones.jpg'
-import tasaciones from '../../img/tasaciones.png'
-import servicios from '../../img/servicios.jpg'
+import inversiones from '../../img/inversiones.webp'
+import tasaciones from '../../img/tasaciones.webp'
+import servicios from '../../img/servicios.webp'
 
 const Home = () => { 
 

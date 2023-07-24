@@ -305,7 +305,7 @@
         top: -40%;
         width: 100%;
         height: 45%;
-        background-image: url('../../assets/background.jpg');
+        background-image: url('../../assets/background.webp');
         z-index: -1;
     }
 
@@ -601,7 +601,7 @@
         top: -40%;
         width: 100%;
         height: 45%;
-        background-image: url('../../assets/background.jpg');
+        background-image: url('../../assets/background.webp');
         z-index: -1;
     }
 

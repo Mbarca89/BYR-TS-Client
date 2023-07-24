@@ -1,11 +1,11 @@
 import style from './Property.module.css'
-import pesos from '../../img/pesos.png'
-import dolares from '../../img/dolares.png'
-import bedroomsIcon from '../../img/bedroom.png'
-import bathroomsIcon from '../../img/bathroom.png'
-import sizeIcon from '../../img/size.png'
-import venta from '../../img/Venta.png'
-import alquiler from '../../img/Alquiler.png'
+import pesos from '../../img/pesos.webp'
+import dolares from '../../img/dolares.webp'
+import bedroomsIcon from '../../img/bedroom.webp'
+import bathroomsIcon from '../../img/bathroom.webp'
+import sizeIcon from '../../img/size.webp'
+import venta from '../../img/Venta.webp'
+import alquiler from '../../img/Alquiler.webp'
 import { useNavigate } from 'react-router-dom'
 
 const Property = ({id, price, currency, bedrooms, bathrooms, name, location, images, type, size, category }) => {

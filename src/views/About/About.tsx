@@ -1,9 +1,9 @@
 import style from './About.module.css'
-const banner = require('../../img/banner.jpg')
-const about = require('../../img/about.jpg')
-const renzoybruno = require('../../img/renzoybruno.jpg')
-const bruno = require('../../img/bruno.jpg')
-const renzo = require('../../img/renzo.jpg')
+const banner = require('../../img/banner.webp')
+const about = require('../../img/about.webp')
+const renzoybruno = require('../../img/renzoybruno.webp')
+const bruno = require('../../img/bruno.webp')
+const renzo = require('../../img/renzo.webp')
 
 const About = () => {
 
