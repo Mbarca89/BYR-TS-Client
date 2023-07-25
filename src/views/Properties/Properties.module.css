@@ -1,11 +1,22 @@
 @media screen and (max-width: 576px) {
     .properties {
         position: relative;
-        width: 98vw;
+        width: 100vw;
         height: 100vh;
         display: flex;
         flex-direction: column;
         margin-top: 2%;
+    }
+
+    .banner {
+        position: absolute;
+        top: -30%;
+        width: 100%;
+        height: 45%;
+        background-image: url('../../assets/background.jpg');
+        background-position: bottom;
+        background-size: contain;
+        z-index: -1;
     }
 
     .bar {
@@ -14,13 +25,6 @@
         flex-direction: column;
         height: 14%;
         width: 100%;
-    }
-
-    .bar img {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
     }
 
     .buttonContainer {
@@ -68,7 +72,8 @@
     }
 
     .filterContainer {
-        position: relative;
+        position: absolute;
+        bottom: -50%;
         display: flex;
         flex-direction: row;
         width: 100%;
@@ -216,7 +221,7 @@
         align-items: center;
         margin: 0;
         width: 100%;
-        height: 4%;
+        height: 7%;
     }
 
     .resetContainer {
@@ -242,7 +247,6 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin-top: 2%;
         gap: 3%;
     }
 

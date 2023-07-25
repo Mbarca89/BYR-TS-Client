@@ -8,8 +8,8 @@ const SERVER_URL = process.env.REACT_APP_SERVER_URL
 
 
 const Carousel = () => {
-    const [isLoaded, setIsloaded] = useState(false)
-    const [currentImg, setCurrentImg] = useState(0)
+    const [isLoaded, setIsloaded] = useState<boolean>(false)
+    const [currentImg, setCurrentImg] = useState<number>(0)
     const [slides, setSlides] = useState([{ id: '', image: '' }])
     const timeoutRef: any = useRef(null)
     const delay = 3500

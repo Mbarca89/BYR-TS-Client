@@ -1,5 +1,5 @@
 import style from './About.module.css'
-const banner = require('../../img/banner.webp')
+const banner = require('../../img/banner.jpg')
 const about = require('../../img/about.webp')
 const renzoybruno = require('../../img/renzoybruno.webp')
 const bruno = require('../../img/bruno.webp')
@@ -9,7 +9,7 @@ const About = () => {
 
     return (
         <div className={style.about}>
-            <img className={style.banner} src={banner} alt="" />
+            <div className={style.banner} style={{backgroundImage: `url(${banner})`}}/>
             <div className={style.aboutUs}>
                 <div className={style.line}></div>
                 <div className={style.company}>
@@ -25,16 +25,16 @@ const About = () => {
                     <div className={style.bruno}>
                         <img src={bruno} alt="" />
                         <div className={style.brunoContainer}>
-                            <h1>Bruno Proto</h1>
+                            <h2>Bruno Proto</h2>
                             <h5>Agente Inmobiliario.</h5>
                             <h5>Martillero Público.</h5>
                             <h5>Matrícula N° 808.</h5>
                         </div>
                     </div>
-                    <div className={style.uslLine}></div>
+                    <div className={style.usLine}></div>
                     <div className={style.renzo}>
                         <div className={style.renzoContainer}>
-                            <h1>Renzo Proto</h1>
+                            <h2>Renzo Proto</h2>
                             <h5>Administrativo Inmobiliario.</h5>
                             <h5>Lic. En Administración de Empresas.</h5>
                         </div>
@@ -45,11 +45,11 @@ const About = () => {
                 <div className={style.mision}>
                     <article>
                         <img src={renzoybruno} alt="" />
-                        <h1>Misión</h1>
+                        <h3>Misión</h3>
                         <p>Ofrecer Servicios de excelencia inmobiliaria a nuestros clientes, logrando construir relaciones a largo plazo, adaptando nuestros servicios a las exigencias y necesidades de los mismos y adecuándonos al dinamismo del mercado, con el objetivo de brindar el mejor servicio.</p>
-                        <h1>Visión</h1>
+                        <h3>Visión</h3>
                         <p>Situar a ByR Desarrollos inmobiliarios como una empresa líder en el mercado de bienes raíces, siendo referencia de profesionalismo y compromiso. </p>
-                        <h1>Valores</h1>
+                        <h3>Valores</h3>
                         <p>Pasión.
                             Compromiso.
                             Profesionalismo.

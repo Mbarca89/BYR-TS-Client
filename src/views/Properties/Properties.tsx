@@ -174,7 +174,6 @@ const Properties = () => {
     return (
         <div className={style.properties}>
             <div className={style.banner}>
-                
             </div>
             <div className={style.bar}>
                 <div className={style.buttonContainer}>

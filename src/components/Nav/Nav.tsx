@@ -27,7 +27,7 @@ const Nav = () => {
     console.log(location.pathname)
 
     if (mobile) return (
-        <div className={style.header} style={location.pathname === '/properties' ? { backgroundColor: 'transparent', height: '20vh' } : undefined}>
+        <div className={style.header} style={location.pathname === '/properties' ? { backgroundColor: 'transparent', height: '12vh' } : undefined}>
             <div className={style.menu} onClick={showNavHandler}>
                 {!showNav ?
                     <GiHamburgerMenu size={35} color={'#4a4a4a'} style={{ marginTop: '3%', marginLeft: '3%', cursor: 'pointer' }} />
