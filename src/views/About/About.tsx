@@ -1,5 +1,5 @@
 import style from './About.module.css'
-const banner = require('../../img/banner.jpg')
+const banner = require('../../img/banner.webp')
 const about = require('../../img/about.webp')
 const renzoybruno = require('../../img/renzoybruno.webp')
 const bruno = require('../../img/bruno.webp')
