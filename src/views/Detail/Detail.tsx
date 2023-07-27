@@ -17,6 +17,7 @@ import ReactLoading from 'react-loading'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import { PropertyDetailType } from '../../types'
+import loadingGif from '../../img/loading.gif'
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL
 
@@ -58,7 +59,10 @@ const Detail = () => {
         }
         getProperty()
         window.innerWidth < 576 && setMobile(true)
-        setLoading(false)
+        setTimeout(() => setLoading(false),900)
+        return () => {
+            setLoading(true)
+        }
     }, [])
 
     const next = () => {
@@ -84,7 +88,10 @@ const Detail = () => {
     }
 
     return (
-        !loading ? <div className={style.detail}>
+        <div className={style.detail}>
+            {loading && <div  className={style.loading}>
+                <img src={loadingGif} alt=''></img>
+            </div>}
             {showGallery &&
                 <div className={style.gallery}>
                     <div className={style.galleryLeft} onClick={previous}> 〈 </div>
@@ -185,9 +192,7 @@ const Detail = () => {
                     </div>
                 </div> : null}
             </div>
-        </div> :
-            <div className={style.detail}><ReactLoading type='spinningBubbles' color='#4a4a4a' height={'5%'} width={'5%'} /></div>
-    )
+        </div>)
 }
 
 export default Detail

@@ -8,6 +8,7 @@ import Pagination from './Pagination';
 import { PropertyDetailType } from '../../types'
 import { MouseEvent, ChangeEvent } from 'react'
 import { notifyError } from '../../components/Toaster/Toaster'
+import loadingGif from '../../img/loading.gif'
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL
 
@@ -20,6 +21,7 @@ interface Filters {
 const Properties = () => {
 
     const [loaded, setLoaded] = useState<boolean>(false)
+    const [loading, setLoading] = useState<boolean>(true)
     const [data, setData] = useState<PropertyDetailType[]>([{
         id: '',
         name: '',
@@ -87,6 +89,10 @@ const Properties = () => {
             }
         }
         getProperties()
+        setTimeout(() => setLoading(false),900)
+        return () => {
+            setLoading(true)
+        }
     }, [])
 
     const showTypeHandler = (event: MouseEvent<HTMLButtonElement>) => {
@@ -173,6 +179,9 @@ const Properties = () => {
 
     return (
         <div className={style.properties}>
+            {loading && <div  className={style.loading}>
+                <img src={loadingGif} alt=''></img>
+            </div>}
             <div className={style.banner}>
             </div>
             <div className={style.bar}>

@@ -4,7 +4,9 @@
     height: 250%;
     display: flex;
     flex-direction: column;
-    background-color: rgb(215, 215, 215);
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(245, 245, 245);
 }
 
 .uploaderBody{
@@ -12,21 +14,26 @@
     flex-direction: row;
     height: 100%;
     width: 100%;
+    justify-content: center;
+    gap: 1%;
 }
 
 .info{
     position: relative;
-    width: 50%;
+    width: 48%;
     height: 100%;
-    border: 1px solid black;
 }
 
 .basicInfo{
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 40%;
+    height: 39%;
     justify-content: space-evenly;
+    border: 1px solid black;
+    border-radius: 15px;
+    background-color: rgb(235, 235, 235);
+    box-shadow: 2px 2px 5px grey;
 }
 
 .basicInfo  div{
@@ -48,11 +55,15 @@
 
 .others{
     width: 100%;
-    height: 15%;
+    height: 14%;
     display: grid;
     grid-template-columns: repeat(4,1fr);
     grid-template-rows: repeat(6,.1fr);
     row-gap: 7%;
+    border: 1px solid black;
+    border-radius: 15px;
+    background-color: rgb(235, 235, 235);
+    box-shadow: 2px 2px 5px grey;
 }
 
 .others input {
@@ -74,11 +85,15 @@
 
 .services{
     width: 100%;
-    height: 10%;
+    height: 9%;
     display: grid;
     grid-template-columns: repeat(4,1fr);
     grid-template-rows: repeat(3,.1fr);
     row-gap: 15%;
+    border: 1px solid black;
+    border-radius: 15px;
+    background-color: rgb(235, 235, 235);
+    box-shadow: 2px 2px 5px grey;
 }
 
 .services input {
@@ -100,11 +115,15 @@
 
 .amenities{
     width: 100%;
-    height: 10%;
+    height: 15%;
     display: grid;
     grid-template-columns: repeat(3,1fr);
     grid-template-rows: repeat(4,.1fr);
-    row-gap: 10%;
+    row-gap: 5%;
+    border: 1px solid black;
+    border-radius: 15px;
+    background-color: rgb(235, 235, 235);
+    box-shadow: 2px 2px 5px grey;
 }
 
 .amenities input {
@@ -129,6 +148,17 @@
     width: 50%;
     height: 50%;
     border: 1px solid black;
+    border-radius: 15px;
+    background-color: rgb(235, 235, 235);
+    box-shadow: 2px 2px 5px grey;
+}
+
+.imageUploader{
+    margin: 4%;
+}
+
+.images h3 {
+    margin-left: 4%;
 }
 
 .preview{

@@ -8,12 +8,14 @@ import Admin from './views/Admin/Admin';
 import Properties from './views/Properties/Properties';
 import Rates from './views/Rates/Rates';
 import About from './views/About/About';
+import { Toaster } from 'react-hot-toast';
 import './App.css';
 
 function App() {
 
   return (
     <div className="App">
+      <Toaster></Toaster>
       <Routes>
         <Route element={(
           <>

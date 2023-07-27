@@ -9,6 +9,15 @@
     background-color: #eaeaea;
 }
 
+.home {
+    height: 80%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .controlPanel {
     position: absolute;
     width: 100%;
@@ -30,17 +39,31 @@
     flex-direction: row;
     width: 100%;
     height: 10%;
-    background-color: #4e4e4e;
+    background-color: rgb(215,215,215);
 }
 
-.nav img {
-    width: 5%;
-}
-
-.buttonContainer{
-    width: 25%;
+.logoContainer{
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 100%;
+    width: 25%;
+}
+
+.logoContainer img {
+    height: 90%;
+    width: auto;
+}
+
+.buttonContainer{
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
     gap: 5%;
+}
+
+.buttonContainer button {
+    background-color: white;
+    border: 1px solid black;
 }

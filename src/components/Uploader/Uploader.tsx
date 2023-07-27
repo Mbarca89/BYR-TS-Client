@@ -6,6 +6,7 @@ import services from '../../utils/services'
 import amenities from '../../utils/amenities'
 import { ChangeEvent, MouseEvent } from 'react'
 import { PropertyType } from '../../types'
+import { notifyError, notifySuccess } from '../Toaster/Toaster'
 const SERVER_URL = process.env.REACT_APP_SERVER_URL
 
 interface ImagePreview {
@@ -40,6 +41,7 @@ const Uploader = () => {
     const [othersCheck, setOthersCheck] = useState(new Array(others.length).fill(false))
     const [servicesCheck, setServicesCheck] = useState(new Array(services.length).fill(false))
     const [amenitiesCheck, setAmenitiesCheck] = useState(new Array(amenities.length).fill(false))
+    const [inputKey,setInputKey] = useState<string>('asd')
 
     const othersHandler = (event:ChangeEvent<HTMLInputElement>, index:number) => {
         let buffer = othersCheck
@@ -114,17 +116,18 @@ const Uploader = () => {
         }
         try {
             await axios.post(`${SERVER_URL}/properties/upload`, formData)
-            setUploaded(true)
+            notifySuccess('Propiedad publicada correctamente!')
+            resetHandler()
         } catch (error:any) {
-            window.alert(error.response.data)
+            notifyError(error.response.data)
         }
     }
 
     const fileHandler = (event:ChangeEvent<HTMLInputElement>) => {
-        const images = event.target.files
-        if(images){
-            setImages([...images, ...images])
-            const files = Array.from(images);
+        const imagesUpload = event.target.files
+        if(imagesUpload){
+            setImages([...images, ...imagesUpload])
+            const files = Array.from(imagesUpload);
     
             const imagesPreview = files.map((file) => ({
                 file,
@@ -187,6 +190,7 @@ const Uploader = () => {
         setAmenitiesCheck(new Array(amenities.length).fill(false))
         setImages([])
         setSelectedImages([])
+        setInputKey('123')
     }
 
     return (
@@ -197,18 +201,18 @@ const Uploader = () => {
             </header>
             <div className={style.uploaderBody}>
                 <div className={style.info}>
-                    <h3>Informacion Basica</h3>
                     <div className={style.basicInfo}>
+                    <h3>Información Básica</h3>
                         <div>
                             <label htmlFor="featured">Propiedad destacada</label>
-                            <input type="checkbox" name="featured" onChange={isFeatured} />
+                            <input type="checkbox" name="featured" onChange={isFeatured} checked={data.featured}/>
                         </div>
                         <div>
                             <label htmlFor="name">Nombre</label>
                             <input name='name' type="text" value={data.name} onChange={changeHandler} />
                         </div>
                         <div>
-                            <label htmlFor="description">Descripcion adicional</label>
+                            <label htmlFor="description">Descripción adicional</label>
                             <input name='description' type="text" value={data.description} onChange={changeHandler} />
                         </div>
                         <div>
@@ -233,7 +237,7 @@ const Uploader = () => {
                             </select>
                         </div>
                         <div>
-                            <label htmlFor="category">Categoria</label>
+                            <label htmlFor="category">Categoría</label>
                             <select name="category" id="" value={data.category} onChange={selectHandler}>
                                 <option value="Alquiler">Alquiler</option>
                                 <option value="Alquiler temporario">Alquiler temporario</option>
@@ -253,7 +257,7 @@ const Uploader = () => {
                             </select>
                         </div>
                         <div>
-                            <label htmlFor="location">Ubicacion</label>
+                            <label htmlFor="location">Ubicación</label>
                             <select name="location" id="" value={data.location} onChange={selectHandler}>
                                 <option value="San Luis">San Luis</option>
                                 <option value="Juana Koslay">Juana Koslay</option>
@@ -327,10 +331,11 @@ const Uploader = () => {
                     </div>
                 </div>
                 <div className={style.images}>
+                    <h3>Imágenes</h3>
                     <div className={style.imageUploader}>
-                        <input type="file" name="uploader" accept="image/png, image/jpeg" multiple onChange={fileHandler} />
+                        <input type="file" key={inputKey} name="uploader" accept="image/png, image/jpeg" multiple onChange={fileHandler} />
                     </div>
-                    <h3>Imagenes elegidas</h3>
+                    <h3>Imágenes elegidas</h3>
                     <div className={style.preview}>
                         {selectedImages && selectedImages.map((image, index) => (
                             <div key={index}>

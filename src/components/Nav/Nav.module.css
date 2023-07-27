@@ -335,7 +335,6 @@
     width: 100%;
     height: auto;
     max-height: 240px;
-    margin-left: 5%;
   }
   
   .socialContainer {
@@ -430,7 +429,7 @@
   .button:hover {
     cursor: pointer;
     background-position: left;
-    border-left-width: .2em;
+    border-left-width: .5em;
     color: #B84644;
   }
 

@@ -5,6 +5,7 @@ import whatsapp from '../../img/whatsapp.webp'
 import facebook from '../../img/facebook.webp'
 import instagram from '../../img/instagram.webp'
 import phone from '../../img/phone.webp'
+import loadingGif from '../../img/loading.gif'
 import { ChangeEvent } from 'react'
 
 export interface Data {
@@ -16,6 +17,8 @@ export interface Data {
 }
 
 const Rates = () => {
+
+    const [loading, setLoading] = useState<boolean>(true)
 
     const [data, setData] = useState<Data>({
         name: '',
@@ -78,13 +81,24 @@ const Rates = () => {
         }
     }, [data])
 
+    useEffect(()=> {
+        setTimeout(() => setLoading(false),900)
+        return () => {
+            setLoading(true)
+        }
+    },[])
+
     return (
         <div className={style.rates}>
+            {loading && <div  className={style.loading}>
+                <img src={loadingGif} alt=''></img>
+            </div>}
             <div className={style.container}>
                 <div className={style.infoContainer}>
                     <div className={style.info}>
                         <h1>Tasaciones</h1>
-                        <p>¿Queres alquilar o vender tu propiedad? Dejanos un mensaje y nuestros agentes se comunicarán para brindarte el mejor asesoramiento.</p>
+                        <p>¿Querés vender tu propiedad? Acá podrás contactarte con nosotros para conocer el valor indicado.</p>
+                        <p> Completá tus datos y describí las caracterí­sticas de tu propiedad. Un tasador de B&R se pondrá en contacto con vos, y te asesorará en tu consulta.</p>
                     </div>
                 </div>
                 <div className={style.formContainer}>

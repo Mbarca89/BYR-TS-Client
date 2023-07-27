@@ -1,4 +1,6 @@
+import { useEffect, useState } from 'react'
 import style from './About.module.css'
+import loadingGif from '../../img/loading.gif'
 const banner = require('../../img/banner.webp')
 const about = require('../../img/about.webp')
 const renzoybruno = require('../../img/renzoybruno.webp')
@@ -7,8 +9,20 @@ const renzo = require('../../img/renzo.webp')
 
 const About = () => {
 
+    const [loading, setLoading] = useState<boolean>(true)
+
+    useEffect(()=> {
+        setTimeout(() => setLoading(false),900)
+        return () => {
+            setLoading(true)
+        }
+    },[])
+
     return (
         <div className={style.about}>
+            {loading && <div  className={style.loading}>
+                <img src={loadingGif} alt=''></img>
+            </div>}
             <div className={style.banner} style={{backgroundImage: `url(${banner})`}}/>
             <div className={style.aboutUs}>
                 <div className={style.line}></div>

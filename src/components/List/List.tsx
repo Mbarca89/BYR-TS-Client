@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import Editor from '../Editor/Editor'
 import { ChangeEvent, MouseEvent } from 'react'
 import { PropertyType } from '../../types'
+import { notifyError, notifySuccess } from '../Toaster/Toaster'
 const SERVER_URL = process.env.REACT_APP_SERVER_URL
 
 const List = () => {
@@ -61,11 +62,16 @@ const List = () => {
         const target = event.target as HTMLButtonElement
         if (target.name === 'si') {
             setConfirmDelete(false)
-            await axios.delete(`${SERVER_URL}/properties/delete/${deleteId}`)
-            setDeleteId('')
-            const { data } = await axios(`${SERVER_URL}/properties/list`)
-            await setProperties(data)
-            if (!filterData.length) setFilteredProperties(data)
+            try {
+                await axios.delete(`${SERVER_URL}/properties/delete/${deleteId}`)
+                setDeleteId('')
+                notifySuccess('Propiedad eliminada correctamente.')
+                const { data } = await axios(`${SERVER_URL}/properties/list`)
+                await setProperties(data)
+                if (!filterData.length) setFilteredProperties(data)
+            } catch (error:any) {
+                notifyError(error.response.data)
+            }
         } else {
             setConfirmDelete(false)
         }
@@ -115,7 +121,6 @@ const List = () => {
                     <Editor id={editId} />
                 </div>
             }
-
         </div>
     )
 }

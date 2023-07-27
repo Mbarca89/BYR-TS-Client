@@ -3,11 +3,25 @@ import Carousel from '../../components/Carousel/Carousel'
 import inversiones from '../../img/inversiones.webp'
 import tasaciones from '../../img/tasaciones.webp'
 import servicios from '../../img/servicios.webp'
+import loadingGif from '../../img/loading.gif'
+import { useEffect, useState } from 'react'
 
 const Home = () => { 
 
+    const [loading, setLoading] = useState<boolean>(true)
+
+    useEffect(()=> {
+        setTimeout(() => setLoading(false),900)
+        return () => {
+            setLoading(true)
+        }
+    },[])
+
     return (
         <div className={style.home}>
+            {loading && <div  className={style.loading}>
+                <img src={loadingGif} alt=''></img>
+            </div>}
             <div className={style.carousel}>
                 <Carousel></Carousel>
             </div>

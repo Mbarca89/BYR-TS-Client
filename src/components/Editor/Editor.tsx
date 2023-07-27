@@ -45,50 +45,52 @@ const Editor = ({ id }: any) => {
 
     useEffect(() => {
         const getProperty = async () => {
-            const { data } = await axios(`${SERVER_URL}/properties/detail/${id}`)
-            setData({
-                featured: data.featured,
-                name: data.name,
-                description: data.description,
-                type: data.type,
-                category: data.category,
-                price: data.price,
-                currency: data.currency,
-                location: data.location,
-                size: data.size,
-                constructed: data.constructed,
-                bedrooms: data.bedrooms,
-                bathrooms: data.bathrroms,
-                kitchen: data.kitchen,
-                garage: data.garage,
-                others: data.others,
-                services: data.services,
-                amenities: data.amenities,
-            })
-            setPropertyImages(data.images)
+            try {
+                const { data } = await axios(`${SERVER_URL}/properties/detail/${id}`)
+                setData({
+                    featured: data.featured,
+                    name: data.name,
+                    description: data.description,
+                    type: data.type,
+                    category: data.category,
+                    price: data.price,
+                    currency: data.currency,
+                    location: data.location,
+                    size: data.size,
+                    constructed: data.constructed,
+                    bedrooms: data.bedrooms,
+                    bathrooms: data.bathrroms,
+                    kitchen: data.kitchen,
+                    garage: data.garage,
+                    others: data.others,
+                    services: data.services,
+                    amenities: data.amenities,
+                })
+                console.log(data.images)
+                setPropertyImages(data.images)
+                let othersCheckBuffer = othersCheck
+                others.map((item, index) => {
+                    if (data.others.toString().includes(item.name)) othersCheckBuffer[index] = true
+                    return null
+                })
+                setOthersCheck(othersCheckBuffer)
+                let servicesCheckBuffer = servicesCheck
+                services.map((item, index) => {
+                    if (data.services.toString().includes(item.name)) servicesCheckBuffer[index] = true
+                    return null
+                })
+                setServicesCheck(servicesCheckBuffer)
 
-            let othersCheckBuffer = othersCheck
-            others.map((item, index) => {
-                if (data.others.toString().includes(item.name)) othersCheckBuffer[index] = true
-                return null
-            })
-            setOthersCheck(othersCheckBuffer)
-
-            let servicesCheckBuffer = servicesCheck
-            services.map((item, index) => {
-                if (data.services.toString().includes(item.name)) servicesCheckBuffer[index] = true
-                return null
-            })
-            setServicesCheck(servicesCheckBuffer)
-
-            let amenitiesCheckBuffer = amenitiesCheck
-            amenities.map((item, index) => {
-                if (data.amenities.toString().includes(item.name)) amenitiesCheckBuffer[index] = true
-                return null
-            })
-            setAmenitiesCheck(amenitiesCheckBuffer)
-
-            setIsloaded(true)
+                let amenitiesCheckBuffer = amenitiesCheck
+                amenities.map((item, index) => {
+                    if (data.amenities.toString().includes(item.name)) amenitiesCheckBuffer[index] = true
+                    return null
+                })
+                setAmenitiesCheck(amenitiesCheckBuffer)
+                setIsloaded(true)
+            } catch (error: any) {
+                notifyError(error.response.data)
+            }
         }
         getProperty()
     }, [])
@@ -199,7 +201,6 @@ const Editor = ({ id }: any) => {
             const imagesCache = [...propertyImages]
             imagesCache.splice(index, 1)
             setPropertyImages(imagesCache)
-
         } catch (error: any) {
             notifyError(error.response.data)
         }
@@ -223,8 +224,8 @@ const Editor = ({ id }: any) => {
             </header>
             <div className={style.uploaderBody}>
                 <div className={style.info}>
-                    <h3>Informacion Basica</h3>
                     <div className={style.basicInfo}>
+                        <h3>Información Básica</h3>
                         <div>
                             <label htmlFor="featured">Propiedad destacada</label>
                             <input type="checkbox" name="featured" onChange={isFeatured} checked={data.featured} />
@@ -234,7 +235,7 @@ const Editor = ({ id }: any) => {
                             <input name='name' type="text" value={data.name} onChange={changeHandler} />
                         </div>
                         <div>
-                            <label htmlFor="description">Descripcion adicional</label>
+                            <label htmlFor="description">Descripción adicional</label>
                             <input name='description' type="text" value={data.description} onChange={changeHandler} />
                         </div>
                         <div>
@@ -259,7 +260,7 @@ const Editor = ({ id }: any) => {
                             </select>
                         </div>
                         <div>
-                            <label htmlFor="category">Categoria</label>
+                            <label htmlFor="category">Categoría</label>
                             <select name="category" id="" value={data.category} onChange={changeHandler}>
                                 <option value="Alquiler">Alquiler</option>
                                 <option value="Alquiler temporario">Alquiler temporario</option>
@@ -279,7 +280,7 @@ const Editor = ({ id }: any) => {
                             </select>
                         </div>
                         <div>
-                            <label htmlFor="location">Ubicacion</label>
+                            <label htmlFor="location">Ubicación</label>
                             <select name="location" id="" value={data.location} onChange={changeHandler}>
                                 <option value="San Luis">San Luis</option>
                                 <option value="Juana Koslay">Juana Koslay</option>
@@ -353,10 +354,11 @@ const Editor = ({ id }: any) => {
                     </div>
                 </div>
                 <div className={style.images}>
+                    <h3>Imágenes</h3>
                     <div className={style.imageUploader}>
                         <input type="file" name="uploader" accept="image/png, image/jpeg" multiple onChange={fileHandler} />
                     </div>
-                    <h3>Imagenes seleccionadas</h3>
+                    <h3>Imágenes seleccionadas</h3>
                     <div className={style.preview}>
                         {selectedImages.map((image: any, index) => (
                             <div key={index}>
@@ -365,7 +367,7 @@ const Editor = ({ id }: any) => {
                             </div>
                         ))}
                     </div>
-                    <h3>Imagenes subidas</h3>
+                    <h3>Imágenes subidas</h3>
                     <div className={style.preview}>
                         {propertyImages.map((image: any, index) => (
                             <div key={index}>

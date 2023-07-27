@@ -1,3 +1,8 @@
+.App{
+  background-image: url('../src/img/3083mitadcorrido.png');
+  background-size: cover;
+}
+
 @media screen and (max-width: 576px) {
   .App {
     position: relative;

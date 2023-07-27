@@ -1,24 +1,19 @@
 import style from './Footer.module.css'
-import { useEffect, useState } from 'react'
+import logo from '../../img/logo.webp'
 
 const Footer = () => {
 
-    const [mobile, setMobile] = useState(false)
-
-    useEffect(() => {
-        window.innerWidth < 576 && setMobile(true)
-    }, [])
-
-    if (mobile) return (
-        <div className={style.footer}>
-
-        </div>
-
-    )
-
     return (
         <div className={style.footer}>
-
+            <div className={style.disclaimer}>
+                <div className={style.logo}>
+                    <img src={logo} alt="B&R" />
+                </div>
+                <div className={style.text}>
+                    <p>© B&R Desarrollos Inmobiliarios. Todos los derechos reservados.</p>
+                    <a href="https://www.argentina.gob.ar/justicia/derechofacil/leysimple/alquileres">Ley simple: Alquileres</a>
+                </div>
+            </div>
         </div>
     )
 }

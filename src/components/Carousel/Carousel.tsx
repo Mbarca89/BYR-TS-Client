@@ -10,7 +10,7 @@ const SERVER_URL = process.env.REACT_APP_SERVER_URL
 const Carousel = () => {
     const [isLoaded, setIsloaded] = useState<boolean>(false)
     const [currentImg, setCurrentImg] = useState<number>(0)
-    const [slides, setSlides] = useState([{ id: '', image: '' }])
+    const [slides, setSlides] = useState([{ id: '', image: '', name: '', location: '' }])
     const timeoutRef: any = useRef(null)
     const delay = 3500
 
@@ -23,7 +23,7 @@ const Carousel = () => {
             try {
                 const { data } = await axios(`${SERVER_URL}/properties/featured`)
                 setSlides(data.map((item: any) => {
-                    return { image: item.images[0].url, id: item.id }
+                    return { image: item.images[0].url, id: item.id, name: item.name, location: item.location }
                 }))
                 setIsloaded(true)
             } catch (error: any) {
@@ -53,9 +53,14 @@ const Carousel = () => {
 
     return (
         isLoaded ? <div className={style.container}>
-            {true && <NavLink className={style.container} to={`/detail/${slides[currentImg].id}`}>
-                <div className={style.slide} style={{backgroundImage: `url(${slides[currentImg].image})`}}></div>
-            </NavLink>}
+            <NavLink className={style.container} to={`/detail/${slides[currentImg].id}`}>
+                <div className={style.slide} style={{ backgroundImage: `url(${slides[currentImg].image})` }}></div>
+                <div className={style.slideInfo}>
+                    <h2>{slides[currentImg].name}</h2>
+                    <h2>&nbsp; | &nbsp;</h2>
+                    <h2>{slides[currentImg].location}</h2>
+                </div>
+            </NavLink>
             <div className={style.left} onClick={previous}> 〈 </div>
             <div className={style.right} onClick={next}> 〉 </div>
         </div> : <div className={style.container}><ReactLoading type='spinningBubbles' color='#4a4a4a' height={'5%'} width={'5%'} /></div>
