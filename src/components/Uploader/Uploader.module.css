@@ -28,7 +28,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 39%;
+    height: 45%;
     justify-content: space-evenly;
     border: 1px solid black;
     border-radius: 15px;
@@ -36,7 +36,7 @@
     box-shadow: 2px 2px 5px grey;
 }
 
-.basicInfo  div{
+.basicInfoDiv{
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -51,7 +51,24 @@
     margin-right: 2%;
 }
 
+.description{
+    height: 35vh;
+}
 
+.editorContainer {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.editorInput {
+    height: 70%;
+}
 
 .others{
     width: 100%;

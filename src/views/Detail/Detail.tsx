@@ -149,14 +149,14 @@ const Detail = () => {
                             <h4>{propertyData.price}</h4>
                         </div>
                         <a href={`https://api.whatsapp.com/send?phone=5492664570187&text=Hola,%20me%20interesa%20saber%20mas%20sobre%20esta%20propiedad:%20${location.pathname}`} target="_blank" rel="noopener noreferrer">
-                            <img className={style.whatsappLogo}  src={whatsapp} alt="" />
+                            <img className={style.whatsappLogo} src={whatsapp} alt="" />
                         </a>
                     </div>
-                    <hr />
-                    <div className={style.adittionalInfo}>
-                        <p>{propertyData.description}</p>
-                    </div>
                 </div>
+            </div>
+            <div className={style.line}></div>
+            <div className={style.description}>
+                <div dangerouslySetInnerHTML={{ __html: propertyData.description }}></div>
             </div>
             <div className={style.line}></div>
             <div className={style.otherInfo}>

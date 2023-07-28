@@ -4,6 +4,8 @@
     height: 250%;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     background-color: rgb(245, 245, 245);
 }
 
@@ -26,7 +28,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 40%;
+    height: 45%;
     justify-content: space-evenly;
     border: 1px solid black;
     border-radius: 15px;
@@ -34,7 +36,7 @@
     box-shadow: 2px 2px 5px grey;
 }
 
-.basicInfo  div{
+.basicInfoDiv{
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -49,15 +51,32 @@
     margin-right: 2%;
 }
 
+.description{
+    height: 35vh;
+}
 
+.editorContainer {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.editorInput {
+    height: 70%;
+}
 
 .others{
     width: 100%;
-    height: 15%;
+    height: 14%;
     display: grid;
     grid-template-columns: repeat(4,1fr);
     grid-template-rows: repeat(6,.1fr);
-    row-gap: 9%;
+    row-gap: 7%;
     border: 1px solid black;
     border-radius: 15px;
     background-color: rgb(235, 235, 235);
@@ -83,7 +102,7 @@
 
 .services{
     width: 100%;
-    height: 10%;
+    height: 9%;
     display: grid;
     grid-template-columns: repeat(4,1fr);
     grid-template-rows: repeat(3,.1fr);
@@ -149,6 +168,14 @@
     border-radius: 15px;
     background-color: rgb(235, 235, 235);
     box-shadow: 2px 2px 5px grey;
+}
+
+.imageUploader{
+    margin: 4%;
+}
+
+.images h3 {
+    margin-left: 4%;
 }
 
 .preview{

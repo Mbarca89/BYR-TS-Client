@@ -117,7 +117,7 @@ const List = () => {
                     </div>
                 </div> :
                 <div>
-                    <button className={style.cancelButton} onClick={cancelHandler}>Cancelar</button>
+                    <button className={style.cancelButton} onClick={cancelHandler}>Volver</button>
                     <Editor id={editId} />
                 </div>
             }

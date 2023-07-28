@@ -190,36 +190,51 @@
     .otherInfoContainer {
         position: relative;
         width: 100%;
+        height: 15%;
         display: flex;
         flex-direction: row;
+        justify-content: flex-start;
         align-items: center;
+        margin-left: 2%;
+        margin-bottom: 2%;
     }
 
-    .otherInfoContainer img {
+    .price{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        width: 75%;
+        height: 100%;
+    }
+    
+    .otherInfoContainer a {
         position: relative;
-        width: 15%;
-    }
-
-    .otherInfoContainer h4{
-        margin: 3%;
-        font-size: 1.5em;
-        color: #4a4a4a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 25%;
+        height: 100%;
     }
 
     .whatsappLogo {
-        position: absolute;
-        width: 15%;
-        height: 80%;
-        right: 0;
+        position: relative;
+        width: 25%;
+    }
+    
+    .price h4 {
+        position: relative;
+        font-size: 2.5em;
+        color: #4a4a4a;
+        margin: 0;
+        text-align: left;
+    }
+
+    .price img {
+        width: 20%;
         margin: 0;
     }
 
-    .whatsappLogo img {
-        width: 80%;
-        height: auto;
-    }
-
-    .adittionalInfo {
+    .description {
         position: relative;
         display: flex;
         align-items: center;
@@ -386,8 +401,8 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        justify-content: flex-start;
-        width: 49%;
+        justify-content: space-between;
+        width: 48.5%;
         height: 100%;
         gap: 2%;
         border: solid 1px;
@@ -459,7 +474,8 @@
     .infoLogo h4 {
         margin: 0%;
         font-size: 1.3em;
-        color: #4a4a4a;
+        color: white;
+        text-align: center;
     }
     
     .otherInfoContainer {
@@ -471,25 +487,39 @@
         justify-content: flex-start;
         align-items: center;
         margin-left: 2%;
+        margin-bottom: 2%;
     }
-    
-    .otherInfoContainer img {
-        position: relative;
-        width: 15%;
-    }
-    
-    .otherInfoContainer h4 {
-        margin-left: 5%;
-        font-size: 2.5em;
-        color: #4a4a4a;
+
+    .price{
+        display: flex;
+        flex-direction: row;
+        width: 75%;
+        height: 100%;
     }
     
     .otherInfoContainer a {
         position: relative;
-        right: -15%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 25%;
+        height: 100%;
+    }
+
+    .whatsappLogo {
+        position: relative;
+        width: 25%;
     }
     
-    .adittionalInfo {
+    .price h4 {
+        position: relative;
+        font-size: 2.5em;
+        color: #4a4a4a;
+        margin: 0;
+    }
+    
+    
+    .description {
         position: relative;
         width: 95%;
         height: 25%;
@@ -498,6 +528,12 @@
         justify-content: flex-start;
         margin-left: 2%;
         color: #4a4a4a;
+        text-align: center;
+        word-wrap: break-word;
+    }
+
+    .description p {
+        width: 100%;
     }
     
     .line {
@@ -658,20 +694,19 @@
     .detail {
         position: relative;
         width: 80%;
-        height: 100vh;
+        height: 150vh;
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 2%;
         margin-left: 20%;
-        margin-top: 2%;
         overflow: hidden;
     }
     
     .basicInfo{
         position: relative;
         width: 100%;
-        height: 45%;
+        height: 35%;
         display: flex;
         flex-direction: row;
         gap: 1%;
@@ -747,7 +782,7 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        justify-content: flex-start;
+        justify-content: space-between;
         width: 48.5%;
         height: 100%;
         gap: 2%;
@@ -820,7 +855,8 @@
     .infoLogo h4 {
         margin: 0%;
         font-size: 1.3em;
-        color: #4a4a4a;
+        color: white;
+        text-align: center;
     }
     
     .otherInfoContainer {
@@ -832,6 +868,7 @@
         justify-content: flex-start;
         align-items: center;
         margin-left: 2%;
+        margin-bottom: 2%;
     }
 
     .price{
@@ -839,7 +876,6 @@
         flex-direction: row;
         width: 75%;
         height: 100%;
-        background-color: aliceblue;
     }
     
     .otherInfoContainer a {
@@ -864,7 +900,7 @@
     }
     
     
-    .adittionalInfo {
+    .description {
         position: relative;
         width: 95%;
         height: 25%;
@@ -873,6 +909,12 @@
         justify-content: flex-start;
         margin-left: 2%;
         color: #4a4a4a;
+        text-align: center;
+        word-wrap: break-word;
+    }
+
+    .description p {
+        width: 100%;
     }
     
     .line {

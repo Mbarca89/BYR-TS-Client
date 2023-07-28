@@ -7,17 +7,20 @@ import amenities from '../../utils/amenities'
 import { ChangeEvent, MouseEvent } from 'react'
 import { PropertyType } from '../../types'
 import { notifyError, notifySuccess } from '../Toaster/Toaster'
+import ReactQuill from 'react-quill'
+import 'react-quill/dist/quill.snow.css'
+import * as DOMPurify from 'dompurify'
 const SERVER_URL = process.env.REACT_APP_SERVER_URL
 
 interface ImagePreview {
     file: File;
     preview: string;
-  }
+}
 
 const Uploader = () => {
     const [uploaded, setUploaded] = useState(false)
     const [data, setData] = useState<PropertyType>({
-        id:'',
+        id: '',
         featured: false,
         name: '',
         description: '',
@@ -41,9 +44,9 @@ const Uploader = () => {
     const [othersCheck, setOthersCheck] = useState(new Array(others.length).fill(false))
     const [servicesCheck, setServicesCheck] = useState(new Array(services.length).fill(false))
     const [amenitiesCheck, setAmenitiesCheck] = useState(new Array(amenities.length).fill(false))
-    const [inputKey,setInputKey] = useState<string>('asd')
+    const [inputKey, setInputKey] = useState<string>('asd')
 
-    const othersHandler = (event:ChangeEvent<HTMLInputElement>, index:number) => {
+    const othersHandler = (event: ChangeEvent<HTMLInputElement>, index: number) => {
         let buffer = othersCheck
         buffer[index] = !buffer[index]
         setOthersCheck(buffer)
@@ -60,7 +63,7 @@ const Uploader = () => {
         }
     }
 
-    const servicesHandler = (event:ChangeEvent<HTMLInputElement>, index:number) => {
+    const servicesHandler = (event: ChangeEvent<HTMLInputElement>, index: number) => {
         let buffer = servicesCheck
         buffer[index] = !buffer[index]
         setServicesCheck(buffer)
@@ -77,7 +80,7 @@ const Uploader = () => {
         }
     }
 
-    const amenitiesHandler = (event:ChangeEvent<HTMLInputElement>, index:number) => {
+    const amenitiesHandler = (event: ChangeEvent<HTMLInputElement>, index: number) => {
         let buffer = amenitiesCheck
         buffer[index] = !buffer[index]
         setAmenitiesCheck(buffer)
@@ -94,14 +97,21 @@ const Uploader = () => {
         }
     }
 
-    const changeHandler = (event:ChangeEvent<HTMLInputElement>) => {
+    const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
         setData({
             ...data,
             [event.target.name]: event.target.value
         })
     }
 
-    const selectHandler = (event:ChangeEvent<HTMLSelectElement>) => {
+    const editorHandler = (value: string) => {
+        setData({
+            ...data,
+            description: value
+        })
+    }
+
+    const selectHandler = (event: ChangeEvent<HTMLSelectElement>) => {
         setData({
             ...data,
             [event.target.name]: event.target.value
@@ -114,25 +124,29 @@ const Uploader = () => {
         for (let i = 0; i < images.length; i++) {
             formData.append('images', images[i])
         }
+        setData({
+            ...data,
+            description: DOMPurify.sanitize(data.description)
+        })
         try {
             await axios.post(`${SERVER_URL}/properties/upload`, formData)
             notifySuccess('Propiedad publicada correctamente!')
             resetHandler()
-        } catch (error:any) {
+        } catch (error: any) {
             notifyError(error.response.data)
         }
     }
 
-    const fileHandler = (event:ChangeEvent<HTMLInputElement>) => {
+    const fileHandler = (event: ChangeEvent<HTMLInputElement>) => {
         const imagesUpload = event.target.files
-        if(imagesUpload){
+        if (imagesUpload) {
             setImages([...images, ...imagesUpload])
             const files = Array.from(imagesUpload);
-    
+
             const imagesPreview = files.map((file) => ({
                 file,
                 preview: URL.createObjectURL(file), // Generar una URL para la vista previa
-            }));    
+            }));
             setSelectedImages((selectedImages || []).concat(imagesPreview));
         }
     }
@@ -144,16 +158,16 @@ const Uploader = () => {
         };
     }, [selectedImages]);
 
-    const deleteImage = (index:number) => {
+    const deleteImage = (index: number) => {
         const newImages = [...images]
         newImages.splice(index, 1)
         setImages(newImages)
-        const newImagesPreview:ImagePreview[] = selectedImages?.slice() || [];
+        const newImagesPreview: ImagePreview[] = selectedImages?.slice() || [];
         newImagesPreview.splice(index, 1);
         setSelectedImages(newImagesPreview);
     }
 
-    const isFeatured = (event:ChangeEvent<HTMLInputElement>) => {
+    const isFeatured = (event: ChangeEvent<HTMLInputElement>) => {
         if (event.target.checked === true) setData({
             ...data,
             featured: true
@@ -166,7 +180,7 @@ const Uploader = () => {
 
     const resetHandler = () => {
         setData({
-            id:'',
+            id: '',
             featured: false,
             name: '',
             description: '',
@@ -202,20 +216,22 @@ const Uploader = () => {
             <div className={style.uploaderBody}>
                 <div className={style.info}>
                     <div className={style.basicInfo}>
-                    <h3>Información Básica</h3>
-                        <div>
+                        <h3>Información Básica</h3>
+                        <div className={style.basicInfoDiv}>
                             <label htmlFor="featured">Propiedad destacada</label>
-                            <input type="checkbox" name="featured" onChange={isFeatured} checked={data.featured}/>
+                            <input type="checkbox" name="featured" onChange={isFeatured} checked={data.featured} />
                         </div>
-                        <div>
+                        <div className={style.basicInfoDiv}>
                             <label htmlFor="name">Nombre</label>
                             <input name='name' type="text" value={data.name} onChange={changeHandler} />
                         </div>
-                        <div>
+                        <div className={style.description}>
                             <label htmlFor="description">Descripción adicional</label>
-                            <input name='description' type="text" value={data.description} onChange={changeHandler} />
+                            <div className={style.editorContainer}>
+                                <ReactQuill theme='snow' className={style.editorInput} value={data.description} onChange={editorHandler}></ReactQuill>
+                            </div>
                         </div>
-                        <div>
+                        <div className={style.basicInfoDiv}>
                             <label htmlFor="tipo">Tipo</label>
                             <select name="type" id="" value={data.type} onChange={selectHandler}>
                                 <option value="Cabaña">Cabaña</option>
@@ -236,7 +252,7 @@ const Uploader = () => {
                                 <option value="Terreno">Terreno</option>
                             </select>
                         </div>
-                        <div>
+                        <div className={style.basicInfoDiv}>
                             <label htmlFor="category">Categoría</label>
                             <select name="category" id="" value={data.category} onChange={selectHandler}>
                                 <option value="Alquiler">Alquiler</option>
@@ -245,18 +261,18 @@ const Uploader = () => {
                                 <option value="Venta">Venta</option>
                             </select>
                         </div>
-                        <div>
+                        <div className={style.basicInfoDiv}>
                             <label htmlFor="price">Precio</label>
                             <input name='price' type="number" value={data.price} onChange={changeHandler} />
                         </div>
-                        <div>
+                        <div className={style.basicInfoDiv}>
                             <label htmlFor="currency">Moneda</label>
                             <select name="currency" id="" value={data.currency} onChange={selectHandler}>
                                 <option value="$">Pesos</option>
                                 <option value="US$">Dolares</option>
                             </select>
                         </div>
-                        <div>
+                        <div className={style.basicInfoDiv}>
                             <label htmlFor="location">Ubicación</label>
                             <select name="location" id="" value={data.location} onChange={selectHandler}>
                                 <option value="San Luis">San Luis</option>
@@ -268,27 +284,27 @@ const Uploader = () => {
                                 <option value="La Florida">La Florida</option>
                             </select>
                         </div>
-                        <div>
+                        <div className={style.basicInfoDiv}>
                             <label htmlFor="size">Superficie</label>
                             <input name='size' type="number" value={data.size} onChange={changeHandler} />
                         </div>
-                        <div>
+                        <div className={style.basicInfoDiv}>
                             <label htmlFor="constructed">Superficie cubierta</label>
                             <input name='constructed' type="number" value={data.constructed} onChange={changeHandler} />
                         </div>
-                        <div>
+                        <div className={style.basicInfoDiv}>
                             <label htmlFor="bedrooms">Habitaciones</label>
                             <input name='bedrooms' type="number" value={data.bedrooms} onChange={changeHandler} />
                         </div>
-                        <div>
+                        <div className={style.basicInfoDiv}>
                             <label htmlFor="bathrooms">Baños</label>
                             <input name='bathrooms' type="number" value={data.bathrooms} onChange={changeHandler} />
                         </div>
-                        <div>
+                        <div className={style.basicInfoDiv}>
                             <label htmlFor="kitchen">Cocina</label>
                             <input name='kitchen' type="number" value={data.kitchen} onChange={changeHandler} />
                         </div>
-                        <div>
+                        <div className={style.basicInfoDiv}>
                             <label htmlFor="garage">Garaje</label>
                             <input name='garage' type="number" value={data.garage} onChange={changeHandler} />
                         </div>

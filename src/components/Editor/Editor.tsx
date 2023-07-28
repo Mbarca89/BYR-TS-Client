@@ -5,6 +5,9 @@ import others from '../../utils/others'
 import services from '../../utils/services'
 import amenities from '../../utils/amenities'
 import { notifyError, notifySuccess } from '../Toaster/Toaster'
+import ReactQuill from 'react-quill'
+import 'react-quill/dist/quill.snow.css'
+import * as DOMPurify from 'dompurify'
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL
 
@@ -153,6 +156,20 @@ const Editor = ({ id }: any) => {
         })
     }
 
+    const editorHandler = (value: string) => {
+        setData({
+            ...data,
+            description: value
+        })
+    }
+
+    const selectHandler = (event: ChangeEvent<HTMLSelectElement>) => {
+        setData({
+            ...data,
+            [event.target.name]: event.target.value
+        })
+    }
+
     const submitHandler = async () => {
         const formData = new FormData()
         formData.append('data', JSON.stringify(data))
@@ -224,23 +241,25 @@ const Editor = ({ id }: any) => {
             </header>
             <div className={style.uploaderBody}>
                 <div className={style.info}>
-                    <div className={style.basicInfo}>
+                <div className={style.basicInfo}>
                         <h3>Información Básica</h3>
-                        <div>
+                        <div className={style.basicInfoDiv}>
                             <label htmlFor="featured">Propiedad destacada</label>
                             <input type="checkbox" name="featured" onChange={isFeatured} checked={data.featured} />
                         </div>
-                        <div>
+                        <div className={style.basicInfoDiv}>
                             <label htmlFor="name">Nombre</label>
                             <input name='name' type="text" value={data.name} onChange={changeHandler} />
                         </div>
-                        <div>
+                        <div className={style.description}>
                             <label htmlFor="description">Descripción adicional</label>
-                            <input name='description' type="text" value={data.description} onChange={changeHandler} />
+                            <div className={style.editorContainer}>
+                                <ReactQuill theme='snow' className={style.editorInput} value={data.description} onChange={editorHandler}></ReactQuill>
+                            </div>
                         </div>
-                        <div>
+                        <div className={style.basicInfoDiv}>
                             <label htmlFor="tipo">Tipo</label>
-                            <select name="type" id="" value={data.type} onChange={changeHandler}>
+                            <select name="type" id="" value={data.type} onChange={selectHandler}>
                                 <option value="Cabaña">Cabaña</option>
                                 <option value="Campo">Campo</option>
                                 <option value="Casa">Casa</option>
@@ -259,29 +278,29 @@ const Editor = ({ id }: any) => {
                                 <option value="Terreno">Terreno</option>
                             </select>
                         </div>
-                        <div>
+                        <div className={style.basicInfoDiv}>
                             <label htmlFor="category">Categoría</label>
-                            <select name="category" id="" value={data.category} onChange={changeHandler}>
+                            <select name="category" id="" value={data.category} onChange={selectHandler}>
                                 <option value="Alquiler">Alquiler</option>
                                 <option value="Alquiler temporario">Alquiler temporario</option>
                                 <option value="Permuta">Permuta</option>
                                 <option value="Venta">Venta</option>
                             </select>
                         </div>
-                        <div>
+                        <div className={style.basicInfoDiv}>
                             <label htmlFor="price">Precio</label>
                             <input name='price' type="number" value={data.price} onChange={changeHandler} />
                         </div>
-                        <div>
+                        <div className={style.basicInfoDiv}>
                             <label htmlFor="currency">Moneda</label>
-                            <select name="currency" id="" value={data.currency} onChange={changeHandler}>
+                            <select name="currency" id="" value={data.currency} onChange={selectHandler}>
                                 <option value="$">Pesos</option>
                                 <option value="US$">Dolares</option>
                             </select>
                         </div>
-                        <div>
+                        <div className={style.basicInfoDiv}>
                             <label htmlFor="location">Ubicación</label>
-                            <select name="location" id="" value={data.location} onChange={changeHandler}>
+                            <select name="location" id="" value={data.location} onChange={selectHandler}>
                                 <option value="San Luis">San Luis</option>
                                 <option value="Juana Koslay">Juana Koslay</option>
                                 <option value="Potrero De Los Funes">Potrero</option>
@@ -291,27 +310,27 @@ const Editor = ({ id }: any) => {
                                 <option value="La Florida">La Florida</option>
                             </select>
                         </div>
-                        <div>
+                        <div className={style.basicInfoDiv}>
                             <label htmlFor="size">Superficie</label>
                             <input name='size' type="number" value={data.size} onChange={changeHandler} />
                         </div>
-                        <div>
+                        <div className={style.basicInfoDiv}>
                             <label htmlFor="constructed">Superficie cubierta</label>
                             <input name='constructed' type="number" value={data.constructed} onChange={changeHandler} />
                         </div>
-                        <div>
+                        <div className={style.basicInfoDiv}>
                             <label htmlFor="bedrooms">Habitaciones</label>
                             <input name='bedrooms' type="number" value={data.bedrooms} onChange={changeHandler} />
                         </div>
-                        <div>
+                        <div className={style.basicInfoDiv}>
                             <label htmlFor="bathrooms">Baños</label>
                             <input name='bathrooms' type="number" value={data.bathrooms} onChange={changeHandler} />
                         </div>
-                        <div>
+                        <div className={style.basicInfoDiv}>
                             <label htmlFor="kitchen">Cocina</label>
                             <input name='kitchen' type="number" value={data.kitchen} onChange={changeHandler} />
                         </div>
-                        <div>
+                        <div className={style.basicInfoDiv}>
                             <label htmlFor="garage">Garaje</label>
                             <input name='garage' type="number" value={data.garage} onChange={changeHandler} />
                         </div>
