@@ -49,9 +49,7 @@ const MainCarousel = () => {
         return () => {
             resetTimeout()
         }
-    }, [currentImg])
-
-    console.log(currentImg)
+    }, [currentImg, slides])
 
     return (
         isLoaded ? <div className={style.container}>

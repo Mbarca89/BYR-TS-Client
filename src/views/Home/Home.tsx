@@ -49,7 +49,7 @@ const Home = () => {
                     </p>
                 </article>
             </div>
-            <div className={style.tasaciones} data-aos='fade-right'>
+            <div className={style.tasaciones} data-aos='fade-right' data-aos-offset='250'>
                 <article>
                     <img className={style.tasacionesImg} src={tasaciones} alt="tasaciones" />
                     <h2>Tasaciones</h2>
@@ -57,7 +57,7 @@ const Home = () => {
                     </p>
                 </article>
             </div>
-            <div className={style.servicios} data-aos='fade-left'>
+            <div className={style.servicios} data-aos='fade-left' data-aos-offset='250'>
                 <article>
                     <img className={style.serviciosImg} src={servicios} alt="inversiones" />
                     <h2>Servicios</h2>

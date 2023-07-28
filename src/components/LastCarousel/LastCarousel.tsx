@@ -15,13 +15,13 @@ const LastCarousel = () => {
     const responsive = {
         desktop: {
             breakpoint: { max: 3000, min: 1024 },
-            items: 4,
-            slidesToSlide: 3, // optional, default to 1.
+            items: 3,
+            slidesToSlide: 2, // optional, default to 1.
         },
         tablet: {
             breakpoint: { max: 1025, min: 576 },
-            items: 4,
-            slidesToSlide: 3, // optional, default to 1.
+            items: 3,
+            slidesToSlide: 2, // optional, default to 1.
         },
         mobile: {
             breakpoint: { max: 576, min: 0 },
@@ -64,6 +64,14 @@ const LastCarousel = () => {
         getLastProperties()
     }, [])
 
+    const CustomRightArrow = ({ onClick, ...rest }: any) => {
+        return <button className={styles.rightArrow} onClick={() => onClick()}>〉</button>;
+    };
+
+    const CustomLeftArrow = ({ onClick, ...rest }: any) => {
+        return <button className={styles.leftArrow} onClick={() => onClick()}>〈</button>;
+    };
+
     return (
         <div className={styles.container}>
             <Carousel
@@ -72,8 +80,10 @@ const LastCarousel = () => {
                 className={styles.carousel}
                 removeArrowOnDeviceType='mobile'
                 autoPlay={true}
-                autoPlaySpeed={2000}
+                autoPlaySpeed={4000}
                 showDots={true}
+                customRightArrow={<CustomRightArrow />}
+                customLeftArrow={<CustomLeftArrow />}
             >
                 {lastProperties.map((property, index) => {
                     return (
@@ -90,7 +100,7 @@ const LastCarousel = () => {
                             <hr />
                             <h4>{property.location}</h4>
                             <hr />
-                            <button>Ver mas</button>
+                            <button className={styles.viewMore}>Ver más</button>
                         </div>
                     );
                 })}

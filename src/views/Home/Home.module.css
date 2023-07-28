@@ -76,6 +76,7 @@
   .inversiones article{
     height: 100%;
     text-align: justify;
+    line-height: 150%;
   }
 
   .serviciosImg,
@@ -85,7 +86,7 @@
     border-radius: 100%;
     shape-outside: circle(50%);
     float: left;
-    margin-right: 1%;
+    margin-right: 3%;
   }
 
   .tasacionesImg{
@@ -94,7 +95,7 @@
     border-radius: 100%;
     shape-outside: circle(50%);
     float: right;
-    margin-left: 1%;
+    margin-left: 3%;
   }
 }
 
@@ -160,6 +161,7 @@
   .inversiones article{
     height: 100%;
     text-align: justify;
+    line-height: 150%;
   }
 
   .serviciosImg,
@@ -169,7 +171,7 @@
     border-radius: 100%;
     shape-outside: circle(50%);
     float: left;
-    margin-right: 1%;
+    margin-right: 3%;
   }
 
   .tasacionesImg{
@@ -178,7 +180,7 @@
     border-radius: 100%;
     shape-outside: circle(50%);
     float: right;
-    margin-left: 1%;
+    margin-left: 3%;
   }
 }
 
@@ -197,7 +199,7 @@
   .title{
     width: 100%;
     height: 8vh;
-    padding-left: 1%;
+    padding-left: 5%;
     background-color: #B84644;
     color: white;
     display: flex;
@@ -219,9 +221,10 @@
   }
 
   .lastCarousel {
-    margin-top: 5%;
+    margin-top: 1%;
     width: 100%;
-    height: 40vh;
+    height: 47vh;
+    margin-bottom: 0;
   }
 
   .servicios,
@@ -236,6 +239,7 @@
   .tasaciones,
   .inversiones article{
     text-align: justify;
+    line-height: 150%;
   }
 
   .serviciosImg,
@@ -245,7 +249,7 @@
     border-radius: 100%;
     shape-outside: circle(50%);
     float: left;
-    margin-right: 1%;
+    margin-right: 3%;
   }
 
   .tasacionesImg{
@@ -254,6 +258,6 @@
     border-radius: 100%;
     shape-outside: circle(50%);
     float: right;
-    margin-left: 1%;
+    margin-left: 3%;
   }
 }
