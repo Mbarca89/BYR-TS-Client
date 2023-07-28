@@ -1,4 +1,4 @@
-import style from './Carousel.module.css'
+import style from './MainCarousel.module.css'
 import { useState, useRef, useEffect } from 'react'
 import axios from 'axios'
 import { NavLink } from 'react-router-dom'
@@ -7,7 +7,7 @@ import { notifyError } from '../Toaster/Toaster'
 const SERVER_URL = process.env.REACT_APP_SERVER_URL
 
 
-const Carousel = () => {
+const MainCarousel = () => {
     const [isLoaded, setIsloaded] = useState<boolean>(false)
     const [currentImg, setCurrentImg] = useState<number>(0)
     const [slides, setSlides] = useState([{ id: '', image: '', name: '', location: '' }])
@@ -51,6 +51,8 @@ const Carousel = () => {
         }
     }, [currentImg])
 
+    console.log(currentImg)
+
     return (
         isLoaded ? <div className={style.container}>
             <NavLink className={style.container} to={`/detail/${slides[currentImg].id}`}>
@@ -67,4 +69,4 @@ const Carousel = () => {
     )
 }
 
-export default Carousel
+export default MainCarousel

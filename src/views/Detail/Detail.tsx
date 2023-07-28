@@ -59,7 +59,7 @@ const Detail = () => {
         }
         getProperty()
         window.innerWidth < 576 && setMobile(true)
-        setTimeout(() => setLoading(false),900)
+        setTimeout(() => setLoading(false), 900)
         return () => {
             setLoading(true)
         }
@@ -89,7 +89,7 @@ const Detail = () => {
 
     return (
         <div className={style.detail}>
-            {loading && <div  className={style.loading}>
+            {loading && <div className={style.loading}>
                 <img src={loadingGif} alt=''></img>
             </div>}
             {showGallery &&
@@ -143,11 +143,13 @@ const Detail = () => {
                     </div>
                     <hr />
                     <div className={style.otherInfoContainer}>
-                        {propertyData.currency === '$' && <img src={pesos} alt="" />}
-                        {propertyData.currency === 'US$' && <img src={dolares} alt="" />}
-                        <h4>{propertyData.price}</h4>
-                        <a className={style.whatsappLogo} href={`https://api.whatsapp.com/send?phone=5492664570187&text=Hola,%20me%20interesa%20saber%20mas%20sobre%20esta%20propiedad:%20${location.pathname}`} target="_blank" rel="noopener noreferrer">
-                            <img src={whatsapp} alt="" />
+                        <div className={style.price}>
+                            {propertyData.currency === '$' && <img src={pesos} alt="" />}
+                            {propertyData.currency === 'US$' && <img src={dolares} alt="" />}
+                            <h4>{propertyData.price}</h4>
+                        </div>
+                        <a href={`https://api.whatsapp.com/send?phone=5492664570187&text=Hola,%20me%20interesa%20saber%20mas%20sobre%20esta%20propiedad:%20${location.pathname}`} target="_blank" rel="noopener noreferrer">
+                            <img className={style.whatsappLogo}  src={whatsapp} alt="" />
                         </a>
                     </div>
                     <hr />

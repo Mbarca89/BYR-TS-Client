@@ -1,10 +1,13 @@
 import style from './Home.module.css'
-import Carousel from '../../components/Carousel/Carousel'
+import MainCarousel from '../../components/Carousel/MainCarousel'
 import inversiones from '../../img/inversiones.webp'
 import tasaciones from '../../img/tasaciones.webp'
 import servicios from '../../img/servicios.webp'
 import loadingGif from '../../img/loading.gif'
 import { useEffect, useState } from 'react'
+import LastCarousel from '../../components/LastCarousel/LastCarousel'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 const Home = () => { 
 
@@ -12,6 +15,7 @@ const Home = () => {
 
     useEffect(()=> {
         setTimeout(() => setLoading(false),900)
+        AOS.init({ duration: 500 })
         return () => {
             setLoading(true)
         }
@@ -22,10 +26,22 @@ const Home = () => {
             {loading && <div  className={style.loading}>
                 <img src={loadingGif} alt=''></img>
             </div>}
-            <div className={style.carousel}>
-                <Carousel></Carousel>
+            <div className={style.title}>
+                <h1>Propiedades destadacas.</h1>
             </div>
-            <div className={style.inversiones}>
+            <div className={style.carousel}>
+                <MainCarousel></MainCarousel>
+            </div>
+            <div className={style.title2}>
+                <h1>Últimas publicaciones.</h1>
+            </div>
+            <div className={style.lastCarousel}>
+                <LastCarousel></LastCarousel>
+            </div>
+            <div className={style.title2}>
+                <h1>Empresa</h1>
+            </div>
+            <div className={style.inversiones} data-aos='fade-left' data-aos-offset='250'>
                 <article>
                     <img className={style.inversionesImg} src={inversiones} alt="inversiones" />
                     <h2>Inversiones</h2>
@@ -33,7 +49,7 @@ const Home = () => {
                     </p>
                 </article>
             </div>
-            <div className={style.tasaciones}>
+            <div className={style.tasaciones} data-aos='fade-right'>
                 <article>
                     <img className={style.tasacionesImg} src={tasaciones} alt="tasaciones" />
                     <h2>Tasaciones</h2>
@@ -41,7 +57,7 @@ const Home = () => {
                     </p>
                 </article>
             </div>
-            <div className={style.servicios}>
+            <div className={style.servicios} data-aos='fade-left'>
                 <article>
                     <img className={style.serviciosImg} src={servicios} alt="inversiones" />
                     <h2>Servicios</h2>

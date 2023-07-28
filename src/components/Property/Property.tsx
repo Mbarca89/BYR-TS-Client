@@ -47,7 +47,7 @@ const Property = ({id, price, currency, bedrooms, bathrooms, name, location, ima
                 {category === 'Alquiler' && <img className={style.categoryImg} src={alquiler} alt="" />}
                 <div className={style.infoContainer}>
                     <h3>{name}</h3>
-                    <h3>{location}</h3>
+                    <h4>{location}</h4>
                     <div className={style.info}>
                         <div>
                             {currency === '$' && <img src={pesos} alt="" />}

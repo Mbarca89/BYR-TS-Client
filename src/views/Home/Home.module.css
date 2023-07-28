@@ -8,12 +8,18 @@
   z-index: 9999999;
   background-color: white;
 }
+
 .loading img {
   margin-top: 30%;
   width: 20%;
 }
 
 @media screen and (max-width: 576px) {
+  .loading{
+    width: 100vw;
+
+  }
+
   .home{
     position: relative;
     display: flex;
@@ -23,9 +29,38 @@
     height: 100%;
   }
 
+  .title2,
+  .title{
+    width: 100vw;
+    height: 5vh;
+    padding-left: 1%;
+    background-color: #B84644;
+    color: white;
+    display: flex;
+    align-items: center;
+  }
+
+  .title2 h1,
+  .title h1 {
+    margin: 0;
+    margin-left: 2%;
+    font-size: 100%;
+  }
+
+  .title,
+  .title2 {
+    margin-top: 5%;
+  }
+
   .carousel{
     margin-top: 2%;
     width: 98%;
+  }
+
+  .lastCarousel {
+    margin-top: 5%;
+    width: 100%;
+    height: 40vh;
   }
 
   .servicios,
@@ -64,6 +99,10 @@
 }
 
 @media screen and (min-width: 577px) and (max-width: 1025px) {
+  .loading{
+    width: 100vw;
+  }
+
   .home{
     position: relative;
     display: flex;
@@ -75,9 +114,36 @@
     margin-top: 5%;
   }
 
+  .title2,
+  .title{
+    width: 100vw;
+    height: 8vh;
+    padding-left: 1%;
+    background-color: #B84644;
+    color: white;
+    display: flex;
+    align-items: center;
+  }
+
+  .title2,
+  .title h1 {
+    margin: 0;
+    margin-left: 2%;
+  }
+
+  .title2 {
+    margin-top: 5%;
+  }
+
   .carousel{
     margin-top: 2%;
     width: 98%;
+  }
+
+  .lastCarousel {
+    margin-top: 5%;
+    width: 100%;
+    height: 40vh;
   }
 
   .servicios,
@@ -86,6 +152,7 @@
     position: relative;
     margin-top: 2%;
     width: 98%;
+    overflow-x: hidden;
   }
 
   .servicios,
@@ -124,6 +191,26 @@
     align-items: center;
     width: 80%;
     height: 100%;
+    overflow-x: hidden;
+  }
+  .title2,
+  .title{
+    width: 100%;
+    height: 8vh;
+    padding-left: 1%;
+    background-color: #B84644;
+    color: white;
+    display: flex;
+    align-items: center;
+  }
+
+  .title2,
+  .title h1 {
+    margin: 0;
+  }
+
+  .title2 {
+    margin-top: 5%;
   }
 
   .carousel{
@@ -131,18 +218,23 @@
     width: 80%;
   }
 
+  .lastCarousel {
+    margin-top: 5%;
+    width: 100%;
+    height: 40vh;
+  }
+
   .servicios,
   .tasaciones,
   .inversiones{
     position: relative;
     margin-top: 2%;
-    width: 80%;
+    width: 90%;
   }
 
   .servicios,
   .tasaciones,
   .inversiones article{
-    height: 100%;
     text-align: justify;
   }
 

@@ -620,10 +620,6 @@
         height: 100vh;
     }
 
-    .loading{
-        top: -31vh;
-    }
-
     .banner {
         position: absolute;
         top: -40%;

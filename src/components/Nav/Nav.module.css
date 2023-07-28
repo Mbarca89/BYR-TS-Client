@@ -125,6 +125,7 @@
     animation-iteration-count: 1;
   }
 
+  .buttonActive,
   .button {
     width: 100%;
     height: 60%;
@@ -140,6 +141,11 @@
     color: #4a4a4a;
     text-decoration: none;
     white-space: nowrap;
+  }
+
+  .buttonActive {
+    text-decoration: underline;
+    text-decoration-color: #7a2f2f;
   }
 
   .developer {
@@ -357,20 +363,10 @@
     width: 100%;
     height: auto;
   }
-  .nav {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 20%;
-    height: 100vh;
-    background-color: #eaeaea;
-    transition: ease .2s;
-  }
+
+  .nav,
   .noNav {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     display: flex;
@@ -404,6 +400,7 @@
     gap: 10%;
   }
 
+  .buttonActive,
   .button {
     display: flex;
     align-items: center;
@@ -424,6 +421,11 @@
     border-left: solid;
     border-left-color: #B84644;
     border-left-width: 0;
+  }
+
+  .buttonActive {
+    background-color: #B84644;
+    color: white;
   }
 
   .button:hover {

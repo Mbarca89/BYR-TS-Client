@@ -178,7 +178,7 @@ const Properties = () => {
     }
 
     return (
-        <div className={style.properties}>
+        <div className={style.properties} style={loading ? {overflow:'hidden'} : undefined}>
             {loading && <div  className={style.loading}>
                 <img src={loadingGif} alt=''></img>
             </div>}

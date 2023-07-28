@@ -45,15 +45,18 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 0%;
-    margin-left: 1%;
+    padding: 2%;
     bottom: 2%;
     justify-content: flex-end;
+    background-color: rgb(0,0,0,.2);
+    border-radius: 10px;
 }
 
-.infoContainer h3 {
+.infoContainer h3,h4 {
     color: white;
-    font-family: Arial, Helvetica, sans-serif;
     margin: 0%;
+    width: 100%;
+    font-size: 100%;
 }
 
 .info{
@@ -62,13 +65,16 @@
     flex-direction: row;
     justify-content: flex-start;
     gap: 2%;
+    margin: 0;
+    padding: 0;
 }
 
 .info img {
     position: relative;
     width: 25%;
-    height: 60%;
-    max-height: 60%;
+    height: auto;
+    aspect-ratio: 1/1;
+    margin: 0;
 }
 
 .info div {
@@ -80,7 +86,7 @@
 }
 
 .info p {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1.1em;
+    font-size: 100%;
     color: white;
+    margin: 5%;
 }

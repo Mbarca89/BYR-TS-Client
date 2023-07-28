@@ -86,20 +86,6 @@
 
 }
 
-.dot {
-    position: relative;
-    margin: 0 4%;
-    cursor: pointer;
-    font-size: 150%;
-    color: white;
-
-}
-
-.dot:hover {
-    bottom: 1vh;
-    color: #d33438
-}
-
 @media screen and (max-width: 576px) {
     .right,
     .left{
