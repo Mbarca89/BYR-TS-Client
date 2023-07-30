@@ -89,7 +89,7 @@ const Properties = () => {
             }
         }
         getProperties()
-        setTimeout(() => setLoading(false),900)
+        setTimeout(() => setLoading(false), 900)
         return () => {
             setLoading(true)
         }
@@ -178,12 +178,11 @@ const Properties = () => {
     }
 
     return (
-        <div className={style.properties} style={loading ? {overflow:'hidden'} : undefined}>
-            {loading && <div  className={style.loading}>
+        <div className={style.properties} style={loading ? { overflow: 'hidden' } : undefined}>
+            {loading && <div className={style.loading}>
                 <img src={loadingGif} alt=''></img>
             </div>}
-            <div className={style.banner}>
-            </div>
+            <div className={style.banner}/>
             <div className={style.bar}>
                 <div className={style.buttonContainer}>
                     <div className={style.buttonDiv} >
@@ -300,7 +299,7 @@ const Properties = () => {
                     {filters.location && <button name='reset' onClick={resetLocation}>{`${filters.location} x`}</button>}
                 </div>
             </div>
-            <div className={style.cardsAndPages}>
+          
                 <div className={style.propertiesCards}>
                     {showData[0] && showData.slice(firstCardIndex, lastCardIndex).map((property, index) => (
                         <div key={index} className={style.propertyContainer}>
@@ -320,9 +319,9 @@ const Properties = () => {
                         </div>
                     ))}
                 </div>
-                <div className={style.paginationContainer}>
-                    <Pagination totalCards={showData.length} currentPage={currentPage} nextPage={nextPage} prevPage={prevPage} firstPage={firstPage} lastPage={lastPage}></Pagination>
-                </div>
+            
+            <div className={style.paginationContainer}>
+                <Pagination totalCards={showData.length} currentPage={currentPage} nextPage={nextPage} prevPage={prevPage} firstPage={firstPage} lastPage={lastPage}></Pagination>
             </div>
         </div >
     )

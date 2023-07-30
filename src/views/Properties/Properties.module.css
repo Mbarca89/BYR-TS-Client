@@ -18,36 +18,39 @@
     .properties {
         position: relative;
         width: 100vw;
-        height: 100vh;
+        min-height: 72vh;
+        top: -4vh;
         display: flex;
         flex-direction: column;
-        margin-top: 2%;
+        overflow-y: hidden;
     }
 
     .banner {
-        position: absolute;
-        top: -30%;
+        /* position: absolute;
+        top: -22vh;
         width: 100%;
-        height: 45%;
-        background-image: url('../../assets/background.webp');
+        height: 25vh;
+        max-height: 320px;
+        background-image: url('../../assets/background.jpg');
         background-position: bottom;
         background-size: contain;
-        z-index: 0;
+        z-index: 0; */
+        display: none;
     }
 
     .bar {
         position: relative;
         display: flex;
         flex-direction: column;
-        height: 14%;
+        height: 4vh;
         width: 100%;
     }
 
     .buttonContainer {
         position: absolute;
-        bottom: 2%;
+        top: 2%;
         width: 100%;
-        height: 25%;
+        height: 70%;
         display: flex;
         flex-direction: row;
         gap: 3%;
@@ -237,7 +240,7 @@
         align-items: center;
         margin: 0;
         width: 100%;
-        height: 7%;
+        height: 3vh;
     }
 
     .resetContainer {
@@ -246,7 +249,6 @@
         align-items: center;
         justify-content: center;
         width: 33%;
-        height: 100%;
     }
 
     .resetContainer button {
@@ -261,17 +263,21 @@
         width: 100%;
         display: flex;
         flex-direction: column;
+        flex-grow: 1;
         justify-content: center;
         align-items: center;
-        gap: 3%;
+        overflow-y: hidden;
     }
 
     .propertiesCards {
         position: relative;
         width: 100%;
-        display: grid;
-        grid-gap: 1%;
-        justify-items: center;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        justify-content: center;
+        align-items: center;
+        overflow-y: hidden;
     }
 
 
@@ -279,17 +285,20 @@
         position: relative;
         display: flex;
         width: 90%;
-        height: 250px;
+        height: 35vh;
         max-height: 100%;
+        margin-top: 1%;
+        margin-bottom: 1%;
     }
 
     .paginationContainer {
-        width: 40%;
+        width: 100%;
         position: relative;
         bottom: 1%;
         display: flex;
         align-items: center;
         justify-content: center;
+        margin-top: 5%;
     }
 
     .pagination {

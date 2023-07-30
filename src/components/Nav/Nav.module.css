@@ -10,6 +10,13 @@
     justify-content: space-evenly;
   }
 
+  .headerBanner {
+    background-image: url('../../assets/background.webp');
+    background-position: bottom;
+    background-size: cover;
+    padding-bottom: 90px;
+  }
+
   .nav {
     position: absolute;
     top: 99%;
@@ -25,7 +32,7 @@
     transition: ease .2s;
   }
 
-  .noNav{
+  .noNav {
     position: absolute;
     top: 100%;
     display: flex;
@@ -39,21 +46,22 @@
     transition: ease .2s;
   }
 
-  .noNav > .line {
+  .noNav>.line {
     width: 0;
     display: none;
   }
 
-  .noNav > .buttonContainer {
+  .noNav>.buttonContainer {
     width: 0;
     display: none;
   }
 
   @keyframes appear {
-    0%{
+    0% {
       opacity: 0;
     }
-    100%{
+
+    100% {
       opacity: 1;
     }
   }
@@ -84,6 +92,7 @@
     justify-content: center;
     width: 50%;
     height: 100%;
+    z-index: 1;
   }
 
   .logo {
@@ -102,9 +111,10 @@
     align-items: center;
     justify-content: flex-end;
     margin-right: 3%;
+    z-index: 1;
   }
 
-  .socialContainer a{
+  .socialContainer a {
     width: 20%;
   }
 
@@ -190,7 +200,7 @@
     max-height: 120px;
   }
 
-  
+
   .socialContainer {
     position: relative;
     display: flex;
@@ -202,7 +212,7 @@
     justify-content: center;
   }
 
-  .socialContainer a{
+  .socialContainer a {
     width: 10%;
     max-width: 30px;
   }
@@ -211,6 +221,7 @@
     width: 100%;
     height: auto;
   }
+
   .nav {
     position: absolute;
     top: 10vh;
@@ -225,7 +236,7 @@
     transition: ease .2s;
   }
 
-  .noNav{
+  .noNav {
     position: absolute;
     top: 20vh;
     left: 0;
@@ -238,22 +249,23 @@
     transition: ease .2s;
     z-index: 99999;
   }
-  
-  .noNav > .line {
+
+  .noNav>.line {
     width: 0;
     display: none;
   }
 
-  .noNav > .buttonContainer {
+  .noNav>.buttonContainer {
     width: 0;
     display: none;
   }
 
   @keyframes appear {
-    0%{
+    0% {
       opacity: 0;
     }
-    100%{
+
+    100% {
       opacity: 1;
     }
   }
@@ -342,7 +354,7 @@
     height: auto;
     max-height: 240px;
   }
-  
+
   .socialContainer {
     position: relative;
     display: flex;
@@ -354,7 +366,7 @@
     justify-content: center;
   }
 
-  .socialContainer a{
+  .socialContainer a {
     width: 10%;
     max-width: 30px;
   }
@@ -379,10 +391,11 @@
   }
 
   @keyframes appear {
-    0%{
+    0% {
       opacity: 0;
     }
-    100%{
+
+    100% {
       opacity: 1;
     }
   }
@@ -443,5 +456,5 @@
     border: 1px solid #7a2f2f;
     margin-top: 5%;
   }
-  
+
 }
