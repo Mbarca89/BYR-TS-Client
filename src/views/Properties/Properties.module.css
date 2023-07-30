@@ -887,12 +887,13 @@
     }
 
     .paginationContainer {
-        width: 40%;
+        width: 100%;
         position: relative;
         bottom: 1%;
         display: flex;
         align-items: center;
         justify-content: center;
+        margin-top: 5%;
     }
 
     .pagination {
