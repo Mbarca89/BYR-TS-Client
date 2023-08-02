@@ -1,4 +1,4 @@
-.loading{
+.loading {
   position: absolute;
   display: flex;
   align-items: flex-start;
@@ -15,12 +15,12 @@
 }
 
 @media screen and (max-width: 576px) {
-  .loading{
+  .loading {
     width: 100vw;
 
   }
 
-  .home{
+  .home {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -30,7 +30,7 @@
   }
 
   .title2,
-  .title{
+  .title {
     width: 100vw;
     height: 5vh;
     padding-left: 1%;
@@ -52,10 +52,159 @@
     margin-top: 5%;
   }
 
-  .carousel{
+  .carousel {
     margin-top: 2%;
     width: 98%;
   }
+
+  .search {
+    margin-top: 5%;
+    height: 20vh;
+    width: 100%;
+  }
+
+  .typeContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 40%;
+    justify-content: center;
+    gap: 15%;
+  }
+
+  .typeButton {
+    height: 50%;
+    width: 30%;
+    cursor: default;
+    border-radius: 5px;
+    color: #4a4a4a;
+    background-color: rgb(215, 215, 215);
+  }
+
+  .typeButtonActive {
+    height: 50%;
+    width: 30%;
+    cursor: default;
+    border-radius: 5px;
+    color: white;
+    background-color: #B84644;
+  }
+
+  .filterContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 5%;
+    width: 100%;
+    height: 20%;
+    justify-content: center;
+}
+
+.filterContainer button {
+  width: 45%;
+  height: 100%;
+}
+
+.selectors {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  gap: 5%;
+  justify-content: center;
+}
+
+.type {
+  position: relative;
+  left: 0;
+  z-index: 2;
+  width: 45%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: #eaeaea;
+  transition: ease .3s;
+  border-radius: 15px;
+}
+
+.location {
+  position: relative;
+  left: 0;
+  z-index: 2;
+  width: 45%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: #eaeaea;
+  transition: ease .3s;
+  border-radius: 15px;
+}
+
+.selector {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 10%;
+  transition: .1s ease-out;
+  overflow: hidden;
+  border-left: solid;
+  border-left-color: #7a2f2f;
+  border-left-width: 0;
+}
+
+.selector button {
+  border: none;
+  background-color: transparent;
+  height: 100%;
+  width: 100%;
+  font: arial;
+  font-size: .8em;
+  font-weight: 600;
+  justify-content: center;
+  align-items: center;
+  padding-left: .2%;
+  padding-right: .2%;
+  padding-top: .7%;
+  padding-bottom: .7%;
+  color: black;
+  cursor: pointer;
+}
+
+.locationSelector {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 14%;
+  transition: .1s ease-out;
+  overflow: hidden;
+  border-left: solid;
+  border-left-color: #7a2f2f;
+  border-left-width: 0;
+}
+
+.locationSelector button {
+  border: none;
+  background-color: transparent;
+  height: 100%;
+  width: 100%;
+  font: arial;
+  font-size: .8em;
+  font-weight: 600;
+  justify-content: center;
+  align-items: center;
+  padding-left: .2%;
+  padding-right: .2%;
+  padding-top: .7%;
+  padding-bottom: .7%;
+  color: black;
+  cursor: pointer;
+}
+
+.buttonContainer {
+  width: 100%;
+}
+
+.buttonContainer button {
+  width: 80%;
+}
 
   .lastCarousel {
     margin-top: 5%;
@@ -65,7 +214,7 @@
 
   .servicios,
   .tasaciones,
-  .inversiones{
+  .inversiones {
     position: relative;
     margin-top: 2%;
     width: 98%;
@@ -73,14 +222,14 @@
 
   .servicios,
   .tasaciones,
-  .inversiones article{
+  .inversiones article {
     height: 100%;
     text-align: justify;
     line-height: 150%;
   }
 
   .serviciosImg,
-  .inversionesImg{
+  .inversionesImg {
     width: 35%;
     height: auto;
     border-radius: 100%;
@@ -89,7 +238,7 @@
     margin-right: 3%;
   }
 
-  .tasacionesImg{
+  .tasacionesImg {
     width: 35%;
     height: auto;
     border-radius: 100%;
@@ -100,11 +249,11 @@
 }
 
 @media screen and (min-width: 577px) and (max-width: 1025px) {
-  .loading{
+  .loading {
     width: 100vw;
   }
 
-  .home{
+  .home {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -116,7 +265,7 @@
   }
 
   .title2,
-  .title{
+  .title {
     width: 100vw;
     height: 8vh;
     padding-left: 1%;
@@ -136,7 +285,7 @@
     margin-top: 5%;
   }
 
-  .carousel{
+  .carousel {
     margin-top: 2%;
     width: 98%;
   }
@@ -149,7 +298,7 @@
 
   .servicios,
   .tasaciones,
-  .inversiones{
+  .inversiones {
     position: relative;
     margin-top: 2%;
     width: 98%;
@@ -158,14 +307,14 @@
 
   .servicios,
   .tasaciones,
-  .inversiones article{
+  .inversiones article {
     height: 100%;
     text-align: justify;
     line-height: 150%;
   }
 
   .serviciosImg,
-  .inversionesImg{
+  .inversionesImg {
     width: 25%;
     height: auto;
     border-radius: 100%;
@@ -174,7 +323,7 @@
     margin-right: 3%;
   }
 
-  .tasacionesImg{
+  .tasacionesImg {
     width: 25%;
     height: auto;
     border-radius: 100%;
@@ -185,7 +334,7 @@
 }
 
 @media screen and (min-width: 1026px) {
-  .home{
+  .home {
     position: relative;
     display: flex;
     margin-left: 20%;
@@ -195,8 +344,9 @@
     height: 100%;
     overflow-x: hidden;
   }
+
   .title2,
-  .title{
+  .title {
     width: 100%;
     height: 8vh;
     padding-left: 5%;
@@ -215,7 +365,7 @@
     margin-top: 5%;
   }
 
-  .carousel{
+  .carousel {
     margin-top: 2%;
     width: 80%;
   }
@@ -229,7 +379,7 @@
 
   .servicios,
   .tasaciones,
-  .inversiones{
+  .inversiones {
     position: relative;
     margin-top: 2%;
     width: 90%;
@@ -237,13 +387,13 @@
 
   .servicios,
   .tasaciones,
-  .inversiones article{
+  .inversiones article {
     text-align: justify;
     line-height: 150%;
   }
 
   .serviciosImg,
-  .inversionesImg{
+  .inversionesImg {
     width: 25%;
     height: auto;
     border-radius: 100%;
@@ -252,7 +402,7 @@
     margin-right: 3%;
   }
 
-  .tasacionesImg{
+  .tasacionesImg {
     width: 25%;
     height: auto;
     border-radius: 100%;

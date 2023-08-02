@@ -127,6 +127,7 @@
     .info hr {
         position: relative;
         width: 100%;
+        border: 1px solid #7a2f2f;
     }
 
     .name {
@@ -174,7 +175,7 @@
         gap: 0;
         width: 17%;
         height: 80%;
-        background-color: rgb(0, 0, 0, .3);
+        background-color: #B84644;
         border-radius: 5px;
     }
 
@@ -416,13 +417,16 @@
         width: 90%;
         margin: 0;
         margin-left: 2%;
+        border: 1px solid #7a2f2f;
     }
     
     .name {
         width: 100%;
-        height: 10%;
+        height: 20%;
         text-align: left;
         margin-left: 2%;
+        display: flex;
+        align-items: center;
     }
     
     .name h2 {
@@ -433,9 +437,11 @@
     
     .location {
         width: 100%;
-        height: 10%;
+        height: 20%;
         text-align: left;
         margin-left: 2%;
+        display: flex;
+        align-items: center;
     }
     
     .location h3 {
@@ -463,7 +469,7 @@
         flex-direction: column;
         height: 85%;
         width: 12%;
-        background-color: rgb(0, 0, 0,.3);
+        background-color: #B84644;
         border-radius: 5px;
     }
     
@@ -496,6 +502,12 @@
         flex-direction: row;
         width: 75%;
         height: 100%;
+        align-items: center;
+    }
+
+    .price img {
+        height: 100%;
+        width: auto;
     }
     
     .otherInfoContainer a {
@@ -514,7 +526,7 @@
     
     .price h4 {
         position: relative;
-        font-size: 2.5em;
+        font-size: 250%;
         color: #4a4a4a;
         margin: 0;
     }
@@ -786,7 +798,7 @@
         justify-content: space-between;
         width: 48.5%;
         height: 100%;
-        gap: 2%;
+        gap: 1%;
         border: solid 1px;
         border-radius: 15px;
         border-color: #4a4a4a;
@@ -797,13 +809,16 @@
         width: 90%;
         margin: 0;
         margin-left: 2%;
+        border: 1px solid #7a2f2f;
     }
     
     .name {
         width: 100%;
-        height: 10%;
+        height: 20%;
         text-align: left;
         margin-left: 2%;
+        display: flex;
+        align-items: center;
     }
     
     .name h2 {
@@ -814,9 +829,11 @@
     
     .location {
         width: 100%;
-        height: 10%;
+        height: 20%;
         text-align: left;
         margin-left: 2%;
+        display: flex;
+        align-items: center;
     }
     
     .location h3 {
@@ -844,7 +861,7 @@
         flex-direction: column;
         height: 85%;
         width: 12%;
-        background-color: rgb(0, 0, 0,.3);
+        background-color: #B84644;
         border-radius: 5px;
     }
     
@@ -875,8 +892,14 @@
     .price{
         display: flex;
         flex-direction: row;
+        align-items: center;
         width: 75%;
         height: 100%;
+    }
+
+    .price img {
+        height: 100%;
+        width: auto;
     }
     
     .otherInfoContainer a {
@@ -895,7 +918,7 @@
     
     .price h4 {
         position: relative;
-        font-size: 2.5em;
+        font-size: 250%;
         color: #4a4a4a;
         margin: 0;
     }

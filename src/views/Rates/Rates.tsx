@@ -81,16 +81,16 @@ const Rates = () => {
         }
     }, [data])
 
-    useEffect(()=> {
-        setTimeout(() => setLoading(false),900)
+    useEffect(() => {
+        setTimeout(() => setLoading(false), 900)
         return () => {
             setLoading(true)
         }
-    },[])
+    }, [])
 
     return (
         <div className={style.rates}>
-            {loading && <div  className={style.loading}>
+            {loading && <div className={style.loading}>
                 <img src={loadingGif} alt=''></img>
             </div>}
             <div className={style.container}>
@@ -144,11 +144,13 @@ const Rates = () => {
                     <div className={style.comunicateOptions}>
                         <div className={style.option}>
                             <img src={phone} alt="" />
-                            <p>+549 266 570187</p>
+                            <a href="tel:+549 266 570187">
+                                <p>+549 266 570187</p>
+                            </a>
                         </div>
                         <div className={style.option}>
                             <img src={whatsapp} alt="" />
-                            <a href="`https://api.whatsapp.com/send?phone=5492664570187&text=Hola, Necesito asesoramiento sobre una propiedad`" target="_blank" rel="noopener noreferrer">
+                            <a href={`https://api.whatsapp.com/send?phone=5492664570187&text=Hola, Necesito asesoramiento sobre una propiedad`} target="_blank" rel="noopener noreferrer">
                                 <p>+549 266 570187</p>
                             </a>
                         </div>

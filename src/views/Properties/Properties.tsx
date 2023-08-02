@@ -20,6 +20,8 @@ interface Filters {
 
 const Properties = () => {
 
+    const queryFilters = new URLSearchParams(window.location.search)
+
     const [loaded, setLoaded] = useState<boolean>(false)
     const [loading, setLoading] = useState<boolean>(true)
     const [data, setData] = useState<PropertyDetailType[]>([{
@@ -89,6 +91,18 @@ const Properties = () => {
             }
         }
         getProperties()
+        if (queryFilters.size) {
+            const type: string = queryFilters.get('type') || ''
+            const category: string = queryFilters.get('category') || ''
+            const location: string = queryFilters.get('location') || ''
+            let filters: Filters = {
+                type: type || '',
+                category: category !== 'Tipo de propiedad' ? category : '',
+                location: location !== 'Ubicación' ? location : ''
+            }
+            setFilters(filters)
+        }
+        filterHandler()
         setTimeout(() => setLoading(false), 900)
         return () => {
             setLoading(true)
@@ -149,13 +163,14 @@ const Properties = () => {
         })
     }
 
+    const filterHandler = () => {
+        const result = applyFilter(data, filters.type, filters.category, filters.location)
+        setShowData(result)
+    }
+
     useEffect(() => {
-        const filterHandler = () => {
-            const result = applyFilter(data, filters.type, filters.category, filters.location)
-            setShowData(result)
-        }
         filterHandler()
-    }, [filters])
+    }, [filters, loading])
 
     const nextPage = () => {
         if (!showData[0]) return null
@@ -182,7 +197,7 @@ const Properties = () => {
             {loading && <div className={style.loading}>
                 <img src={loadingGif} alt=''></img>
             </div>}
-            <div className={style.banner}/>
+            <div className={style.banner} />
             <div className={style.bar}>
                 <div className={style.buttonContainer}>
                     <div className={style.buttonDiv} >
@@ -299,27 +314,27 @@ const Properties = () => {
                     {filters.location && <button name='reset' onClick={resetLocation}>{`${filters.location} x`}</button>}
                 </div>
             </div>
-          
-                <div className={style.propertiesCards}>
-                    {showData[0] && showData.slice(firstCardIndex, lastCardIndex).map((property, index) => (
-                        <div key={index} className={style.propertyContainer}>
-                            <Property
-                                id={property.id}
-                                name={property.name}
-                                location={property.location}
-                                price={property.price}
-                                currency={property.currency}
-                                bedrooms={property.bedrooms}
-                                bathrooms={property.bathrooms}
-                                images={property.images}
-                                type={property.type}
-                                size={property.size}
-                                category={property.category}
-                            />
-                        </div>
-                    ))}
-                </div>
-            
+
+            <div className={style.propertiesCards}>
+                {showData[0] && showData.slice(firstCardIndex, lastCardIndex).map((property, index) => (
+                    <div key={index} className={style.propertyContainer}>
+                        <Property
+                            id={property.id}
+                            name={property.name}
+                            location={property.location}
+                            price={property.price}
+                            currency={property.currency}
+                            bedrooms={property.bedrooms}
+                            bathrooms={property.bathrooms}
+                            images={property.images}
+                            type={property.type}
+                            size={property.size}
+                            category={property.category}
+                        />
+                    </div>
+                ))}
+            </div>
+
             <div className={style.paginationContainer}>
                 <Pagination totalCards={showData.length} currentPage={currentPage} nextPage={nextPage} prevPage={prevPage} firstPage={firstPage} lastPage={lastPage}></Pagination>
             </div>

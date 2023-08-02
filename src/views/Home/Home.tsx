@@ -5,25 +5,73 @@ import tasaciones from '../../img/tasaciones.webp'
 import servicios from '../../img/servicios.webp'
 import loadingGif from '../../img/loading.gif'
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import LastCarousel from '../../components/LastCarousel/LastCarousel'
+import { MouseEvent, ChangeEvent } from 'react'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
-const Home = () => { 
+interface Filters {
+    type: string,
+    category: string,
+    location: string
+}
+
+const Home = () => {
+
+    const navigate = useNavigate()
 
     const [loading, setLoading] = useState<boolean>(true)
 
-    useEffect(()=> {
-        setTimeout(() => setLoading(false),900)
+    useEffect(() => {
+        setTimeout(() => setLoading(false), 900)
         AOS.init({ duration: 500 })
         return () => {
             setLoading(true)
         }
-    },[])
+    }, [])
+
+    const [showType, setShowType] = useState<boolean>(false)
+    const [showLocation, setShowLocation] = useState<boolean>(false)
+    const [filters, setFilters] = useState<Filters>({
+        type: 'Tipo de propiedad',
+        category: 'Venta',
+        location: 'Ubicación'
+    })
+
+    const categoryHandler = (event: MouseEvent<HTMLButtonElement>) => {
+        const target = event.target as HTMLButtonElement
+        setFilters({
+            ...filters,
+            category: target.name
+        })
+    }
+
+    const showTypeHandler = (event: MouseEvent<HTMLButtonElement>) => {
+        const target = event.target as HTMLButtonElement
+        if (target.name !== 'type') {
+            setFilters({
+                ...filters,
+                type: target.name
+            })
+        }
+        setShowType(!showType)
+    }
+
+    const showLocationHandler = (event: MouseEvent<HTMLButtonElement>) => {
+        const target = event.target as HTMLButtonElement
+        if (target.name !== 'location') {
+            setFilters({
+                ...filters,
+                location: target.name
+            })
+        }
+        setShowLocation(!showLocation)
+    }
 
     return (
         <div className={style.home}>
-            {loading && <div  className={style.loading}>
+            {loading && <div className={style.loading}>
                 <img src={loadingGif} alt=''></img>
             </div>}
             <div className={style.title}>
@@ -31,6 +79,100 @@ const Home = () => {
             </div>
             <div className={style.carousel}>
                 <MainCarousel></MainCarousel>
+            </div>
+            <div className={style.title}>
+                <h1>Encontrá tu propiedad.</h1>
+            </div>
+            <div className={style.search}>
+                <div className={style.typeContainer}>
+                    <button name='Venta' className={filters.category === 'Venta' ? style.typeButtonActive : style.typeButton} onClick={categoryHandler}>Venta</button>
+                    <button name='Alquiler' className={filters.category === 'Alquiler' ? style.typeButtonActive : style.typeButton} onClick={categoryHandler}>Alquiler</button>
+                </div>
+                <div className={style.filterContainer}>
+                    <button name='type' onClick={showTypeHandler}>{filters.type}</button>
+                    <button name='location' onClick={showLocationHandler}>{filters.location}</button>
+                </div>
+                <div className={style.selectors}>
+                    <div className={style.type} style={showType ? { height: '45vh' } : { height: 0 }}>
+                        <div className={style.selector}>
+                            <button onClick={showTypeHandler} name='Cabaña'>Cabaña</button>
+                        </div>
+                        <div className={style.selector}>
+                            <button onClick={showTypeHandler} name='Campo'>Campo</button>
+                        </div>
+                        <div className={style.selector}>
+                            <button name='Casa' onClick={showTypeHandler}>Casa</button>
+                        </div>
+                        <div className={style.selector}>
+                            <button onClick={showTypeHandler} name='Cochera'>Cochera</button>
+                        </div>
+                        <div className={style.selector}>
+                            <button onClick={showTypeHandler} name='Complejo'>Complejo</button>
+                        </div>
+                        <div className={style.selector}>
+                            <button onClick={showTypeHandler} name='Departamento'>Departamento</button>
+                        </div>
+                        <div className={style.selector}>
+                            <button onClick={showTypeHandler} name='Deposito'>Deposito</button>
+                        </div>
+                        <div className={style.selector}>
+                            <button onClick={showTypeHandler} name='Duplex'>Duplex</button>
+                        </div>
+                        <div className={style.selector}>
+                            <button onClick={showTypeHandler} name='Fondo de comercio'>Fondo de comercio</button>
+                        </div>
+                        <div className={style.selector}>
+                            <button onClick={showTypeHandler} name='Galpon'>Galpon</button>
+                        </div>
+                        <div className={style.selector}>
+                            <button onClick={showTypeHandler} name='Hotel'>Hotel</button>
+                        </div>
+                        <div className={style.selector}>
+                            <button onClick={showTypeHandler} name='Local'>Local</button>
+                        </div>
+                        <div className={style.selector}>
+                            <button onClick={showTypeHandler} name='Lote'>Lote</button>
+                        </div>
+                        <div className={style.selector}>
+                            <button onClick={showTypeHandler} name='Loteo'>Loteo</button>
+                        </div>
+                        <div className={style.selector}>
+                            <button onClick={showTypeHandler} name='Monoambiente'>Monoambiente</button>
+                        </div>
+                        <div className={style.selector}>
+                            <button onClick={showTypeHandler} name='Oficina'>Oficina</button>
+                        </div>
+                        <div className={style.selector}>
+                            <button onClick={showTypeHandler} name='Terreno'>Terreno</button>
+                        </div>
+                    </div>
+                    <div className={style.location} style={showLocation ? { height: '35vh' } : { height: 0 }}>
+                        <div className={style.locationSelector}>
+                            <button onClick={showLocationHandler} name='San Luis'>San Luis</button>
+                        </div>
+                        <div className={style.locationSelector}>
+                            <button onClick={showLocationHandler} name='Juana Koslay'>Juana Koslay</button>
+                        </div>
+                        <div className={style.locationSelector}>
+                            <button onClick={showLocationHandler} name='Potrero de los Funes'>Potrero de los Funes</button>
+                        </div>
+                        <div className={style.locationSelector}>
+                            <button onClick={showLocationHandler} name='El Volcan'>El Volcan</button>
+                        </div>
+                        <div className={style.locationSelector}>
+                            <button onClick={showLocationHandler} name='Estancia Grande'>Estancia Grande</button>
+                        </div>
+                        <div className={style.locationSelector}>
+                            <button onClick={showLocationHandler} name='El Trapiche'>El Trapiche</button>
+                        </div>
+                        <div className={style.locationSelector}>
+                            <button onClick={showLocationHandler} name='La Florida'>La Florida</button>
+                        </div>
+                    </div>
+                </div>
+                <div className={style.buttonContainer}>
+                    <button onClick={() => navigate(`/propiedades?category=${filters.category}&type=${filters.type}&location=${filters.location}`)}>Buscar</button>
+                </div>
             </div>
             <div className={style.title2}>
                 <h1>Últimas publicaciones.</h1>
