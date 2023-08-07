@@ -119,6 +119,15 @@
     .rightArrow{
         background-color: #B84644;
     }
+
+    .more {
+        width: 100%;
+        height: 15%;
+        display: flex;
+        flex-direction: column;
+        gap: 5%;
+        align-items: center;
+    }
     
     .viewMore {
         cursor: pointer;

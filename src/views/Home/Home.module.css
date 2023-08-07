@@ -14,6 +14,12 @@
   width: 20%;
 }
 
+.underline {
+  background-color: #7a2f2f;
+  border-color: #B84644;
+  margin-top: 0;
+}
+
 @media screen and (max-width: 576px) {
   .loading {
     width: 100vw;
