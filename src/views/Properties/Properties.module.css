@@ -26,15 +26,6 @@
     }
 
     .banner {
-        /* position: absolute;
-        top: -22vh;
-        width: 100%;
-        height: 25vh;
-        max-height: 320px;
-        background-image: url('../../assets/background.jpg');
-        background-position: bottom;
-        background-size: contain;
-        z-index: 0; */
         display: none;
     }
 
@@ -65,7 +56,7 @@
         justify-content: center;
         width: 30%;
         height: 100%;
-        background-color: #eaeaea;
+        background-color: #B84644;
         border-radius: 10px;
         transition: .1s ease-out;
         overflow: hidden;
@@ -82,7 +73,7 @@
         font-weight: 600;
         padding-left: .2%;
         padding-right: .2%;
-        color: black;
+        color: white;
         text-decoration: none;
         background-color: transparent;
         cursor: pointer;
@@ -369,14 +360,11 @@
         justify-content: center;
         width: 30%;
         height: 100%;
-        background-color: #eaeaea;
+        background-color: #B84644;
         border-radius: 10px;
         transition: .1s ease-out;
         overflow: hidden;
         white-space: nowrap;
-        border-bottom: solid;
-        border-bottom-color: #B84644;
-        border-bottom-width: 0;
     }
 
     .buttonDiv button {
@@ -386,7 +374,7 @@
         font-weight: 600;
         padding-left: .2%;
         padding-right: .2%;
-        color: black;
+        color: white;
         text-decoration: none;
         background-color: transparent;
         cursor: pointer;
@@ -665,14 +653,11 @@
         justify-content: center;
         width: 30%;
         height: 100%;
-        background-color: #eaeaea;
+        background-color: #B84644;
         border-radius: 10px;
         transition: .1s ease-out;
         overflow: hidden;
         white-space: nowrap;
-        border-bottom: solid;
-        border-bottom-color: #B84644;
-        border-bottom-width: 0;
     }
 
     .buttonDiv button {
@@ -682,7 +667,7 @@
         font-weight: 600;
         padding-left: .2%;
         padding-right: .2%;
-        color: black;
+        color: white;
         text-decoration: none;
         background-color: transparent;
         cursor: pointer;

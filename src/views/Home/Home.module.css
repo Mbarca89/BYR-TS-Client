@@ -56,155 +56,234 @@
     margin-top: 2%;
     width: 98%;
   }
-
   .search {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     margin-top: 5%;
     height: 20vh;
+    width: 98%;
+  }
+
+  .typeFilter {
+    width: 32.5%;
+    height: 60%;
+  }
+
+  .typeFilter h5 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: #4a4a4a;
+    height: 50%;
+    text-align: center;
+    margin: 0;
+    cursor: default;
+  }
+
+  .filters {
+    width: 50%;
+    height: 60%;
+    background-color: #7a2f2f;
+  }
+
+  .filtersHeaders{ 
+    display: flex;
+    flex-direction: row;
+    height: 50%;
     width: 100%;
+  }
+
+  .filtersHeaders h5 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: #4a4a4a;
+    height: 100%;
+    width: 50%;
+    text-align: center;
+    margin: 0;
+    cursor: default;
+  }
+  
+  .buttonContainer {
+    width: 17.5%;
+    height: 60%;
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .buttonContainer button {
+    width: 100%;
+    height: 50%;
+    color: white;
+    border: none;
+    background-color: #B84644;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .buttonContainer button:hover {
+    background-color: #B84644;
   }
 
   .typeContainer {
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: 40%;
+    height: 50%;
     justify-content: center;
-    gap: 15%;
   }
 
   .typeButton {
-    height: 50%;
-    width: 30%;
-    cursor: default;
-    border-radius: 5px;
+    height: 100%;
+    width: 50%;
+    cursor: pointer;
     color: #4a4a4a;
     background-color: rgb(215, 215, 215);
+    font-weight: bold;
   }
 
   .typeButtonActive {
-    height: 50%;
-    width: 30%;
-    cursor: default;
-    border-radius: 5px;
+    height: 100%;
+    width: 50%;
+    cursor: pointer;
     color: white;
     background-color: #B84644;
+    font-weight: bold;
   }
 
   .filterContainer {
     display: flex;
     flex-direction: row;
-    gap: 5%;
     width: 100%;
-    height: 20%;
+    height: 50%;
     justify-content: center;
-}
+  }
 
-.filterContainer button {
-  width: 45%;
-  height: 100%;
-}
+  .filterButton {
+    width: 50%;
+    height: 100%;
+    color: #4a4a4a;
+    background-color: rgb(215, 215, 215);
+    cursor: pointer;
+    font-weight: bold;
+  }
 
-.selectors {
-  width: 100%;
-  height: 10%;
-  display: flex;
-  gap: 5%;
-  justify-content: center;
-}
+  .filterButtonActive {
+    width: 50%;
+    height: 100%;
+    cursor: pointer;
+    color: white;
+    background-color: #B84644;
+    font-weight: bold;
+  }
 
-.type {
-  position: relative;
-  left: 0;
-  z-index: 2;
-  width: 45%;
-  overflow-y: auto;
-  overflow-x: hidden;
-  background-color: #eaeaea;
-  transition: ease .3s;
-  border-radius: 15px;
-}
+  .selectors {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+  }
 
-.location {
-  position: relative;
-  left: 0;
-  z-index: 2;
-  width: 45%;
-  overflow-y: auto;
-  overflow-x: hidden;
-  background-color: #eaeaea;
-  transition: ease .3s;
-  border-radius: 15px;
-}
+  .type {
+    position: relative;
+    left: 0;
+    z-index: 2;
+    width: 50%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: #eaeaea;
+    transition: ease .3s;
+  }
 
-.selector {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 10%;
-  transition: .1s ease-out;
-  overflow: hidden;
-  border-left: solid;
-  border-left-color: #7a2f2f;
-  border-left-width: 0;
-}
+  .location {
+    position: relative;
+    left: 0;
+    z-index: 2;
+    width: 50%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: #eaeaea;
+    transition: ease .3s;
+  }
 
-.selector button {
-  border: none;
-  background-color: transparent;
-  height: 100%;
-  width: 100%;
-  font: arial;
-  font-size: .8em;
-  font-weight: 600;
-  justify-content: center;
-  align-items: center;
-  padding-left: .2%;
-  padding-right: .2%;
-  padding-top: .7%;
-  padding-bottom: .7%;
-  color: black;
-  cursor: pointer;
-}
+  .selector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 10%;
+    transition: .1s ease-out;
+    overflow: hidden;
+    color: #4a4a4a;
+  }
 
-.locationSelector {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 14%;
-  transition: .1s ease-out;
-  overflow: hidden;
-  border-left: solid;
-  border-left-color: #7a2f2f;
-  border-left-width: 0;
-}
+  .selector button:hover {
+    cursor: pointer;
+    border-left-width: .1em;
+    color: #B84644;
+  }
 
-.locationSelector button {
-  border: none;
-  background-color: transparent;
-  height: 100%;
-  width: 100%;
-  font: arial;
-  font-size: .8em;
-  font-weight: 600;
-  justify-content: center;
-  align-items: center;
-  padding-left: .2%;
-  padding-right: .2%;
-  padding-top: .7%;
-  padding-bottom: .7%;
-  color: black;
-  cursor: pointer;
-}
+  .selector button {
+    border: none;
+    background-color: transparent;
+    height: 100%;
+    width: 100%;
+    font: arial;
+    font-size: .8em;
+    font-weight: 600;
+    justify-content: center;
+    align-items: center;
+    padding-left: .2%;
+    padding-right: .2%;
+    padding-top: .7%;
+    padding-bottom: .7%;
+    color: black;
+    cursor: pointer;
+    border-left: solid;
+    border-left-color: #7a2f2f;
+    border-left-width: 0;
+  }
 
-.buttonContainer {
-  width: 100%;
-}
+  .locationSelector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 14%;
+    transition: .1s ease-out;
+    overflow: hidden;
+  }
 
-.buttonContainer button {
-  width: 80%;
-}
+  .locationSelector button:hover {
+    cursor: pointer;
+    border-left-width: .1em;
+    color: #B84644;
+  }
+
+  .locationSelector button {
+    border: none;
+    background-color: transparent;
+    height: 100%;
+    width: 100%;
+    font: arial;
+    font-size: .8em;
+    font-weight: 600;
+    justify-content: center;
+    align-items: center;
+    padding-left: .2%;
+    padding-right: .2%;
+    padding-top: .7%;
+    padding-bottom: .7%;
+    color: black;
+    cursor: pointer;
+    border-left: solid;
+    border-left-color: #7a2f2f;
+    border-left-width: 0;
+  }
 
   .lastCarousel {
     margin-top: 5%;
@@ -290,6 +369,236 @@
     width: 98%;
   }
 
+  .search {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 5%;
+    height: 20vh;
+    width: 80%;
+  }
+
+  .typeFilter {
+    width: 40%;
+    height: 100%;
+  }
+
+  .typeFilter h5 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: #4a4a4a;
+    height: 50%;
+    text-align: center;
+    margin: 0;
+    cursor: default;
+  }
+
+  .filters {
+    width: 40%;
+    height: 100%;
+    background-color: #7a2f2f;
+  }
+
+  .filtersHeaders{ 
+    display: flex;
+    flex-direction: row;
+    height: 50%;
+    width: 100%;
+  }
+
+  .filtersHeaders h5 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: #4a4a4a;
+    height: 100%;
+    width: 50%;
+    text-align: center;
+    margin: 0;
+    cursor: default;
+  }
+  
+  .buttonContainer {
+    width: 20%;
+    height: 50%;
+    align-self: flex-start;
+    background-color: #B84644;
+  }
+
+  .buttonContainer button {
+    width: 100%;
+    height: 100%;
+    color: white;
+    border: none;
+    background-color: #4a4a4a;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .buttonContainer button:hover {
+    background-color: #B84644;
+  }
+
+  .typeContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 50%;
+    justify-content: center;
+  }
+
+  .typeButton {
+    height: 100%;
+    width: 50%;
+    cursor: pointer;
+    color: #4a4a4a;
+    background-color: rgb(215, 215, 215);
+    font-weight: bold;
+  }
+
+  .typeButtonActive {
+    height: 100%;
+    width: 50%;
+    cursor: pointer;
+    color: white;
+    background-color: #B84644;
+    font-weight: bold;
+  }
+
+  .filterContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 50%;
+    justify-content: center;
+  }
+
+  .filterButton {
+    width: 50%;
+    height: 100%;
+    color: #4a4a4a;
+    background-color: rgb(215, 215, 215);
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .filterButtonActive {
+    width: 50%;
+    height: 100%;
+    cursor: pointer;
+    color: white;
+    background-color: #B84644;
+    font-weight: bold;
+  }
+
+  .selectors {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    gap: 5%;
+    justify-content: center;
+  }
+
+  .type {
+    position: relative;
+    left: 0;
+    z-index: 2;
+    width: 45%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: #eaeaea;
+    transition: ease .3s;
+  }
+
+  .location {
+    position: relative;
+    left: 0;
+    z-index: 2;
+    width: 45%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: #eaeaea;
+    transition: ease .3s;
+  }
+
+  .selector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 10%;
+    transition: .1s ease-out;
+    overflow: hidden;
+    color: #4a4a4a;
+  }
+
+  .selector button:hover {
+    cursor: pointer;
+    border-left-width: .1em;
+    color: #B84644;
+  }
+
+  .selector button {
+    border: none;
+    background-color: transparent;
+    height: 100%;
+    width: 100%;
+    font: arial;
+    font-size: .8em;
+    font-weight: 600;
+    justify-content: center;
+    align-items: center;
+    padding-left: .2%;
+    padding-right: .2%;
+    padding-top: .7%;
+    padding-bottom: .7%;
+    color: black;
+    cursor: pointer;
+    border-left: solid;
+    border-left-color: #7a2f2f;
+    border-left-width: 0;
+  }
+
+  .locationSelector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 14%;
+    transition: .1s ease-out;
+    overflow: hidden;
+  }
+
+  .locationSelector button:hover {
+    cursor: pointer;
+    border-left-width: .1em;
+    color: #B84644;
+  }
+
+  .locationSelector button {
+    border: none;
+    background-color: transparent;
+    height: 100%;
+    width: 100%;
+    font: arial;
+    font-size: .8em;
+    font-weight: 600;
+    justify-content: center;
+    align-items: center;
+    padding-left: .2%;
+    padding-right: .2%;
+    padding-top: .7%;
+    padding-bottom: .7%;
+    color: black;
+    cursor: pointer;
+    border-left: solid;
+    border-left-color: #7a2f2f;
+    border-left-width: 0;
+  }
+
   .lastCarousel {
     margin-top: 5%;
     width: 100%;
@@ -368,6 +677,237 @@
   .carousel {
     margin-top: 2%;
     width: 80%;
+    margin-bottom: 2%;
+  }
+
+  .search {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 5%;
+    height: 20vh;
+    width: 80%;
+  }
+
+  .typeFilter {
+    width: 40%;
+    height: 100%;
+  }
+
+  .typeFilter h5 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: #4a4a4a;
+    height: 50%;
+    text-align: center;
+    margin: 0;
+    cursor: default;
+  }
+
+  .filters {
+    width: 40%;
+    height: 100%;
+    background-color: #7a2f2f;
+  }
+
+  .filtersHeaders{ 
+    display: flex;
+    flex-direction: row;
+    height: 50%;
+    width: 100%;
+  }
+
+  .filtersHeaders h5 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: #4a4a4a;
+    height: 100%;
+    width: 50%;
+    text-align: center;
+    margin: 0;
+    cursor: default;
+  }
+  
+  .buttonContainer {
+    width: 20%;
+    height: 50%;
+    align-self: flex-start;
+    background-color: #B84644;
+  }
+
+  .buttonContainer button {
+    width: 100%;
+    height: 100%;
+    color: white;
+    border: none;
+    background-color: #4a4a4a;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .buttonContainer button:hover {
+    background-color: #B84644;
+  }
+
+  .typeContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 50%;
+    justify-content: center;
+  }
+
+  .typeButton {
+    height: 100%;
+    width: 50%;
+    cursor: pointer;
+    color: #4a4a4a;
+    background-color: rgb(215, 215, 215);
+    font-weight: bold;
+  }
+
+  .typeButtonActive {
+    height: 100%;
+    width: 50%;
+    cursor: pointer;
+    color: white;
+    background-color: #B84644;
+    font-weight: bold;
+  }
+
+  .filterContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 50%;
+    justify-content: center;
+  }
+
+  .filterButton {
+    width: 50%;
+    height: 100%;
+    color: #4a4a4a;
+    background-color: rgb(215, 215, 215);
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .filterButtonActive {
+    width: 50%;
+    height: 100%;
+    cursor: pointer;
+    color: white;
+    background-color: #B84644;
+    font-weight: bold;
+  }
+
+  .selectors {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    gap: 5%;
+    justify-content: center;
+  }
+
+  .type {
+    position: relative;
+    left: 0;
+    z-index: 2;
+    width: 45%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: #eaeaea;
+    transition: ease .3s;
+  }
+
+  .location {
+    position: relative;
+    left: 0;
+    z-index: 2;
+    width: 45%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: #eaeaea;
+    transition: ease .3s;
+  }
+
+  .selector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 10%;
+    transition: .1s ease-out;
+    overflow: hidden;
+    color: #4a4a4a;
+  }
+
+  .selector button:hover {
+    cursor: pointer;
+    border-left-width: .1em;
+    color: #B84644;
+  }
+
+  .selector button {
+    border: none;
+    background-color: transparent;
+    height: 100%;
+    width: 100%;
+    font: arial;
+    font-size: .8em;
+    font-weight: 600;
+    justify-content: center;
+    align-items: center;
+    padding-left: .2%;
+    padding-right: .2%;
+    padding-top: .7%;
+    padding-bottom: .7%;
+    color: black;
+    cursor: pointer;
+    border-left: solid;
+    border-left-color: #7a2f2f;
+    border-left-width: 0;
+  }
+
+  .locationSelector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 14%;
+    transition: .1s ease-out;
+    overflow: hidden;
+  }
+
+  .locationSelector button:hover {
+    cursor: pointer;
+    border-left-width: .1em;
+    color: #B84644;
+  }
+
+  .locationSelector button {
+    border: none;
+    background-color: transparent;
+    height: 100%;
+    width: 100%;
+    font: arial;
+    font-size: .8em;
+    font-weight: 600;
+    justify-content: center;
+    align-items: center;
+    padding-left: .2%;
+    padding-right: .2%;
+    padding-top: .7%;
+    padding-bottom: .7%;
+    color: black;
+    cursor: pointer;
+    border-left: solid;
+    border-left-color: #7a2f2f;
+    border-left-width: 0;
   }
 
   .lastCarousel {

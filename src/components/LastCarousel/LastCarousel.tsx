@@ -97,10 +97,10 @@ const LastCarousel = () => {
                                 }}
                             />
                             <h3>{property.name}</h3>
-                            <hr />
-                            <h4>{property.location}</h4>
-                            <hr />
-                            <button className={styles.viewMore}>Ver más</button>
+                            <div className={styles.more}>
+                                <hr />
+                                <button className={styles.viewMore}>Ver más</button>
+                            </div>
                         </div>
                     );
                 })}
