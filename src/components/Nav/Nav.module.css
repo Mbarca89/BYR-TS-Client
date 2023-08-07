@@ -361,7 +361,7 @@
     flex-direction: row;
     gap: 25%;
     width: 100%;
-    height: 20%;
+    height: 10%;
     align-items: center;
     justify-content: center;
   }
@@ -374,6 +374,27 @@
   .socialContainer img {
     width: 100%;
     height: auto;
+  }
+
+  .phone {
+    display: flex;
+    width: 100%;
+    height: 10%;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .phone img {
+    width: 11%;
+    height: auto;
+    aspect-ratio: 1/1;
+  }
+
+  .phone a {
+    text-decoration: none;
+    width: 70%;
+    text-align: center;
+    color: #4a4a4a;
   }
 
   .nav,

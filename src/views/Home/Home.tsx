@@ -69,6 +69,11 @@ const Home = () => {
         setShowLocation(!showLocation)
     }
 
+    const closeLocation = () => {
+        console.log('anda')
+        setShowLocation(false);
+    }
+
     return (
         <div className={style.home}>
             {loading && <div className={style.loading}>
@@ -154,7 +159,7 @@ const Home = () => {
                                 <button onClick={showTypeHandler} name='Terreno'>Terreno</button>
                             </div>
                         </div>
-                        <div className={style.location} style={showLocation ? { height: '35vh' } : { height: 0 }}>
+                        <div className={style.location} style={showLocation ? { height: '35vh' } : { height: 0 }} onBlur={closeLocation}>
                             <div className={style.locationSelector}>
                                 <button onClick={showLocationHandler} name='San Luis'>San Luis</button>
                             </div>

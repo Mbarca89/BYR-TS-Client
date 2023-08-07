@@ -3,6 +3,7 @@ import logo from '../../img/logo.webp'
 import instagram from '../../img/instagram.webp'
 import facebook from '../../img/facebook.webp'
 import whatsapp from '../../img/whatsapp.webp'
+import phone from '../../img/phone.webp'
 import { NavLink, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { GiHamburgerMenu } from 'react-icons/gi'
@@ -63,7 +64,7 @@ const Nav = () => {
     )
 
     return (
-        <div className={style.header} style={location.pathname === '/propiedades' ? { backgroundColor: 'transparent', height: '20vh'} : undefined}>
+        <div className={style.header} style={location.pathname === '/propiedades' ? { backgroundColor: 'transparent', height: '20vh' } : undefined}>
             <div className={style.menu} onClick={showNavHandler}>
                 {!showNav ?
                     <GiHamburgerMenu size={35} color={'#4a4a4a'} style={{ marginTop: '3%', marginLeft: '3%', cursor: 'pointer' }} />
@@ -92,6 +93,12 @@ const Nav = () => {
                     </a>
                     <a className={style.social} href={`https://api.whatsapp.com/send?phone=5492664570187&text=Hola, Necesito asesoramiento sobre una propiedad`} target="_blank" rel="noopener noreferrer">
                         <img src={whatsapp} alt='B&R Inmobiliaria'></img>
+                    </a>
+                </div>
+                <div className={style.phone}>
+                    <img src={phone} alt="" />
+                    <a href="tel:+549 266 570187">
+                        <p>+549 266 570187</p>
                     </a>
                 </div>
             </div>

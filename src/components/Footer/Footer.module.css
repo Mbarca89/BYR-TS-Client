@@ -66,6 +66,7 @@
         height: 90%;
         gap: 2%;
         align-items: center;
+        justify-content: center;
     }
 
     .logo {
@@ -88,7 +89,6 @@
     .text{
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
     }
 
     .text p {
