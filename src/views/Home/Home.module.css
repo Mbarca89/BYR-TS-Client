@@ -809,7 +809,6 @@
     width: 100%;
     height: 10%;
     display: flex;
-    gap: 5%;
     justify-content: center;
   }
 
@@ -817,7 +816,7 @@
     position: relative;
     left: 0;
     z-index: 2;
-    width: 45%;
+    width: 50%;
     overflow-y: auto;
     overflow-x: hidden;
     background-color: #eaeaea;
@@ -828,7 +827,7 @@
     position: relative;
     left: 0;
     z-index: 2;
-    width: 45%;
+    width: 50%;
     overflow-y: auto;
     overflow-x: hidden;
     background-color: #eaeaea;
