@@ -34,9 +34,9 @@ const Home = () => {
     const [showType, setShowType] = useState<boolean>(false)
     const [showLocation, setShowLocation] = useState<boolean>(false)
     const [filters, setFilters] = useState<Filters>({
-        type: 'Tipo de propiedad',
+        type: 'Seleccionar',
         category: 'Venta',
-        location: 'Ubicación'
+        location: 'Seleccionar'
     })
 
     const categoryHandler = (event: MouseEvent<HTMLButtonElement>) => {

@@ -97,8 +97,8 @@ const Properties = () => {
             const location: string = queryFilters.get('location') || ''
             let filters: Filters = {
                 type: type || '',
-                category: category !== 'Tipo de propiedad' ? category : '',
-                location: location !== 'Ubicación' ? location : ''
+                category: category !== 'Seleccionar' ? category : '',
+                location: location !== 'Seleccionar' ? location : ''
             }
             setFilters(filters)
         }

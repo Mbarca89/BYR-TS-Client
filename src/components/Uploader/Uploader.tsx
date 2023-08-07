@@ -142,7 +142,6 @@ const Uploader = () => {
         if (imagesUpload) {
             setImages([...images, ...imagesUpload])
             const files = Array.from(imagesUpload);
-
             const imagesPreview = files.map((file) => ({
                 file,
                 preview: URL.createObjectURL(file), // Generar una URL para la vista previa
@@ -176,6 +175,42 @@ const Uploader = () => {
             ...data,
             featured: false
         })
+    }
+
+    const moveRight = (index: number) => {
+        const aux = images
+        if (aux) {
+            if (index !== aux.length - 1) {
+                const temp = aux[index]
+                aux[index] = aux[index + 1];
+                aux[index + 1] = temp;
+                setImages(aux)
+                const files = Array.from(aux);
+                const imagesPreview = files.map((file) => ({
+                    file,
+                    preview: URL.createObjectURL(file), // Generar una URL para la vista previa
+                }));
+                setSelectedImages(imagesPreview);
+            }
+        }
+    }
+
+    const moveLeft = (index: number) => {
+        const aux = images
+        if (aux) {
+            if (index !== 0) {
+                const temp = aux[index]
+                aux[index] = aux[index - 1];
+                aux[index - 1] = temp;
+                setImages(aux)
+                const files = Array.from(aux);
+                const imagesPreview = files.map((file) => ({
+                    file,
+                    preview: URL.createObjectURL(file), // Generar una URL para la vista previa
+                }));
+                setSelectedImages(imagesPreview);
+            }
+        }
     }
 
     const resetHandler = () => {
@@ -356,7 +391,11 @@ const Uploader = () => {
                         {selectedImages && selectedImages.map((image, index) => (
                             <div key={index}>
                                 <img src={image.preview} alt="Preview" />
-                                <button className={style.deleteImage} onClick={() => deleteImage(index)}>X</button>
+                                <div className={style.previewButtonContainer}>
+                                    <button onClick={() => moveLeft(index)}>{'<'}</button>
+                                    <button className={style.deleteImage} onClick={() => deleteImage(index)}>X</button>
+                                    <button onClick={() => moveRight(index)}>{'>'}</button>
+                                </div>
                             </div>
                         ))}
                     </div>

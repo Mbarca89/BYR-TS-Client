@@ -56,6 +56,7 @@
         background-color: #B84644;
         width: 50%;
         align-self: center;
+        border: none;
     }
 
     .carousel hr {
