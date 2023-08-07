@@ -108,22 +108,25 @@ const Home = () => {
                     <div className={style.selectors}>
                         <div className={style.type} style={showType ? { height: '45vh' } : { height: 0 }}>
                             <div className={style.selector}>
+                                <button name='Casa' onClick={showTypeHandler}>Casa</button>
+                            </div>
+                            <div className={style.selector}>
+                                <button onClick={showTypeHandler} name='Departamento'>Departamento</button>
+                            </div>
+                            <div className={style.selector}>
+                                <button onClick={showTypeHandler} name='Terreno'>Terreno</button>
+                            </div>
+                            <div className={style.selector}>
                                 <button onClick={showTypeHandler} name='Cabaña'>Cabaña</button>
                             </div>
                             <div className={style.selector}>
                                 <button onClick={showTypeHandler} name='Campo'>Campo</button>
                             </div>
                             <div className={style.selector}>
-                                <button name='Casa' onClick={showTypeHandler}>Casa</button>
-                            </div>
-                            <div className={style.selector}>
                                 <button onClick={showTypeHandler} name='Cochera'>Cochera</button>
                             </div>
                             <div className={style.selector}>
                                 <button onClick={showTypeHandler} name='Complejo'>Complejo</button>
-                            </div>
-                            <div className={style.selector}>
-                                <button onClick={showTypeHandler} name='Departamento'>Departamento</button>
                             </div>
                             <div className={style.selector}>
                                 <button onClick={showTypeHandler} name='Deposito'>Deposito</button>
@@ -144,9 +147,6 @@ const Home = () => {
                                 <button onClick={showTypeHandler} name='Local'>Local</button>
                             </div>
                             <div className={style.selector}>
-                                <button onClick={showTypeHandler} name='Lote'>Lote</button>
-                            </div>
-                            <div className={style.selector}>
                                 <button onClick={showTypeHandler} name='Loteo'>Loteo</button>
                             </div>
                             <div className={style.selector}>
@@ -154,9 +154,6 @@ const Home = () => {
                             </div>
                             <div className={style.selector}>
                                 <button onClick={showTypeHandler} name='Oficina'>Oficina</button>
-                            </div>
-                            <div className={style.selector}>
-                                <button onClick={showTypeHandler} name='Terreno'>Terreno</button>
                             </div>
                         </div>
                         <div className={style.location} style={showLocation ? { height: '35vh' } : { height: 0 }} onBlur={closeLocation}>
