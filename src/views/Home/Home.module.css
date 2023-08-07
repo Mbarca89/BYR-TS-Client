@@ -705,6 +705,7 @@
     margin: 0;
     cursor: default;
     border-bottom: .5px solid white;
+    border-right: .5px solid white;
   }
 
   .filters {
@@ -772,6 +773,8 @@
     color: #4a4a4a;
     background-color: rgb(215, 215, 215);
     font-weight: bold;
+    border: none;
+    border-right: .5px solid white;
   }
 
   .typeButtonActive {
@@ -781,6 +784,8 @@
     color: white;
     background-color: #B84644;
     font-weight: bold;
+    border: none;
+    border-right: .5px solid white;
   }
 
   .filterContainer {
@@ -798,6 +803,8 @@
     background-color: rgb(215, 215, 215);
     cursor: pointer;
     font-weight: bold;
+    border: none;
+    border-left: .5px solid white;
   }
 
   .filterButtonActive {
@@ -807,6 +814,8 @@
     color: white;
     background-color: #B84644;
     font-weight: bold;
+    border: none;
+    border-right: .5px solid white;
   }
 
   .selectors {
