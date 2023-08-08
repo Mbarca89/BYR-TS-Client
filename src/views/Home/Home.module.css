@@ -413,6 +413,8 @@
     text-align: center;
     margin: 0;
     cursor: default;
+    border-bottom: .5px solid white;
+    border-right: .5px solid white;
   }
 
   .filters {
@@ -426,6 +428,7 @@
     flex-direction: row;
     height: 50%;
     width: 100%;
+    border-bottom: .5px solid white;
   }
 
   .filtersHeaders h5 {
@@ -439,6 +442,7 @@
     text-align: center;
     margin: 0;
     cursor: default;
+    border-left: .5px solid white;
   }
   
   .buttonContainer {
@@ -446,6 +450,7 @@
     height: 50%;
     align-self: flex-start;
     background-color: #B84644;
+    border-left: .5px solid white;
   }
 
   .buttonContainer button {
@@ -477,6 +482,8 @@
     color: #4a4a4a;
     background-color: rgb(215, 215, 215);
     font-weight: bold;
+    border: none;
+    border-right: .5px solid white;
   }
 
   .typeButtonActive {
@@ -486,6 +493,8 @@
     color: white;
     background-color: #B84644;
     font-weight: bold;
+    border: none;
+    border-right: .5px solid white;
   }
 
   .filterContainer {
@@ -503,6 +512,8 @@
     background-color: rgb(215, 215, 215);
     cursor: pointer;
     font-weight: bold;
+    border: none;
+    border-left: .5px solid white;
   }
 
   .filterButtonActive {
@@ -512,13 +523,14 @@
     color: white;
     background-color: #B84644;
     font-weight: bold;
+    border: none;
+    border-right: .5px solid white;
   }
 
   .selectors {
     width: 100%;
     height: 10%;
     display: flex;
-    gap: 5%;
     justify-content: center;
   }
 
@@ -526,7 +538,7 @@
     position: relative;
     left: 0;
     z-index: 2;
-    width: 45%;
+    width: 50%;
     overflow-y: auto;
     overflow-x: hidden;
     background-color: #eaeaea;
@@ -537,7 +549,7 @@
     position: relative;
     left: 0;
     z-index: 2;
-    width: 45%;
+    width: 50%;
     overflow-y: auto;
     overflow-x: hidden;
     background-color: #eaeaea;

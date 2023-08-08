@@ -95,9 +95,10 @@ const Properties = () => {
             const type: string = queryFilters.get('type') || ''
             const category: string = queryFilters.get('category') || ''
             const location: string = queryFilters.get('location') || ''
+            console.log(type,category,location)
             let filters: Filters = {
-                type: type || '',
-                category: category !== 'Seleccionar' ? category : '',
+                type: type !== 'Seleccionar' ? type : '',
+                category: category || '',
                 location: location !== 'Seleccionar' ? location : ''
             }
             setFilters(filters)

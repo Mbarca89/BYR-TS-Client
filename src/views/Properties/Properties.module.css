@@ -564,7 +564,7 @@
         position: relative;
         width: 100%;
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         grid-gap: 1%;
         justify-items: center;
     }
@@ -579,12 +579,13 @@
     }
 
     .paginationContainer {
-        width: 40%;
+        width: 100%;
         position: relative;
         bottom: 1%;
         display: flex;
         align-items: center;
         justify-content: center;
+        margin-top: 5%;
     }
 
     .pagination {
