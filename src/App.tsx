@@ -9,6 +9,7 @@ import Properties from './views/Properties/Properties';
 import Rates from './views/Rates/Rates';
 import About from './views/About/About';
 import { Toaster } from 'react-hot-toast';
+import TawkMessengerReact from '@tawk.to/tawk-messenger-react'; 
 import './App.css';
 
 function App() {
@@ -16,6 +17,9 @@ function App() {
   return (
     <div className="App">
       <Toaster></Toaster>
+      <TawkMessengerReact
+                propertyId="64db6042cc26a871b02f5cbd"
+                widgetId="1h7sf00ve"/>
       <Routes>
         <Route element={(
           <>
