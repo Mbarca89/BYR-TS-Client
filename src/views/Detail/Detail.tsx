@@ -66,11 +66,13 @@ const Detail = () => {
     }, [])
 
     const next = () => {
+        setImageLoading(true)
         if (imageIndex < (propertyData.images.length - 1)) setImageIndex(imageIndex + 1)
         if (imageIndex === propertyData.images.length - 1) setImageIndex(0)
     }
 
     const previous = () => {
+        setImageLoading(true)
         if (imageIndex > 0) setImageIndex(imageIndex - 1)
         if (imageIndex === 0) setImageIndex(propertyData.images.length - 1)
     }
@@ -106,7 +108,7 @@ const Detail = () => {
                     <div className={style.right} onClick={next}> 〉 </div>
                     {propertyData.category === 'Venta' && <img className={style.categoryImg} src={venta} alt="" />}
                     {propertyData.category === 'Alquiler' && <img className={style.categoryImg} src={alquiler} alt="" />}
-                    {imageLoading && <div className={style.photoOverlay}></div>}
+                    {imageLoading && <div className={style.photoOverlay}><ReactLoading type='spinningBubbles' color='#ffffff' height={'5%'} width={'5%'} /></div>}
                     <img onLoad={handleImageLoading} onClick={!mobile ? galleryHandler : undefined} className={style.photo} src={propertyData.images[imageIndex].url} alt="" />
                 </div>
                 <div className={style.info}>
