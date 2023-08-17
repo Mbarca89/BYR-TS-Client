@@ -25,8 +25,6 @@ const Nav = () => {
         setShowNav(!showNav)
     }
 
-    console.log(location.pathname)
-
     if (mobile) return (
         <div className={`${style.header} ${location.pathname === '/propiedades' && style.headerBanner}`} >
             <div className={style.menu} onClick={showNavHandler}>

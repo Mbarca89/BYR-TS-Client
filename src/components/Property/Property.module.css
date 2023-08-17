@@ -1,4 +1,4 @@
-.property{
+.property {
     position: relative;
     display: flex;
     align-items: center;
@@ -21,7 +21,7 @@
 
 .container:hover {
     height: 100%;
-    width:100%;
+    width: 100%;
 }
 
 .photo {
@@ -29,10 +29,10 @@
     height: 100%;
     width: 100%;
     border-radius: 15px;
-    
+
 }
 
-.categoryImg{
+.categoryImg {
     position: absolute;
     top: 0;
     right: 0;
@@ -48,18 +48,22 @@
     padding: 2%;
     bottom: 2%;
     justify-content: flex-end;
-    background-color: rgb(0,0,0,.2);
+    background-color: rgb(0, 0, 0, .2);
     border-radius: 10px;
 }
 
-.infoContainer h3,h4 {
+.infoContainer h3,
+h4 {
     color: white;
     margin: 0%;
     width: 100%;
     font-size: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.info{
+.info {
     position: relative;
     display: flex;
     flex-direction: row;

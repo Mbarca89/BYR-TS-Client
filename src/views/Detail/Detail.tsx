@@ -18,7 +18,9 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import { PropertyDetailType } from '../../types'
 import loadingGif from '../../img/loading.gif'
+import noImage from '../../img/noImage.webp'
 
+const webUrl = process.env.REACT_APP_URL
 const SERVER_URL = process.env.REACT_APP_SERVER_URL
 
 const Detail = () => {
@@ -103,14 +105,17 @@ const Detail = () => {
                 </div>
             }
             <div className={style.basicInfo}>
-                <div className={style.photos}>
+                {propertyData.images.length > 0 ? <div className={style.photos}>
                     <div className={style.left} onClick={previous}> 〈 </div>
                     <div className={style.right} onClick={next}> 〉 </div>
                     {propertyData.category === 'Venta' && <img className={style.categoryImg} src={venta} alt="" />}
                     {propertyData.category === 'Alquiler' && <img className={style.categoryImg} src={alquiler} alt="" />}
                     {imageLoading && <div className={style.photoOverlay}><ReactLoading type='spinningBubbles' color='#ffffff' height={'5%'} width={'5%'} /></div>}
                     <img onLoad={handleImageLoading} onClick={!mobile ? galleryHandler : undefined} className={style.photo} src={propertyData.images[imageIndex].url} alt="" />
-                </div>
+                </div>:
+                <div className={style.photos}>
+                    <img onLoad={handleImageLoading} className={style.photo} src={noImage} alt="" />
+                    </div>}
                 <div className={style.info}>
                     <div className={style.name}>
                         <h2>{propertyData.name || <Skeleton />}</h2>
@@ -150,7 +155,7 @@ const Detail = () => {
                             {propertyData.currency === 'US$' && <img src={dolares} alt="" />}
                             <h4>{propertyData.price}</h4>
                         </div>
-                        <a href={`https://api.whatsapp.com/send?phone=5492664570187&text=Hola,%20me%20interesa%20saber%20mas%20sobre%20esta%20propiedad:%20${location.pathname}`} target="_blank" rel="noopener noreferrer">
+                        <a href={`https://api.whatsapp.com/send?phone=5492664570187&text=Hola,%20me%20interesa%20saber%20mas%20sobre%20esta%20propiedad:%20${webUrl}${location.pathname}`} target="_blank" rel="noopener noreferrer">
                             <img className={style.whatsappLogo} src={whatsapp} alt="" />
                         </a>
                     </div>

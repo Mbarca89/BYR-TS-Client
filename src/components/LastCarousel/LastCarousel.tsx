@@ -99,7 +99,7 @@ const LastCarousel = () => {
                             <h3>{property.name}</h3>
                             <div className={styles.more}>
                                 <hr />
-                                <button className={styles.viewMore}>Ver más</button>
+                                <button className={styles.viewMore} onClick={() => navigate(`/detail/${property.id}`)}>Ver más</button>
                             </div>
                         </div>
                     );

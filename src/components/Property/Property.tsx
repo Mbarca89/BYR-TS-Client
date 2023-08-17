@@ -7,6 +7,7 @@ import sizeIcon from '../../img/size.webp'
 import venta from '../../img/Venta.webp'
 import alquiler from '../../img/Alquiler.webp'
 import { useNavigate } from 'react-router-dom'
+import noImage from '../../img/noImage.webp'
 
 interface Props {
     id: string,
@@ -42,7 +43,7 @@ const Property = ({id, price, currency, bedrooms, bathrooms, name, location, ima
         <div className={style.property}>
       
             <div className={style.container} onClick={goToDetail}>
-                <img className={style.photo} src={images[0].url} alt="" />
+                {images.length > 0 ? <img className={style.photo} src={images[0].url} alt="" />:<img className={style.photo} src={noImage} alt="" />}
                 {category === 'Venta' && <img className={style.categoryImg} src={venta} alt="" />}
                 {category === 'Alquiler' && <img className={style.categoryImg} src={alquiler} alt="" />}
                 <div className={style.infoContainer}>

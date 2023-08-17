@@ -327,11 +327,11 @@
         white-space: nowrap;
     }
 
-    .buttonDiv button:hover{
-        border-bottom-width: .2em;
+    .send:hover{
+        background-color: #B84644;
     }
 
-    .buttonDiv button {
+    .send {
         border: none;
         font: arial;
         font-size: 100%;
@@ -346,9 +346,22 @@
         height: 2em;
         border-radius: 10px;
         transition: .05s ease-out;
-        border-bottom: solid;
-        border-bottom-color: #B84644;
-        border-bottom-width: 0em;
+    }
+
+    .sendDis {
+        border: none;
+        font: arial;
+        font-size: 100%;
+        font-weight: 600;
+        padding-left: .2%;
+        padding-right: .2%;
+        color: black;
+        text-decoration: none;
+        background-color: grey;
+        cursor: not-allowed;
+        width: 10%;
+        height: 2em;
+        border-radius: 10px;
     }
     
     .comunicate {
@@ -517,11 +530,11 @@
         white-space: nowrap;
     }
 
-    .buttonDiv button:hover{
-        border-bottom-width: .2em;
+    .send:hover{
+        background-color: #B84644;
     }
 
-    .buttonDiv button {
+    .send {
         border: none;
         font: arial;
         font-size: 100%;
@@ -536,10 +549,24 @@
         height: 2em;
         border-radius: 10px;
         transition: .05s ease-out;
-        border-bottom: solid;
-        border-bottom-color: #B84644;
-        border-bottom-width: 0em;
     }
+
+    .sendDis {
+        border: none;
+        font: arial;
+        font-size: 100%;
+        font-weight: 600;
+        padding-left: .2%;
+        padding-right: .2%;
+        color: black;
+        text-decoration: none;
+        background-color: grey;
+        cursor: not-allowed;
+        width: 10%;
+        height: 2em;
+        border-radius: 10px;
+    }
+
     .comunicate {
         display: flex;
         flex-direction: column;
