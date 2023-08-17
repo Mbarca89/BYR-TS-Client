@@ -14,8 +14,6 @@ import whatsapp from '../../img/whatsapp.webp'
 import { useParams, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import ReactLoading from 'react-loading'
-import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
 import { PropertyDetailType } from '../../types'
 import loadingGif from '../../img/loading.gif'
 import noImage from '../../img/noImage.webp'
@@ -91,6 +89,8 @@ const Detail = () => {
         setImageLoading(false)
     }
 
+    console.log(propertyData)
+
     return (
         <div className={style.detail}>
             {loading && <div className={style.loading}>
@@ -118,11 +118,11 @@ const Detail = () => {
                     </div>}
                 <div className={style.info}>
                     <div className={style.name}>
-                        <h2>{propertyData.name || <Skeleton />}</h2>
+                        <h2>{propertyData.name}</h2>
                     </div>
                     <hr />
                     <div className={style.location}>
-                        <h3>{propertyData.location || <Skeleton />}</h3>
+                        <h3>{propertyData.location}</h3>
                     </div>
                     <hr />
                     <div className={style.infoContainer}>

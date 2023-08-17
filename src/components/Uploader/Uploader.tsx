@@ -10,6 +10,7 @@ import { notifyError, notifySuccess } from '../Toaster/Toaster'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 import * as DOMPurify from 'dompurify'
+import ReactLoading from 'react-loading'
 const SERVER_URL = process.env.REACT_APP_SERVER_URL
 
 interface ImagePreview {
@@ -18,7 +19,7 @@ interface ImagePreview {
 }
 
 const Uploader = () => {
-    const [uploaded, setUploaded] = useState(false)
+    const [uploaded, setUploaded] = useState(true)
     const [data, setData] = useState<PropertyType>({
         id: '',
         featured: false,
@@ -119,6 +120,7 @@ const Uploader = () => {
     }
 
     const submitHandler = async () => {
+        setUploaded(false)
         const formData = new FormData()
         formData.append('data', JSON.stringify(data))
         for (let i = 0; i < images.length; i++) {
@@ -132,8 +134,10 @@ const Uploader = () => {
             await axios.post(`${SERVER_URL}/properties/upload`, formData)
             notifySuccess('Propiedad publicada correctamente!')
             resetHandler()
+            setUploaded(true)
         } catch (error: any) {
             notifyError(error.response.data)
+            setUploaded(true)
         }
     }
 
@@ -244,7 +248,7 @@ const Uploader = () => {
 
     return (
 
-        !uploaded ? <div className={style.uploader}>
+        uploaded ? <div className={style.uploader}>
             <header>
                 <h2>Publicar propiedad</h2>
             </header>
@@ -405,8 +409,10 @@ const Uploader = () => {
                 <button onClick={submitHandler}>Publicar</button>
                 <button onClick={resetHandler}>Reiniciar</button>
             </footer>
-        </div> : <div>
-            <h1>Propiedad publicada con exito!</h1>
+        </div> : <div className={style.uploader}>
+            <div className={style.uploading}>
+                <ReactLoading type='spinningBubbles' color='#000000' height={'50%'} width={'50%'} />
+            </div>
         </div>
     )
 }

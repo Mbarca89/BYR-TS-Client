@@ -30,8 +30,7 @@ const About = () => {
                     <article>
                         <img src={about} alt="" />
                         <h1>Quienes Somos</h1>
-                        <p>Somos una empresa joven, con el objetivo de satisfacer las necesidades de nuestros clientes, en cada operación inmobiliaria.
-                            Estudiamos cada caso para satisfacer cualquier necesidad; alquileres, tasaciones y ventas de viviendas, locales comerciales, campos, galpones, buscaremos lo que más se adapte a las necesidades y posibilidades en cada caso, aportando nuestro conocimiento para cumplir su sueño.</p>
+                        <p>Somos una empresa familiar, abocados a brindar un servicio inmobiliario de calidad, donde buscamos comprender las necesidades de nuestros clientes.</p>
                     </article>
                 </div>
                 <div className={style.line}></div>

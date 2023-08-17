@@ -1,6 +1,7 @@
 const others = [
     {name:'Balcón'},
     {name:'Cocina'},
+    {name:'Cocina/Comedor'},
     {name:'Comedor'},
     {name:'Depósito'},
     {name:'Estudio'},
@@ -14,7 +15,7 @@ const others = [
     {name:'Pileta'},
     {name:'Pileta Climatizada'},
     {name:'Quincho'},
-    {name:'Recipción'},
+    {name:'Recepción'},
     {name:'Sala de Juegos'},
     {name:'Solarium'},
     {name:'Terraza'},
