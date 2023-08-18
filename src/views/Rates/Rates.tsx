@@ -64,11 +64,9 @@ const Rates = () => {
     }
 
     useEffect(() => {
-
         let val = Validations(data, data.eventName)
         if (val) {
             if (data.eventName === 'name') {
-                console.log(val.disabled1)
                 setErrors({
                     ...errors,
                     name: val.name,
@@ -76,7 +74,6 @@ const Rates = () => {
                 })
             }
             if (data.eventName === 'mail') {
-                console.log(val.disabled2)
                 setErrors({
                     ...errors,
                     mail: val.mail,
@@ -84,7 +81,6 @@ const Rates = () => {
                 })
             }
             if (data.eventName === 'phone') {
-                console.log(val.disabled3)
                 setErrors({
                     ...errors,
                     phone: val.phone,
@@ -92,11 +88,15 @@ const Rates = () => {
                 })
             }
         }
+        console.log(val)
+        console.log(errors)
     }, [data])
 
     const sendEmail = async () => {
         setSending(true)
         try {
+            if (data.name === '' || data.phone === '' || data.mail === '') throw Error('Por favor complete todos los datos')
+            if(errors.disabled1 || errors.disabled2 || errors.disabled3) throw Error ('Por favor revise los datos ingresados')
             if (formRef.current)
                 await emailjs.sendForm('service_2rg7tis', 'template_3omezxo', formRef.current, 'fup4O1b1tN2Rfnirg')
             notifySuccess('Mensaje enviado correctamente.')
@@ -108,8 +108,24 @@ const Rates = () => {
                 comments: '',
                 eventName: ''
             })
-        } catch (error) {
-            notifyError('No se pudo enviar el formulario')
+        } catch (error: any) {
+            let formErrors = {
+                name: '',
+                mail: '',
+                phone: '',
+            }
+            if(data.name === '' || errors.disabled1) formErrors.name = 'El nombre no puede estar vacio'
+            if(data.mail === '' || errors.disabled2) formErrors.mail = 'Ingrese un mail válido'
+            if(data.phone === '' || errors.disabled3) formErrors.phone = 'Ingrese solo números'
+            setErrors({
+                ...errors,
+                name: formErrors.name,
+                mail:formErrors.mail,
+                phone: formErrors.phone
+            })
+            if (error.message) { notifyError(error.message) }
+            else { notifyError('No se pudo enviar el formulario') }
+            setSending(false)
         }
     }
 
@@ -141,7 +157,7 @@ const Rates = () => {
                                 {errors.name && <p>{errors.name}</p>}
                             </div>
                             <div className={style.formInput}>
-                                <input type="text" name='name' onInput={() => Validations(data,'name')} onChange={changeHandler} value={data.name} />
+                                <input type="text" name='name' onChange={changeHandler} value={data.name} />
                             </div>
                         </div>
                         <div className={style.inputContainer}>
@@ -150,7 +166,7 @@ const Rates = () => {
                                 {errors.mail && <p>{errors.mail}</p>}
                             </div>
                             <div className={style.formInput}>
-                                <input type="text" name='mail' onInput={() => Validations(data,'mail')} onChange={changeHandler} value={data.mail} />
+                                <input type="text" name='mail' onChange={changeHandler} value={data.mail} />
                             </div>
                         </div>
                         <div className={style.inputContainer}>
@@ -159,7 +175,7 @@ const Rates = () => {
                                 {errors.phone && <p>{errors.phone}</p>}
                             </div>
                             <div className={style.formInput}>
-                                <input type="text" name='phone' onInput={() => Validations(data,'phone')} onChange={changeHandler} value={data.phone} />
+                                <input type="text" name='phone' onChange={changeHandler} value={data.phone} />
                             </div>
                         </div>
                         <div className={style.commentsContainer}>
@@ -168,7 +184,7 @@ const Rates = () => {
                         </div>
                     </form>
                     <div className={style.buttonDiv}>
-                        {!sending && <button className={(errors.disabled1 || errors.disabled2 || errors.disabled3) ? style.sendDis : style.send} onClick={sendEmail} disabled={errors.disabled1 || errors.disabled2 || errors.disabled3}>Enviar</button>}
+                        {!sending && <button className={style.send} onClick={sendEmail}>Enviar</button>}
                     </div>
                     {sending && <ReactLoading type='spinningBubbles' color='#4a4a4a' height={'4%'} width={'4%'} />}
                 </div>

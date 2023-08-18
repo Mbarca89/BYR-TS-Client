@@ -23,7 +23,7 @@ const Validations = (data:Data, eventName:string) => {
 
     if (eventName === 'mail') {
         if (!/\S+@\S+\.\S+/.test(data.mail)) {
-            res.mail = 'ingrese un mail válido'
+            res.mail = 'Ingrese un mail válido'
         }
         else {
             res.mail = ''
