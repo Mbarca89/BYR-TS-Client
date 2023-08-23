@@ -22,7 +22,8 @@ const MainCarousel = () => {
         const getFeatured = async () => {
             try {
                 const { data } = await axios(`${SERVER_URL}/properties/featured`)
-                setSlides(data.map((item: any) => {
+                console.log(data)
+                await setSlides(data.map((item: any) => {
                     return { image: item.images[0].url, id: item.id, name: item.name, location: item.location }
                 }))
                 setIsloaded(true)
@@ -51,14 +52,16 @@ const MainCarousel = () => {
         }
     }, [currentImg, slides])
 
+    console.log(slides)
+
     return (
         isLoaded ? <div className={style.container}>
-            <NavLink className={style.container} to={`/detail/${slides[currentImg].id}`}>
-                <div className={style.slide} style={{ backgroundImage: `url(${slides[currentImg].image})` }}></div>
+            <NavLink className={style.container} to={`/detail/${slides[currentImg]?.id}`}>
+                <div className={style.slide} style={{ backgroundImage: `url(${slides[currentImg]?.image})` }}></div>
                 <div className={style.slideInfo}>
-                    <h2>{slides[currentImg].name}</h2>
+                    <h2>{slides[currentImg]?.name}</h2>
                     <h2>&nbsp; | &nbsp;</h2>
-                    <h2>{slides[currentImg].location}</h2>
+                    <h2>{slides[currentImg]?.location}</h2>
                 </div>
             </NavLink>
             <div className={style.left} onClick={previous}> 〈 </div>
