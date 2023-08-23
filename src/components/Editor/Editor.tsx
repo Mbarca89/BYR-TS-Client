@@ -69,7 +69,6 @@ const Editor = ({ id }: any) => {
                     services: data.services,
                     amenities: data.amenities,
                 })
-                console.log(data.images)
                 setPropertyImages(data.images)
                 let othersCheckBuffer = othersCheck
                 others.map((item, index) => {
@@ -234,6 +233,42 @@ const Editor = ({ id }: any) => {
         })
     }
 
+    const moveRight = (index: number) => {
+        const aux = images
+        if (aux) {
+            if (index !== aux.length - 1) {
+                const temp = aux[index]
+                aux[index] = aux[index + 1];
+                aux[index + 1] = temp;
+                setImages(aux)
+                const files = Array.from(aux);
+                const imagesPreview = files.map((file) => ({
+                    file,
+                    preview: URL.createObjectURL(file), // Generar una URL para la vista previa
+                }));
+                setSelectedImages(imagesPreview);
+            }
+        }
+    }
+
+    const moveLeft = (index: number) => {
+        const aux = images
+        if (aux) {
+            if (index !== 0) {
+                const temp = aux[index]
+                aux[index] = aux[index - 1];
+                aux[index - 1] = temp;
+                setImages(aux)
+                const files = Array.from(aux);
+                const imagesPreview = files.map((file) => ({
+                    file,
+                    preview: URL.createObjectURL(file), // Generar una URL para la vista previa
+                }));
+                setSelectedImages(imagesPreview);
+            }
+        }
+    }
+
     return (
         isLoaded ? <div className={style.uploader}>
             <header>
@@ -391,7 +426,9 @@ const Editor = ({ id }: any) => {
                         {propertyImages.map((image: any, index) => (
                             <div key={index}>
                                 <img src={image.url} alt="Preview" />
+                                <button onClick={() => moveLeft(index)}>{'<'}</button>
                                 <button className={style.deleteImage} onClick={() => deleteImageFromDb(index, image.id)}>X</button>
+                                <button onClick={() => moveRight(index)}>{'>'}</button>
                             </div>
                         ))}
                     </div>
