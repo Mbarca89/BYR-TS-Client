@@ -89,8 +89,6 @@ const Detail = () => {
         setImageLoading(false)
     }
 
-    console.log(propertyData)
-
     return (
         <div className={style.detail}>
             {loading && <div className={style.loading}>
@@ -101,7 +99,8 @@ const Detail = () => {
                     <div className={style.galleryLeft} onClick={previous}> 〈 </div>
                     <div className={style.galleryRight} onClick={next}> 〉 </div>
                     <h1 onClick={closeGallery}>X</h1>
-                    <img className={style.galleryPhoto} src={propertyData.images[imageIndex].url} alt="" onClick={galleryHandler} />
+                    {imageLoading && <div className={style.galleryOverlay}><ReactLoading type='spinningBubbles' color='#ffffff' height={'5%'} width={'5%'} /></div>}
+                    <img className={style.galleryPhoto} onLoad={handleImageLoading} src={propertyData.images[imageIndex].url} alt="" onClick={galleryHandler} />
                 </div>
             }
             <div className={style.basicInfo}>

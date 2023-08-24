@@ -1,4 +1,4 @@
-.loading{
+.loading {
     position: absolute;
     top: -14vh;
     display: flex;
@@ -9,6 +9,7 @@
     z-index: 9999999;
     background-color: white;
 }
+
 .loading img {
     margin-top: 30%;
     width: 20%;
@@ -320,7 +321,7 @@
         flex-direction: column;
     }
 
-    .loading{
+    .loading {
         top: -20vh;
     }
 
@@ -732,9 +733,6 @@
         height: 10%;
         transition: .1s ease-out;
         overflow: hidden;
-        border-left: solid;
-        border-left-color: #7a2f2f;
-        border-left-width: 0;
     }
 
     .selector button {
@@ -753,6 +751,15 @@
         padding-bottom: .7%;
         color: black;
         cursor: pointer;
+        border-left: solid;
+        border-left-color: #7a2f2f;
+        border-left-width: 0;
+    }
+
+    .selector button:hover {
+        cursor: pointer;
+        border-left-width: .1em;
+        color: #B84644;
     }
 
     .locationSelector {
@@ -763,9 +770,6 @@
         height: 14%;
         transition: .1s ease-out;
         overflow: hidden;
-        border-left: solid;
-        border-left-color: #7a2f2f;
-        border-left-width: 0;
     }
 
     .locationSelector button {
@@ -784,6 +788,15 @@
         padding-bottom: .7%;
         color: black;
         cursor: pointer;
+        border-left: solid;
+        border-left-color: #7a2f2f;
+        border-left-width: 0;
+    }
+
+    .locationSelector button:hover {
+        cursor: pointer;
+        border-left-width: .1em;
+        color: #B84644;
     }
 
     .categorySelector {
@@ -794,9 +807,6 @@
         height: 25%;
         transition: .1s ease-out;
         overflow: hidden;
-        border-left: solid;
-        border-left-color: #7a2f2f;
-        border-left-width: 0;
     }
 
     .categorySelector button {
@@ -815,6 +825,15 @@
         padding-bottom: .7%;
         color: black;
         cursor: pointer;
+        border-left: solid;
+        border-left-color: #7a2f2f;
+        border-left-width: 0;
+    }
+
+    .categorySelector button:hover {
+        cursor: pointer;
+        border-left-width: .1em;
+        color: #B84644;
     }
 
     .filterReset {
