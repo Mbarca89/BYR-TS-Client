@@ -388,7 +388,7 @@ const Uploader = () => {
                 <div className={style.images}>
                     <h3>Imágenes</h3>
                     <div className={style.imageUploader}>
-                        <input type="file" key={inputKey} name="uploader" accept="image/png, image/jpeg" multiple onChange={fileHandler} />
+                        <input type="file" key={inputKey} name="uploader" accept="image/png, image/jpeg, image/png" multiple onChange={fileHandler} />
                     </div>
                     <h3>Imágenes elegidas</h3>
                     <div className={style.preview}>
