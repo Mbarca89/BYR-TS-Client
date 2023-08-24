@@ -269,6 +269,28 @@ const Editor = ({ id }: any) => {
         }
     }
 
+    const moveLeftDb = async (index:number) =>{
+        if(index !== 0) {
+            try {
+                const {data} = await axios.put(`${SERVER_URL}/properties/move/image?id=${id}&index=${index}&direction=left`)
+                setPropertyImages(data)
+            } catch (error: any) {
+                notifyError(error.response.data)
+            }
+        }
+    }
+
+    const moveRightDb = async (index:number) =>{
+        if(index !== propertyImages.length -1) {
+            try {
+                const {data} = await axios.put(`${SERVER_URL}/properties/move/image?id=${id}&index=${index}&direction=right`)
+                setPropertyImages(data)
+            } catch (error: any) {
+                notifyError(error.response.data)
+            }
+        }
+    }
+
     return (
         isLoaded ? <div className={style.uploader}>
             <header>
@@ -417,7 +439,9 @@ const Editor = ({ id }: any) => {
                         {selectedImages.map((image: any, index) => (
                             <div key={index}>
                                 <img src={image.preview} alt="Preview" />
+                                <button onClick={() => moveLeft(index)}>{'<'}</button>
                                 <button className={style.deleteImage} onClick={() => deleteImage(index)}>X</button>
+                                <button onClick={() => moveRight(index)}>{'>'}</button>
                             </div>
                         ))}
                     </div>
@@ -425,10 +449,10 @@ const Editor = ({ id }: any) => {
                     <div className={style.preview}>
                         {propertyImages.map((image: any, index) => (
                             <div key={index}>
-                                <img src={image.url} alt="Preview" />
-                                <button onClick={() => moveLeft(index)}>{'<'}</button>
-                                <button className={style.deleteImage} onClick={() => deleteImageFromDb(index, image.id)}>X</button>
-                                <button onClick={() => moveRight(index)}>{'>'}</button>
+                                <img src={image.url} alt="Preview" />   
+                                                           
+                                <button className={style.deleteImage} onClick={() => deleteImageFromDb(index, image.id)}>X</button>  
+                                                           
                             </div>
                         ))}
                     </div>
