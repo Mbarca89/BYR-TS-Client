@@ -8,6 +8,8 @@ import venta from '../../img/Venta.webp'
 import alquiler from '../../img/Alquiler.webp'
 import { useNavigate } from 'react-router-dom'
 import noImage from '../../img/noImage.webp'
+import { useState } from 'react'
+import ReactLoading from 'react-loading'
 
 interface Props {
     id: string,
@@ -25,6 +27,8 @@ interface Props {
 
 const Property = ({id, price, currency, bedrooms, bathrooms, name, location, images, type, size, category }:Props) => {
 
+    const [imageLoading, setImageLoading] = useState<boolean>(true)
+
     let type1 = false
     let type2 = false
     let type3 = false
@@ -39,11 +43,16 @@ const Property = ({id, price, currency, bedrooms, bathrooms, name, location, ima
         navigate(`/detail/${id}`)
     }
 
+    const handleImageLoading = () => {
+        setImageLoading(false)
+    }
+
     return (
         <div className={style.property}>
       
             <div className={style.container} onClick={goToDetail}>
-                {images.length > 0 ? <img className={style.photo} src={images[0].url} alt="" />:<img className={style.photo} src={noImage} alt="" />}
+                {images.length > 0 ? <img className={style.photo} onLoad={handleImageLoading} src={images[0].url} alt="" />:<img className={style.photo} src={noImage} alt="" />}
+                {imageLoading && <div className={style.photoOverlay}><ReactLoading type='spinningBubbles' color='#ffffff' height={'5%'} width={'5%'} /></div>}
                 {category === 'Venta' && <img className={style.categoryImg} src={venta} alt="" />}
                 {category === 'Alquiler' && <img className={style.categoryImg} src={alquiler} alt="" />}
                 <div className={style.infoContainer}>
@@ -53,7 +62,7 @@ const Property = ({id, price, currency, bedrooms, bathrooms, name, location, ima
                         <div>
                             {currency === '$' && <img src={pesos} alt="" />}
                             {currency === 'US$' && <img src={dolares} alt="" />}
-                            <p>{price}</p>
+                            <h5>{price}</h5>
                         </div>
                         {type1 && <div>
                             <img src={bedroomsIcon} alt="" />

@@ -32,6 +32,16 @@
 
 }
 
+.photoOverlay{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .categoryImg {
     position: absolute;
     top: 0;
@@ -48,7 +58,7 @@
     padding: 2%;
     bottom: 2%;
     justify-content: flex-end;
-    background-color: rgb(0, 0, 0, .2);
+    background-color: rgb(0, 0, 0, .3);
     border-radius: 10px;
 }
 
@@ -91,6 +101,13 @@ h4 {
 
 .info p {
     font-size: 100%;
+    color: white;
+    margin: 5%;
+}
+
+.info h5 {
+    font-size: 115%;
+    font-weight: 1500;
     color: white;
     margin: 5%;
 }
