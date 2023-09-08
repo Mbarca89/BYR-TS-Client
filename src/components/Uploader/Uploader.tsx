@@ -321,6 +321,7 @@ const Uploader = () => {
                                 <option value="Estancia Grande">Estancia Grande</option>
                                 <option value="El Trapiche">El Trapiche</option>
                                 <option value="La Florida">La Florida</option>
+                                <option value="La Punta">La Florida</option>
                             </select>
                         </div>
                         <div className={style.basicInfoDiv}>

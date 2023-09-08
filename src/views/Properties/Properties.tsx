@@ -298,6 +298,9 @@ const Properties = () => {
                         <div className={style.locationSelector}>
                             <button onClick={showLocationHandler} name='La Florida'>La Florida</button>
                         </div>
+                        <div className={style.locationSelector}>
+                            <button onClick={showLocationHandler} name='La Punta'>La Punta</button>
+                        </div>
                     </div>
                 </div>
             </div>
