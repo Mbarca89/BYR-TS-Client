@@ -4,6 +4,7 @@ import Uploader from '../../components/Uploader/Uploader'
 import List from '../../components/List/List'
 import { ChangeEvent, MouseEvent } from 'react'
 import { notifyError, notifySuccess } from '../../components/Toaster/Toaster'
+import { log } from 'console'
 const logo = require('../../img/logo.webp')
 const ADMIN_USER = process.env.REACT_APP_ADMIN_USER
 const ADMIN_PASSWORD = process.env.REACT_APP_ADMIN_PASSWORD

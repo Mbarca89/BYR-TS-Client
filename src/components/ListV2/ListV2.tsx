@@ -1,0 +1,86 @@
+import axios from 'axios'
+import { MouseEventHandler, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import Editor from '../Editor/Editor'
+import { ChangeEvent, MouseEvent } from 'react'
+import { PropertyType } from '../../types'
+import { notifyError, notifySuccess } from '../Toaster/Toaster'
+const SERVER_URL = process.env.REACT_APP_SERVER_URL
+
+const ListV2 = () => {
+
+    const navigate = useNavigate()
+
+    const [properties, setProperties] = useState([])
+    const [filterData, setFilterData] = useState('')
+    const [filteredProperties, setFilteredProperties] = useState([])
+    const [confirmDelete, setConfirmDelete] = useState(false)
+    const [deleteId, setDeleteId] = useState('')
+    const [showEditor, setShowEditor] = useState(false)
+    const [editId, setEditId] = useState('')
+
+    useEffect(() => {
+        const getProperty = async () => {
+            const { data } = await axios(`${SERVER_URL}/properties/list`)
+            await setProperties(data)
+            if (!filterData.length) setFilteredProperties(data)
+        }
+        getProperty()
+        return () => {
+            setProperties([])
+            setFilteredProperties([])
+            setShowEditor(false)
+        }
+    }, [])
+
+    const filterChangeHandler = (event:ChangeEvent<HTMLInputElement>) => {
+        setFilterData(event.target.value)
+    }
+
+    useEffect(() => {
+        if (!filterData) setFilteredProperties(properties)
+        setFilteredProperties(properties.filter((property:PropertyType) => property.name.toLowerCase().includes(filterData)))
+    }, [filterData])
+
+    const editHandler = (id:string) => {
+        setEditId(id)
+        setShowEditor(true)
+        // navigate(`/editor/${id}`)
+    }
+
+    const cancelHandler = () => {
+        setShowEditor(false)
+    }
+
+    const deleteHandler = (id:string) => {
+        setConfirmDelete(true)
+        setDeleteId(id)
+    }
+
+    const confirmDeleteHandler = async (event:MouseEvent<HTMLButtonElement>) => {
+        const target = event.target as HTMLButtonElement
+        if (target.name === 'si') {
+            setConfirmDelete(false)
+            try {
+                await axios.delete(`${SERVER_URL}/properties/delete/${deleteId}`)
+                setDeleteId('')
+                notifySuccess('Propiedad eliminada correctamente.')
+                const { data } = await axios(`${SERVER_URL}/properties/list`)
+                await setProperties(data)
+                if (!filterData.length) setFilteredProperties(data)
+            } catch (error:any) {
+                notifyError(error.response.data)
+            }
+        } else {
+            setConfirmDelete(false)
+        }
+    }
+
+    return (
+        <div className='container flex-grow-1 p-lg-3 p-sm-0 rounded m-2 overflow-auto'>
+           
+        </div>
+    )
+}
+
+export default ListV2

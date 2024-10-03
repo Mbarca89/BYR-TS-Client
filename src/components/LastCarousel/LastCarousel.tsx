@@ -6,6 +6,7 @@ import { PropertyDetailType } from '../../types'
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { notifyError } from "../Toaster/Toaster";
+import handleError from '../../utils/HandleErrors';
 const SERVER_URL = process.env.REACT_APP_SERVER_URL
 
 const LastCarousel = () => {
@@ -55,10 +56,11 @@ const LastCarousel = () => {
     useEffect(() => {
         const getLastProperties = async () => {
             try {
-                const { data } = await axios(`${SERVER_URL}/properties/last`)
-                setLastProperties(data)
+                const res = await axios(`${SERVER_URL}/properties/last`)
+                if(res.data)
+                setLastProperties(res.data)
             } catch (error: any) {
-                notifyError(error.response.data)
+                handleError(error)
             }
         }
         getLastProperties()

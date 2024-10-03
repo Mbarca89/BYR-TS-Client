@@ -1,10 +1,12 @@
 import React from 'react';
+import "./Global.css"
 import { Route, Routes, Outlet } from 'react-router-dom';
 import Home from './views/Home/Home'
 import Nav from './components/Nav/Nav'
 import Footer from './components/Footer/Footer';
 import Detail from './views/Detail/Detail';
 import Admin from './views/Admin/Admin';
+import AdminV2 from './views/AdminV2/AdminV2';
 import Properties from './views/Properties/Properties';
 import Rates from './views/Rates/Rates';
 import About from './views/About/About';
@@ -34,7 +36,7 @@ function App() {
           <Route path='/tasaciones' element={<Rates />} />
           <Route path='/empresa' element={<About />} />
         </Route>
-        <Route path='/admin' element={<Admin />} />
+        <Route path='/admin' element={<AdminV2 />} />
       </Routes>
     </div>
   )

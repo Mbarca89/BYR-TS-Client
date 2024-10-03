@@ -70,7 +70,6 @@ const Home = () => {
     }
 
     const closeLocation = () => {
-        console.log('anda')
         setShowLocation(false);
     }
 

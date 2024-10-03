@@ -1,3 +1,5 @@
+import { Tracing } from "trace_events"
+
 export interface PropertyDetailType {
     id:string,
     featured: boolean,
@@ -17,7 +19,12 @@ export interface PropertyDetailType {
     others: Array<string>,
     services: Array<string>,
     amenities: Array<string>,
-    images: Array<{id:string,url:string}>
+    images: Images[]
+}
+
+export interface Images {
+    id: string
+    url: string
 }
 
 export interface PropertyType {
@@ -27,16 +34,23 @@ export interface PropertyType {
     description: string,
     type: string,
     category: string,
-    price: number,
+    price: number | undefined,
     currency: string,
     location: string,
-    size: number,
-    constructed: number,
-    bedrooms: number,
-    bathrooms: number,
-    kitchen: number,
-    garage: number,
+    size: number | undefined,
+    constructed: number | undefined,
+    bedrooms: number | undefined,
+    bathrooms: number | undefined,
+    kitchen: number | undefined,
+    garage: number | undefined,
     others: Array<string>,
     services: Array<string>,
     amenities: Array<string>,
+}
+
+export interface CarouselItemType {
+    id: string,
+    image: string, 
+    name: string,
+    location: string
 }
