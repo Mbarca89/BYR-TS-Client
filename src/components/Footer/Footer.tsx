@@ -1,7 +1,5 @@
 import style from './Footer.module.css'
-import logo from '../../img/logo.webp'
 import { CiLocationOn } from 'react-icons/ci'
-import cmcp from '../../img/cmcpsl.webp'
 
 const Footer = () => {
 
@@ -9,7 +7,7 @@ const Footer = () => {
         <div className={style.footer}>
             <div className={style.disclaimer}>
                 <div className={style.logo}>
-                    <img src={logo} alt="B&R" />
+                    <img src='/images/logo.webp' alt="B&R" />
                 </div>
                 <div className={style.text}>
                     <p>© B&R Desarrollos Inmobiliarios. Todos los derechos reservados.</p>
@@ -18,7 +16,7 @@ const Footer = () => {
                 </div>
             </div>
             <div className={style.cmcpsl}>
-                <img src={cmcp} alt="" />
+                <img src="/images/cmcpsl.webp" alt="" />
                 <p>Bruno Proto - Matricula Nº: 808</p>
             </div>
         </div>

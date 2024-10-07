@@ -1,13 +1,5 @@
 import style from './Property.module.css'
-import pesos from '../../img/pesos.webp'
-import dolares from '../../img/dolares.webp'
-import bedroomsIcon from '../../img/bedroom.webp'
-import bathroomsIcon from '../../img/bathroom.webp'
-import sizeIcon from '../../img/size.webp'
-import venta from '../../img/Venta.webp'
-import alquiler from '../../img/Alquiler.webp'
 import { useNavigate } from 'react-router-dom'
-import noImage from '../../img/noImage.webp'
 import { useState } from 'react'
 import ReactLoading from 'react-loading'
 
@@ -51,34 +43,34 @@ const Property = ({id, price, currency, bedrooms, bathrooms, name, location, ima
         <div className={style.property}>
       
             <div className={style.container} onClick={goToDetail}>
-                {images.length > 0 ? <img className={style.photo} onLoad={handleImageLoading} src={images[0].url} alt="" />:<img className={style.photo} src={noImage} alt="" />}
+                {images.length > 0 ? <img className={style.photo} onLoad={handleImageLoading} src={images[0].thumbnailUrl} alt="" />:<img className={style.photo} src='/images/noImage.webp' alt="" />}
                 {imageLoading && <div className={style.photoOverlay}><ReactLoading type='spinningBubbles' color='#ffffff' height={'5%'} width={'5%'} /></div>}
-                {category === 'Venta' && <img className={style.categoryImg} src={venta} alt="" />}
-                {category === 'Alquiler' && <img className={style.categoryImg} src={alquiler} alt="" />}
+                {category === 'Venta' && <img className={style.categoryImg} src='/images/Venta.webp' alt="" />}
+                {category === 'Alquiler' && <img className={style.categoryImg} src='/images/Alquiler.webp' alt="" />}
                 <div className={style.infoContainer}>
                     <h3>{name}</h3>
                     <h4>{location}</h4>
                     <div className={style.info}>
                         <div>
-                            {currency === '$' && <img src={pesos} alt="" />}
-                            {currency === 'US$' && <img src={dolares} alt="" />}
+                            {currency === '$' && <img src='/images/pesos.webp' alt="" />}
+                            {currency === 'US$' && <img src='/images/dolares.webp' alt="" />}
                             <h5>{price}</h5>
                         </div>
                         {type1 && <div>
-                            <img src={bedroomsIcon} alt="" />
+                            <img src='/images/bedroom.webp' alt="" />
                             <p>{`${bedrooms} Hab.`}</p>
                         </div>}
                         {type1 && <div>
-                            <img src={bathroomsIcon} alt="" />
+                            <img src='/images/bathroom.webp' alt="" />
                             <p>{`${bathrooms} Bñ.`}</p>
                         </div>}
                         {type2 && <div>
-                            <img src={sizeIcon} alt="" />
+                            <img src='/images/size.webp' alt="" />
                             <p>{`${size} Mts`}</p>
                         </div>}
                         
                         {type3 && <div>
-                            <img src={sizeIcon} alt="" />
+                            <img src='/images/size.webp' alt="" />
                             <p>{`${size} Mts`}</p>
                         </div>}
                     </div>

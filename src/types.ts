@@ -1,7 +1,7 @@
 import { Tracing } from "trace_events"
 
 export interface PropertyDetailType {
-    id:string,
+    id: string,
     featured: boolean,
     name: string,
     description: string,
@@ -25,10 +25,11 @@ export interface PropertyDetailType {
 export interface Images {
     id: string
     url: string
+    thumbnailUrl: string
 }
 
 export interface PropertyType {
-    id:string,
+    id: string,
     featured: boolean,
     name: string,
     description: string,
@@ -50,7 +51,16 @@ export interface PropertyType {
 
 export interface CarouselItemType {
     id: string,
-    image: string, 
+    image: string,
     name: string,
     location: string
+}
+
+export interface PropertyListType {
+    category:string
+    featured:boolean
+    id:string
+    location:string
+    name:string
+    type:string
 }

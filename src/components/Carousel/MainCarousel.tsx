@@ -23,7 +23,8 @@ const MainCarousel = () => {
     useEffect(() => {
         const getFeatured = async () => {
             try {
-                const res = await axios(`${SERVER_URL}/properties/featured`)
+                const res = await axios(`${SERVER_URL}/api/properties/featured`)
+                console.log(res.data)
                 if (res.data)
                     await setSlides(res.data.map((item: any) => {
                         return { image: item.images[0].url, id: item.id, name: item.name, location: item.location }

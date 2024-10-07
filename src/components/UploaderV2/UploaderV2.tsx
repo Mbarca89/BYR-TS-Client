@@ -11,9 +11,10 @@ import 'react-quill/dist/quill.snow.css'
 import * as DOMPurify from 'dompurify'
 import ReactLoading from 'react-loading'
 import { propertyTypes } from '../../utils/propertyTypes'
-import { Form, Row } from 'react-bootstrap'
+import { Button, Col, Container, Form, Row, Spinner } from 'react-bootstrap'
 import { useFormik } from 'formik'
 import handleError from '../../utils/HandleErrors'
+import { log } from 'console'
 const SERVER_URL = process.env.REACT_APP_SERVER_URL
 
 interface ImagePreview {
@@ -26,7 +27,7 @@ interface UploaderV2Props {
 }
 
 const UploaderV2: React.FC<UploaderV2Props> = ({ updateList }) => {
-    const [uploaded, setUploaded] = useState(true)
+    const [uploading, setUploading] = useState(false)
     const [data, setData] = useState<PropertyType>({
         id: '',
         featured: false,
@@ -126,28 +127,6 @@ const UploaderV2: React.FC<UploaderV2Props> = ({ updateList }) => {
         })
     }
 
-    const submitHandler = async () => {
-        setUploaded(false)
-        const formData = new FormData()
-        formData.append('data', JSON.stringify(data))
-        for (let i = 0; i < images.length; i++) {
-            formData.append('images', images[i])
-        }
-        setData({
-            ...data,
-            description: DOMPurify.sanitize(data.description)
-        })
-        try {
-            await axios.post(`${SERVER_URL}/properties/upload`, formData)
-            notifySuccess('Propiedad publicada correctamente!')
-            resetHandler()
-            setUploaded(true)
-        } catch (error: any) {
-            notifyError(error.response.data)
-            setUploaded(true)
-        }
-    }
-
     const fileHandler = (event: ChangeEvent<HTMLInputElement>) => {
         const imagesUpload = event.target.files
         if (imagesUpload) {
@@ -199,7 +178,7 @@ const UploaderV2: React.FC<UploaderV2Props> = ({ updateList }) => {
                 const files = Array.from(aux);
                 const imagesPreview = files.map((file) => ({
                     file,
-                    preview: URL.createObjectURL(file), // Generar una URL para la vista previa
+                    preview: URL.createObjectURL(file),
                 }));
                 setSelectedImages(imagesPreview);
             }
@@ -217,7 +196,7 @@ const UploaderV2: React.FC<UploaderV2Props> = ({ updateList }) => {
                 const files = Array.from(aux);
                 const imagesPreview = files.map((file) => ({
                     file,
-                    preview: URL.createObjectURL(file), // Generar una URL para la vista previa
+                    preview: URL.createObjectURL(file),
                 }));
                 setSelectedImages(imagesPreview);
             }
@@ -251,6 +230,7 @@ const UploaderV2: React.FC<UploaderV2Props> = ({ updateList }) => {
         setImages([])
         setSelectedImages([])
         setInputKey('123')
+        formik.resetForm();
     }
 
     const validate = (values: PropertyType): PropertyType => {
@@ -264,221 +244,347 @@ const UploaderV2: React.FC<UploaderV2Props> = ({ updateList }) => {
             featured: false,
             name: "",
             description: "",
-            type: "",
-            category: "",
+            type: "Cabaña",
+            category: "Alquiler",
             price: undefined,
-            currency: "",
-            location: "",
+            currency: "$",
+            location: "San Luis",
             size: undefined,
             constructed: undefined,
             bedrooms: undefined,
             bathrooms: undefined,
             kitchen: undefined,
             garage: undefined,
-            others: [],
-            services: [],
-            amenities: [],
+            others: othersCheck,
+            services: servicesCheck,
+            amenities: amenitiesCheck,
         },
         validate,
         enableReinitialize: true,
         onSubmit: async values => {
-            setUploaded(false)
+            setUploading(true)
+            values.others=data.others
+            values.services=data.services
+            values.amenities=data.amenities
             const formData = new FormData()
-            formData.append('data', JSON.stringify(data))
-            for (let i = 0; i < images.length; i++) {
-                formData.append('images', images[i])
+            formData.append('propertyData', JSON.stringify(values))
+            if (images) {
+                for (let i = 0; i < images.length; i++) {
+                    formData.append('images', images[i])
+                }
             }
             setData({
                 ...data,
                 description: DOMPurify.sanitize(data.description)
             })
             try {
-                await axios.post(`${SERVER_URL}/properties/upload`, formData)
-                notifySuccess('Propiedad publicada correctamente!')
+                console.log(values)
+                const res = await axios.post(`${SERVER_URL}/api/properties/publish`, formData)
+                if(res.data) {
+                    notifySuccess(res.data)
+                }
                 resetHandler()
-                setUploaded(true)
+                setUploading(false)
+                updateList()
             } catch (error: any) {
                 handleError(error)
-                setUploaded(true)
+                setUploading(false)
             }
         },
     });
 
-    const resetForm = () => {
-        formik.resetForm();
-    }
-
     return (
+        <div className="d-flex flex-column justify-content-center align-items-center px-3">
+            <header>
+                <h2>Publicar propiedad</h2>
+            </header>
+            <Form noValidate onSubmit={formik.handleSubmit} className='w-100'>
+                <h3>Información Básica</h3>
+                <Col lg={6}>
+                    <Row className='mb-3'>
+                        <Form.Label>Propiedad destacada</Form.Label>
+                        <Form.Group>
 
-        uploaded ?
-            <div className="d-flex flex-column justify-content-center align-items-center">
-                <header>
-                    <h2>Publicar propiedad</h2>
-                </header>
-                <Form noValidate onSubmit={formik.handleSubmit}>
-                    <Row>
-                    <Form.Group>
-                                <Form.Label className='text-light'>Nombre *</Form.Label>
-                                <Form.Control type="text" placeholder="Nombre"
-                                    id="name"
-                                    name="name"
-                                    value={formik.values.name}
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                />
-                            </Form.Group>
+                            <Form.Check
+                                type="switch"
+                                id="featured"
+                                value={formik.values.featured ? "true" : "false"}
+                                onChange={e => {
+                                    formik.setFieldValue("featured", e.target.checked === true)
+                                }}
+                                onBlur={formik.handleBlur}
+                            />
+                        </Form.Group>
                     </Row>
-                </Form>
-                <div className="">
-                    <div className="">
+                    <Row className='mb-3'>
+                        <Form.Group>
+                            <Form.Label>Nombre</Form.Label>
+                            <Form.Control type="text" placeholder="Nombre"
+                                id="name"
+                                name="name"
+                                value={formik.values.name}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                            />
+                        </Form.Group>
+                    </Row>
+                    <Row className='mb-5'>
+                        <Form.Label>Descripción</Form.Label>
                         <div className="">
-                            <h3>Información Básica</h3>
-                            <div className="">
-                                <label htmlFor="featured">Propiedad destacada</label>
-                                <input type="checkbox" name="featured" onChange={isFeatured} checked={data.featured} />
-                            </div>
-                            <div className="">
-                                <label htmlFor="name">Nombre</label>
-                                <input name='name' type="text" value={data.name} onChange={changeHandler} />
-                            </div>
-                            <div className="">
-                                <label htmlFor="description">Descripción adicional</label>
-                                <div className="">
-                                    <ReactQuill theme='snow' className="" />
-                                </div>
-                            </div>
-                            <div className="">
-                                <label htmlFor="tipo">Tipo</label>
-                                <select name="type" id="" value={data.type} onChange={selectHandler}>
-                                    {propertyTypes.map(type => (
-                                        <option value={type}>{type}</option>
-                                    ))}
-                                </select>
-                            </div>
-                            <div className="">
-                                <label htmlFor="category">Categoría</label>
-                                <select name="category" id="" value={data.category} onChange={selectHandler}>
-                                    <option value="Alquiler">Alquiler</option>
-                                    <option value="Alquiler temporario">Alquiler temporario</option>
-                                    <option value="Permuta">Permuta</option>
-                                    <option value="Venta">Venta</option>
-                                </select>
-                            </div>
-                            <div className="">
-                                <label htmlFor="price">Precio</label>
-                                <input name='price' type="number" value={data.price} onChange={changeHandler} />
-                            </div>
-                            <div className="">
-                                <label htmlFor="currency">Moneda</label>
-                                <select name="currency" id="" value={data.currency} onChange={selectHandler}>
-                                    <option value="$">Pesos</option>
-                                    <option value="US$">Dolares</option>
-                                </select>
-                            </div>
-                            <div className="">
-                                <label htmlFor="location">Ubicación</label>
-                                <select name="location" id="" value={data.location} onChange={selectHandler}>
-                                    <option value="San Luis">San Luis</option>
-                                    <option value="Juana Koslay">Juana Koslay</option>
-                                    <option value="Potrero De Los Funes">Potrero</option>
-                                    <option value="El Volcan">El Volcan</option>
-                                    <option value="Estancia Grande">Estancia Grande</option>
-                                    <option value="El Trapiche">El Trapiche</option>
-                                    <option value="La Florida">La Florida</option>
-                                    <option value="La Punta">La Punta</option>
-                                </select>
-                            </div>
-                            <div className="">
-                                <label htmlFor="size">Superficie</label>
-                                <input name='size' type="number" value={data.size} onChange={changeHandler} />
-                            </div>
-                            <div className="">
-                                <label htmlFor="constructed">Superficie cubierta</label>
-                                <input name='constructed' type="number" value={data.constructed} onChange={changeHandler} />
-                            </div>
-                            <div className="">
-                                <label htmlFor="bedrooms">Habitaciones</label>
-                                <input name='bedrooms' type="number" value={data.bedrooms} onChange={changeHandler} />
-                            </div>
-                            <div className="">
-                                <label htmlFor="bathrooms">Baños</label>
-                                <input name='bathrooms' type="number" value={data.bathrooms} onChange={changeHandler} />
-                            </div>
-                            <div className="">
-                                <label htmlFor="kitchen">Cocina</label>
-                                <input name='kitchen' type="number" value={data.kitchen} onChange={changeHandler} />
-                            </div>
-                            <div className="">
-                                <label htmlFor="garage">Garaje</label>
-                                <input name='garage' type="number" value={data.garage} onChange={changeHandler} />
-                            </div>
+                            <ReactQuill style={{ height: '300px' }}
+                                theme='snow'
+                                className=""
+                                id='description'
+                                onChange={value => formik.setFieldValue('description', value)}
+                            />
                         </div>
+                    </Row>
+                    <Row>
+                        <h3 className='mt-3'>Información adicional</h3>
+                    </Row>
+                    <Row className='mb-3'>
+                        <Form.Group>
+                            <Form.Label className="">Tipo</Form.Label>
+                            <Form.Select
+                                id="type"
+                                name="type"
+                                value={formik.values.type}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                            >
+                                {propertyTypes.map(type => (
+                                    <option value={type}>{type}</option>
+                                ))}
+                            </Form.Select>
+                        </Form.Group>
+                    </Row>
+                    <Row className='mb-3'>
+                        <Form.Group>
+                            <Form.Label className="">Categoría</Form.Label>
+                            <Form.Select
+                                id="category"
+                                name="category"
+                                value={formik.values.category}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                            >
+                                <option value="Alquiler">Alquiler</option>
+                                <option value="Alquiler temporario">Alquiler temporario</option>
+                                <option value="Permuta">Permuta</option>
+                                <option value="Venta">Venta</option>
+                            </Form.Select>
+                        </Form.Group>
+                    </Row>
+                    <Row className='mb-3'>
+                        <Form.Group>
+                            <Form.Label>Precio</Form.Label>
+                            <Form.Control type="number"
+                                id="price"
+                                name="price"
+                                value={formik.values.price}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                            />
+                        </Form.Group>
+                    </Row>
+                    <Row className='mb-3'>
+                        <Form.Group>
+                            <Form.Label className="">Moneda</Form.Label>
+                            <Form.Select
+                                id="currency"
+                                name="currency"
+                                value={formik.values.currency}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                            >
+                                <option value="$">Pesos</option>
+                                <option value="US$">Dolares</option>
+                            </Form.Select>
+                        </Form.Group>
+                    </Row>
+                    <Row className='mb-3'>
+                        <Form.Group>
+                            <Form.Label className="">Ubicación</Form.Label>
+                            <Form.Select
+                                id="location"
+                                name="location"
+                                value={formik.values.location}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                            >
+                                <option value="San Luis">San Luis</option>
+                                <option value="Juana Koslay">Juana Koslay</option>
+                                <option value="Potrero De Los Funes">Potrero</option>
+                                <option value="El Volcan">El Volcan</option>
+                                <option value="Estancia Grande">Estancia Grande</option>
+                                <option value="El Trapiche">El Trapiche</option>
+                                <option value="La Florida">La Florida</option>
+                                <option value="La Punta">La Punta</option>
+                            </Form.Select>
+                        </Form.Group>
+                    </Row>
+                    <Row className='mb-3'>
+                        <Form.Group>
+                            <Form.Label>Superficie</Form.Label>
+                            <Form.Control type="number"
+                                id="size"
+                                name="size"
+                                value={formik.values.size}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                            />
+                        </Form.Group>
+                    </Row>
+                    <Row className='mb-3'>
+                        <Form.Group>
+                            <Form.Label>Superficie cubierta</Form.Label>
+                            <Form.Control type="number"
+                                id="constructed"
+                                name="constructed"
+                                value={formik.values.constructed}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                            />
+                        </Form.Group>
+                    </Row>
+                    <Row className='mb-3'>
+                        <Form.Group>
+                            <Form.Label>Habitaciones</Form.Label>
+                            <Form.Control type="number"
+                                id="bedrooms"
+                                name="bedrooms"
+                                value={formik.values.bedrooms}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                            />
+                        </Form.Group>
+                    </Row>
+                    <Row className='mb-3'>
+                        <Form.Group>
+                            <Form.Label>Baños</Form.Label>
+                            <Form.Control type="number"
+                                id="bathrooms"
+                                name="bathrooms"
+                                value={formik.values.bathrooms}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                            />
+                        </Form.Group>
+                    </Row>
+                    <Row className='mb-3'>
+                        <Form.Group>
+                            <Form.Label>Cocina</Form.Label>
+                            <Form.Control type="number"
+                                id="kitchen"
+                                name="kitchen"
+                                value={formik.values.kitchen}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                            />
+                        </Form.Group>
+                    </Row>
+                    <Row className='mb-3'>
+                        <Form.Group>
+                            <Form.Label>Garaje</Form.Label>
+                            <Form.Control type="number"
+                                id="garage"
+                                name="garage"
+                                value={formik.values.garage}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                            />
+                        </Form.Group>
+                    </Row>
+                    <h3>Otros Ambientes</h3>
+                    <hr />
+                    <Row className='mb-3'>
+                        {others.map((item, index) => (
+                            <Col key={index} md={4} className="mb-3">
+                                <input
+                                    type="checkbox"
+                                    name={item.name}
+                                    value={item.name}
+                                    onChange={(event) => othersHandler(event, index)}
+                                    checked={othersCheck[index]}
+                                />
+                                <label className='ms-1' htmlFor={item.name}>{item.name}</label>
+                            </Col>
+                        ))}
+                    </Row>
+                    <h3>Servicios</h3>
+                    <hr />
+                    <Row className='mb-3'>
+                        {services.map((item, index) => (
+                            <Col key={index} md={4} className="mb-3">
+                                <input
+                                    type="checkbox"
+                                    name={item.name}
+                                    value={item.name}
+                                    onChange={(event) => servicesHandler(event, index)}
+                                    checked={servicesCheck[index]}
+                                />
+                                <label className='ms-1' htmlFor={item.name}>{item.name}</label>
+                            </Col>
+                        ))}
+                    </Row>
+                    <h3>Comodidades</h3>
+                    <hr />
+                    <Row className='mb-3'>
+                        {amenities.map((item, index) => (
+                            <Col key={index} md={4} className="mb-3">
+                                <input
+                                    type="checkbox"
+                                    name={item.name}
+                                    value={item.name}
+                                    onChange={(event) => amenitiesHandler(event, index)}
+                                    checked={amenitiesCheck[index]}
+                                />
+                                <label className='ms-1' htmlFor={item.name}>{item.name}</label>
+                            </Col>
+                        ))}
+                    </Row>
+                    <Row>
+                        <h3>Cargar imágenes</h3>
                         <hr />
-                        <h3>Otros Ambientes</h3>
-                        <div className="">
-                            {others.map((item, index) => {
-                                return (
-                                    <div key={index}>
-                                        <input type="checkbox" name={item.name} value={item.name} onChange={(event) => othersHandler(event, index)} checked={othersCheck[index]} />
-                                        <label htmlFor={item.name}>{item.name}</label>
-                                    </div>
-                                )
-                            })}
-                        </div>
-                        <hr />
-                        <h3>Servicios</h3>
-                        <div className="">
-                            {services.map((item, index) => {
-                                return (
-                                    <div key={index}>
-                                        <input type="checkbox" name={item.name} value={item.name} onChange={(event) => servicesHandler(event, index)} checked={servicesCheck[index]} />
-                                        <label htmlFor={item.name}>{item.name}</label>
-                                    </div>
-                                )
-                            })}
-                        </div>
-                        <hr />
-                        <h3>Comodidades</h3>
-                        <div className="">
-                            {amenities.map((item, index) => {
-                                return (
-                                    <div key={index}>
-                                        <input type="checkbox" name={item.name} value={item.name} onChange={(event) => amenitiesHandler(event, index)} checked={amenitiesCheck[index]} />
-                                        <label htmlFor={item.name}>{item.name}</label>
-                                    </div>
-                                )
-                            })}
-                        </div>
-                    </div>
-                    <div className="">
-                        <h3>Imágenes</h3>
-                        <div className="">
-                            <input type="file" key={inputKey} name="uploader" accept="image/png, image/jpeg, image/png" multiple onChange={fileHandler} />
-                        </div>
+                        <Row className='mb-5'>
+                            <div className="">
+                                <input type="file" key={inputKey} name="uploader" accept="image/png, image/jpeg, image/png" multiple onChange={fileHandler} />
+                            </div>
+                        </Row>
                         <h3>Imágenes elegidas</h3>
-                        <div className="">
-                            {selectedImages && selectedImages.map((image, index) => (
-                                <div key={index}>
-                                    <img src={image.preview} alt="Preview" />
-                                    <div className="">
-                                        <button onClick={() => moveLeft(index)}>{'<'}</button>
-                                        <button className="" />
-                                        <button onClick={() => moveRight(index)}>{'>'}</button>
+                        <hr />
+                        <Row className="mb-5">
+                            {selectedImages ? selectedImages.map((image, index) => (
+                                <Col lg={2} key={index}>
+                                    <img className='w-100' src={image.preview} alt="Preview" />
+                                    <div className="d-flex flex-row justify-content-evenly">
+                                        <Button onClick={() => moveLeft(index)}>{'<'}</Button>
+                                        <Button className="" onClick={() => deleteImage(index)}>X</Button>
+                                        <Button onClick={() => moveRight(index)}>{'>'}</Button>
                                     </div>
+                                </Col>
+                            ))
+                                : <div className='d-flex flex-row justify-content-center'>
+                                    <h6>No se han cargado imágenes</h6>
                                 </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-                <footer>
-                    <button onClick={submitHandler}>Publicar</button>
-                    <button onClick={resetHandler}>Reiniciar</button>
-                </footer>
-            </div> : <div className="">
-                <div className="">
-                    <ReactLoading type='spinningBubbles' color='#000000' height={'50%'} width={'50%'} />
-                </div>
-            </div>
+                            }
+                        </Row>
+                    </Row>
+                    <Row>
+                        {uploading ?
+                            <div className='d-flex flex-row justify-content-around mt-5 mb-5'>
+                                <Spinner></Spinner>
+                            </div>
+                            :
+                            <div className='d-flex flex-row justify-content-around mt-5 mb-5'>
+                                <Button variant='danger'>Cancelar</Button>
+                                <Button variant="primary" type='submit'>Publicar</Button>
+                            </div>
+                        }
+                    </Row>
+                </Col>
+            </Form>
+        </div>
     )
 }
 

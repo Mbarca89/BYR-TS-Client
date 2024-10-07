@@ -1,14 +1,12 @@
 import style from './Properties.module.css'
 import Property from '../../components/Property/Property'
 import axios from 'axios'
-import banner from '../../img/background.webp'
-import { MouseEventHandler, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useFilter } from '../../hooks/useFilter'
 import Pagination from './Pagination';
 import { PropertyDetailType } from '../../types'
 import { MouseEvent, ChangeEvent } from 'react'
 import { notifyError } from '../../components/Toaster/Toaster'
-import loadingGif from '../../img/loading.gif'
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL
 
@@ -43,7 +41,7 @@ const Properties = () => {
         services: [],
         amenities: [],
         featured: true,
-        images: [{ id: '', url: '' }]
+        images: []
     }])
     const [currentPage, setCurrentPage] = useState(1)
     const cardsPerPage = 6
@@ -68,7 +66,7 @@ const Properties = () => {
         services: [],
         amenities: [],
         featured: true,
-        images: [{ id: '', url: '' }]
+        images: []
     }])
     const [showType, setShowType] = useState<boolean>(false)
     const [showCategory, setShowCategory] = useState<boolean>(false)
@@ -83,7 +81,7 @@ const Properties = () => {
     useEffect(() => {
         const getProperties = async () => {
             try {
-                const { data } = await axios(`${SERVER_URL}/properties`)
+                const { data } = await axios(`${SERVER_URL}/api/properties`)
                 setData(data)
                 setShowData(data)
             } catch (error: any) {
@@ -196,7 +194,7 @@ const Properties = () => {
     return (
         <div className={style.properties} style={loading ? { overflow: 'hidden' } : undefined}>
             {loading && <div className={style.loading}>
-                <img src={loadingGif} alt=''></img>
+                <img src='/images/loading.gif' alt=''></img>
             </div>}
             <div className={style.banner} />
             <div className={style.bar}>

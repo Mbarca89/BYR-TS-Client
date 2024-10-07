@@ -1,9 +1,4 @@
 import style from './Nav.module.css'
-import logo from '../../img/logo.webp'
-import instagram from '../../img/instagram.webp'
-import facebook from '../../img/facebook.webp'
-import whatsapp from '../../img/whatsapp.webp'
-import phone from '../../img/phone.webp'
 import { NavLink, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { GiHamburgerMenu } from 'react-icons/gi'
@@ -34,18 +29,18 @@ const Nav = () => {
             </div>
             <div className={style.logoContainer}>
                 <NavLink to='/'>
-                    <img className={style.logo} src={logo} alt='B&R Inmobiliaria' />
+                    <img className={style.logo} src='/images/logo.webp' alt='B&R Inmobiliaria' />
                 </NavLink>
             </div>
             <div className={style.socialContainer}>
                 <a className={style.social} href={`https://www.instagram.com/byrinmobiliaria/`} target="_blank" rel="noopener noreferrer">
-                    <img src={instagram} alt='B&R Inmobiliaria'></img>
+                    <img src='/images/instagram.webp' alt='B&R Inmobiliaria'></img>
                 </a>
                 <a className={style.social} href={`https://www.facebook.com/ByRdesarrollosinmobiliarios`} target="_blank" rel="noopener noreferrer">
-                    <img src={facebook} alt='B&R Inmobiliaria'></img>
+                    <img src='/images/facebook.webp' alt='B&R Inmobiliaria'></img>
                 </a>
                 <a className={style.social} href={`https://api.whatsapp.com/send?phone=5492664570187&text=Hola, Necesito asesoramiento sobre una propiedad`} target="_blank" rel="noopener noreferrer">
-                    <img src={whatsapp} alt='B&R Inmobiliaria'></img>
+                    <img src='/images/whatsapp.webp' alt='B&R Inmobiliaria'></img>
                 </a>
             </div>
             <div className={showNav ? style.nav : style.noNav}>
@@ -71,7 +66,7 @@ const Nav = () => {
             <div className={showNav ? style.nav : style.noNav}>
                 <div className={style.logoContainer}>
                     <NavLink to='/'>
-                        <img className={style.logo} src={logo} alt='B&R Inmobiliaria' />
+                        <img className={style.logo} src='/images/logo.webp' alt='B&R Inmobiliaria' />
                     </NavLink>
                 </div>
                 <div className={style.line}></div>
@@ -84,17 +79,17 @@ const Nav = () => {
                 <div className={style.line} />
                 <div className={style.socialContainer}>
                     <a className={style.social} href={`https://www.instagram.com/byrinmobiliaria/`} target="_blank" rel="noopener noreferrer">
-                        <img src={instagram} alt='B&R Inmobiliaria'></img>
+                        <img src='/images/instagram.webp' alt='B&R Inmobiliaria'></img>
                     </a>
                     <a className={style.social} href={`https://www.facebook.com/ByRdesarrollosinmobiliarios`} target="_blank" rel="noopener noreferrer">
-                        <img src={facebook} alt='B&R Inmobiliaria'></img>
+                        <img src='/images/facebook.webp' alt='B&R Inmobiliaria'></img>
                     </a>
                     <a className={style.social} href={`https://api.whatsapp.com/send?phone=5492664570187&text=Hola, Necesito asesoramiento sobre una propiedad`} target="_blank" rel="noopener noreferrer">
-                        <img src={whatsapp} alt='B&R Inmobiliaria'></img>
+                        <img src='/images/whatsapp.webp' alt='B&R Inmobiliaria'></img>
                     </a>
                 </div>
                 <div className={style.phone}>
-                    <img src={phone} alt="" />
+                    <img src='/images/phone.webp' alt="" />
                     <a href="tel:+549 266 570187">
                         <p>+549 266 570187</p>
                     </a>

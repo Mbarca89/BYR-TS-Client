@@ -1,85 +1,77 @@
 import axios from 'axios'
-import { MouseEventHandler, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Editor from '../Editor/Editor'
 import { ChangeEvent, MouseEvent } from 'react'
-import { PropertyType } from '../../types'
+import { PropertyListType, PropertyType } from '../../types'
 import { notifyError, notifySuccess } from '../Toaster/Toaster'
+import { Table } from 'react-bootstrap'
+import { useRecoilState } from 'recoil'
+import { modalState } from '../../app/store'
+import CustomModal from '../CustomModal/CustomModal'
+import DeleteProperty from '../DeleteProperty/DeteleProperty'
 const SERVER_URL = process.env.REACT_APP_SERVER_URL
 
 const ListV2 = () => {
 
     const navigate = useNavigate()
 
-    const [properties, setProperties] = useState([])
-    const [filterData, setFilterData] = useState('')
-    const [filteredProperties, setFilteredProperties] = useState([])
-    const [confirmDelete, setConfirmDelete] = useState(false)
-    const [deleteId, setDeleteId] = useState('')
-    const [showEditor, setShowEditor] = useState(false)
-    const [editId, setEditId] = useState('')
+    const [properties, setProperties] = useState<PropertyListType[]>([])
+    const [selectedId, setSelectedId] = useState('')
+    const [selectedProperty, setSelectecProperty] = useState<string>("")
+    const [show, setShow] = useRecoilState(modalState)
+
+    const getPropertyList = async () => {
+        const res = await axios(`${SERVER_URL}/api/properties/getPropertyList`)
+        if (res.data) {
+            console.log(res.data)
+            setProperties(res.data)
+        }
+    }
 
     useEffect(() => {
-        const getProperty = async () => {
-            const { data } = await axios(`${SERVER_URL}/properties/list`)
-            await setProperties(data)
-            if (!filterData.length) setFilteredProperties(data)
-        }
-        getProperty()
+        getPropertyList()
         return () => {
             setProperties([])
-            setFilteredProperties([])
-            setShowEditor(false)
         }
     }, [])
 
-    const filterChangeHandler = (event:ChangeEvent<HTMLInputElement>) => {
-        setFilterData(event.target.value)
-    }
-
-    useEffect(() => {
-        if (!filterData) setFilteredProperties(properties)
-        setFilteredProperties(properties.filter((property:PropertyType) => property.name.toLowerCase().includes(filterData)))
-    }, [filterData])
-
-    const editHandler = (id:string) => {
-        setEditId(id)
-        setShowEditor(true)
-        // navigate(`/editor/${id}`)
-    }
-
-    const cancelHandler = () => {
-        setShowEditor(false)
-    }
-
-    const deleteHandler = (id:string) => {
-        setConfirmDelete(true)
-        setDeleteId(id)
-    }
-
-    const confirmDeleteHandler = async (event:MouseEvent<HTMLButtonElement>) => {
-        const target = event.target as HTMLButtonElement
-        if (target.name === 'si') {
-            setConfirmDelete(false)
-            try {
-                await axios.delete(`${SERVER_URL}/properties/delete/${deleteId}`)
-                setDeleteId('')
-                notifySuccess('Propiedad eliminada correctamente.')
-                const { data } = await axios(`${SERVER_URL}/properties/list`)
-                await setProperties(data)
-                if (!filterData.length) setFilteredProperties(data)
-            } catch (error:any) {
-                notifyError(error.response.data)
-            }
-        } else {
-            setConfirmDelete(false)
-        }
+    const deleteHandler = (id: string, name: string) => {
+        setSelectedId(id)
+        setSelectecProperty(name)
+        setShow(true)
     }
 
     return (
-        <div className='container flex-grow-1 p-lg-3 p-sm-0 rounded m-2 overflow-auto'>
-           
-        </div>
+        <div className='container flex-grow-1 overflow-auto d-flex justify-content-center align-items-center w-100'>
+            <Table striped bordered hover size="sm" className='text-center'>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Tipo</th>
+                        <th>Categoría</th>
+                        <th>Ubicación</th>
+                        <th>Destacada</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {properties.map(property => <tr key={String(property.id)}>
+                        <td role='button' onClick={() => navigate(`/property/${property.id}/PersonalInfo`)}>{property.id}</td>
+                        <td role='button' onClick={() => navigate(`/property/${property.id}/PersonalInfo`)}>{property.name}</td>
+                        <td role='button' onClick={() => navigate(`/property/${property.id}/PersonalInfo`)}>{property.type}</td>
+                        <td role='button' onClick={() => navigate(`/property/${property.id}/PersonalInfo`)}>{property.category}</td>
+                        <td role='button' onClick={() => navigate(`/property/${property.id}/PersonalInfo`)}>{property.location}</td>
+                        <td role='button' onClick={() => navigate(`/property/${property.id}/PersonalInfo`)}>{property.featured ? <svg width="25" height="25" viewBox="0 0 512 512" style={{ color: "#1C2033" }} xmlns="http://www.w3.org/2000/svg" className="h-full w-full"><rect width="25" height="25" x="0" y="0" rx="30" fill="transparent" stroke="transparent" strokeWidth="0" strokeOpacity="100%" paintOrder="stroke"></rect><svg width="512px" height="512px" viewBox="0 0 16 16" fill="#1C2033" x="0" y="0" role="img" style={{ display: "inline-block;vertical-align:middle" }} xmlns="http://www.w3.org/2000/svg"><g fill="#1C2033"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="m2.75 8.75l3.5 3.5l7-7.5" /></g></svg></svg> : <svg width="25" height="25" viewBox="0 0 512 512" style={{ color: "#1C2033" }} xmlns="http://www.w3.org/2000/svg" className="h-full w-full"><rect width="25" height="25" x="0" y="0" rx="30" fill="transparent" stroke="transparent" strokeWidth="0" strokeOpacity="100%" paintOrder="stroke"></rect><svg width="512px" height="512px" viewBox="0 0 24 24" fill="#1C2033" x="0" y="0" role="img" style={{ display: "inline-block;vertical-align:middle" }} xmlns="http://www.w3.org/2000/svg"><g fill="#1C2033"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeWidth="2" d="M20 20L4 4m16 0L4 20" /></g></svg></svg>}</td>
+                        <td><svg onClick={() => deleteHandler(property.id, property.name)} role='button' width="25" height="25" viewBox="0 0 512 512" style={{ color: "#1C2033" }} xmlns="http://www.w3.org/2000/svg" className="h-full w-full"><rect width="512" height="512" x="0" y="0" rx="30" fill="transparent" stroke="transparent" strokeWidth="0" strokeOpacity="100%" paintOrder="stroke"></rect><svg width="512px" height="512px" viewBox="0 0 24 24" fill="#1C2033" x="0" y="0" role="img" style={{ display: "inline-block;vertical-align:middle" }} xmlns="http://www.w3.org/2000/svg"><g fill="#1C2033"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16l-1.58 14.22A2 2 0 0 1 16.432 22H7.568a2 2 0 0 1-1.988-1.78L4 6Zm3.345-2.853A2 2 0 0 1 9.154 2h5.692a2 2 0 0 1 1.81 1.147L18 6H6l1.345-2.853ZM2 6h20m-12 5v5m4-5v5" /></g></svg></svg></td>
+                    </tr>
+                    )}
+                </tbody>
+            </Table>
+            {show && <CustomModal title={"Eliminar propiedad"}>
+            <DeleteProperty propertyId={selectedId} propertyName={selectedProperty} updateList={getPropertyList}/>
+            </CustomModal>}
+        </div >
     )
 }
 

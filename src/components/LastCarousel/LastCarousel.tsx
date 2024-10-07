@@ -50,13 +50,13 @@ const LastCarousel = () => {
         services: [],
         amenities: [],
         featured: true,
-        images: [{ id: '', url: '' }]
+        images: []
     }])
 
     useEffect(() => {
         const getLastProperties = async () => {
             try {
-                const res = await axios(`${SERVER_URL}/properties/last`)
+                const res = await axios(`${SERVER_URL}/api/properties/last`)
                 if(res.data)
                 setLastProperties(res.data)
             } catch (error: any) {
@@ -92,7 +92,7 @@ const LastCarousel = () => {
                         <div className={styles.propertyContainer} key={index}>
                             <img
                                 onClick={() => navigate(`/detail/${property.id}`)}
-                                src={property.images[0]?.url}
+                                src={property.images[0]?.thumbnailUrl}
                                 alt={property.name}
                                 style={{
                                     borderRadius: "10px",

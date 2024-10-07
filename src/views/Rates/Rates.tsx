@@ -1,11 +1,6 @@
 import style from './Rates.module.css'
 import { useState, useEffect, useRef } from 'react'
 import Validations from './Validations'
-import whatsapp from '../../img/whatsapp.webp'
-import facebook from '../../img/facebook.webp'
-import instagram from '../../img/instagram.webp'
-import phone from '../../img/phone.webp'
-import loadingGif from '../../img/loading.gif'
 import { ChangeEvent } from 'react'
 import emailjs from '@emailjs/browser'
 import { notifyError, notifySuccess } from '../../components/Toaster/Toaster'
@@ -139,7 +134,7 @@ const Rates = () => {
     return (
         <div className={style.rates}>
             {loading && <div className={style.loading}>
-                <img src={loadingGif} alt=''></img>
+                <img src='/images/loading.gif' alt=''></img>
             </div>}
             <div className={style.container}>
                 <div className={style.infoContainer}>
@@ -192,25 +187,25 @@ const Rates = () => {
                     <h3>Otras formas de comunicarte:</h3>
                     <div className={style.comunicateOptions}>
                         <div className={style.option}>
-                            <img src={phone} alt="" />
+                            <img src='/images/phone.webp' alt="" />
                             <a href="tel:+549 266 570187">
                                 <p>+549 266 570187</p>
                             </a>
                         </div>
                         <div className={style.option}>
-                            <img src={whatsapp} alt="" />
+                            <img src='/images/whatsapp.webp' alt="" />
                             <a href={`https://api.whatsapp.com/send?phone=5492664570187&text=Hola, Necesito asesoramiento sobre una propiedad`} target="_blank" rel="noopener noreferrer">
                                 <p>+549 266 570187</p>
                             </a>
                         </div>
                         <div className={style.option}>
-                            <img src={instagram} alt="" />
+                            <img src='/images/instagram.webp' alt="" />
                             <a href={`https://www.instagram.com/byrinmobiliaria/`} target="_blank" rel="noopener noreferrer">
                                 <p>@byrinmobiliaria</p>
                             </a>
                         </div>
                         <div className={style.option}>
-                            <img src={facebook} alt="" />
+                            <img src='/images/facebook.webp' alt="" />
                             <a href={`https://www.facebook.com/ByRdesarrollosinmobiliarios`} target="_blank" rel="noopener noreferrer">
                                 <p>Inmobiliaria B&R</p>
                             </a>

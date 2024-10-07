@@ -122,7 +122,7 @@ const Uploader = () => {
     const submitHandler = async () => {
         setUploaded(false)
         const formData = new FormData()
-        formData.append('data', JSON.stringify(data))
+        formData.append('propertyData', JSON.stringify(data))
         for (let i = 0; i < images.length; i++) {
             formData.append('images', images[i])
         }

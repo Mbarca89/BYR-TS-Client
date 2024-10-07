@@ -1,22 +1,10 @@
 import style from './Detail.module.css'
 import axios from 'axios'
-import bedroomsIcon from '../../img/bedroom.webp'
-import bathroomsIcon from '../../img/bathroom.webp'
-import sizeIcon from '../../img/size.webp'
-import kitchenIcon from '../../img/kitchen.webp'
-import garageIcon from '../../img/garage.webp'
-import venta from '../../img/Venta.webp'
-import alquiler from '../../img/Alquiler.webp'
-import pesos from '../../img/pesosGris.webp'
-import dolares from '../../img/dolaresGris.webp'
-import check from '../../img/check.webp'
-import whatsapp from '../../img/whatsapp.webp'
 import { useParams, useLocation } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import ReactLoading from 'react-loading'
 import { PropertyDetailType } from '../../types'
-import loadingGif from '../../img/loading.gif'
-import noImage from '../../img/noImage.webp'
+import handleError from '../../utils/HandleErrors'
 
 const webUrl = process.env.REACT_APP_URL
 const SERVER_URL = process.env.REACT_APP_SERVER_URL
@@ -44,7 +32,7 @@ const Detail = () => {
         services: [],
         amenities: [],
         featured: true,
-        images: [{ id: '', url: '' }]
+        images: []
     })
     const [imageIndex, setImageIndex] = useState<number>(0)
     const [showGallery, setShowGallery] = useState<boolean>(false)
@@ -54,8 +42,12 @@ const Detail = () => {
 
     useEffect(() => {
         const getProperty = async () => {
-            const { data } = await axios(`${SERVER_URL}/properties/detail/${id}`)
-            setPropertyData(data)
+            try {
+                const { data } = await axios(`${SERVER_URL}/api/properties/getById?propertyId=${id}`)
+                setPropertyData(data)
+            } catch (error) {
+                handleError(error)
+            }
         }
         getProperty()
         window.innerWidth < 576 && setMobile(true)
@@ -92,7 +84,7 @@ const Detail = () => {
     return (
         <div className={style.detail}>
             {loading && <div className={style.loading}>
-                <img src={loadingGif} alt=''></img>
+                <img src='/images/loading.gif' alt=''></img>
             </div>}
             {showGallery &&
                 <div className={style.gallery}>
@@ -107,13 +99,13 @@ const Detail = () => {
                 {propertyData.images.length > 0 ? <div className={style.photos}>
                     <div className={style.left} onClick={previous}> 〈 </div>
                     <div className={style.right} onClick={next}> 〉 </div>
-                    {propertyData.category === 'Venta' && <img className={style.categoryImg} src={venta} alt="" />}
-                    {propertyData.category === 'Alquiler' && <img className={style.categoryImg} src={alquiler} alt="" />}
+                    {propertyData.category === 'Venta' && <img className={style.categoryImg} src='/images/Venta.webp' alt="" />}
+                    {propertyData.category === 'Alquiler' && <img className={style.categoryImg} src='/images/Alquiler.webp' alt="" />}
                     {imageLoading && <div className={style.photoOverlay}><ReactLoading type='spinningBubbles' color='#ffffff' height={'5%'} width={'5%'} /></div>}
                     <img onLoad={handleImageLoading} onClick={!mobile ? galleryHandler : undefined} className={style.photo} src={propertyData.images[imageIndex].url} alt="" />
                 </div>:
                 <div className={style.photos}>
-                    <img onLoad={handleImageLoading} className={style.photo} src={noImage} alt="" />
+                    <img onLoad={handleImageLoading} className={style.photo} src='/images/noImage.webp'alt="" />
                     </div>}
                 <div className={style.info}>
                     <div className={style.name}>
@@ -127,35 +119,35 @@ const Detail = () => {
                     <div className={style.infoContainer}>
                         <div className={style.infoLogo}>
                             <h4>{propertyData.size}</h4>
-                            <img src={sizeIcon} alt="" />
+                            <img src='/images/size.webp' alt="" />
                             <div className={style.infoLogoLoader}></div>
                         </div>
                         <div className={style.infoLogo}>
                             <h4>{propertyData.bedrooms}</h4>
-                            <img src={bedroomsIcon} alt="" />
+                            <img src='/images/bedroom.webp' alt="" />
                         </div>
                         <div className={style.infoLogo}>
                             <h4>{propertyData.bathrooms}</h4>
-                            <img src={bathroomsIcon} alt="" />
+                            <img src='/images/bathroom.webp' alt="" />
                         </div>
                         <div className={style.infoLogo}>
                             <h4>{propertyData.kitchen}</h4>
-                            <img src={kitchenIcon} alt="" />
+                            <img src='/images/kitchen.webp' alt="" />
                         </div>
                         <div className={style.infoLogo}>
                             <h4>{propertyData.garage}</h4>
-                            <img src={garageIcon} alt="" />
+                            <img src='/images/garage.webp' alt="" />
                         </div>
                     </div>
                     <hr />
                     <div className={style.otherInfoContainer}>
                         <div className={style.price}>
-                            {propertyData.currency === '$' && <img src={pesos} alt="" />}
-                            {propertyData.currency === 'US$' && <img src={dolares} alt="" />}
+                            {propertyData.currency === '$' && <img src='/images/pesosGris.webp' alt="" />}
+                            {propertyData.currency === 'US$' && <img src='/images/dolaresGris.webp' alt="" />}
                             <h4>{propertyData.price === 0 ? <p>&nbsp;Consultar</p> : propertyData.price}</h4>
                         </div>
                         <a href={`https://api.whatsapp.com/send?phone=5492664570187&text=Hola,%20me%20interesa%20saber%20mas%20sobre%20esta%20propiedad:%20${webUrl}${location.pathname}`} target="_blank" rel="noopener noreferrer">
-                            <img className={style.whatsappLogo} src={whatsapp} alt="" />
+                            <img className={style.whatsappLogo} src='/images/whatsapp.webp' alt="" />
                         </a>
                     </div>
                 </div>
@@ -171,7 +163,7 @@ const Detail = () => {
                     <div className={style.others}>
                         {propertyData.others.map(item => {
                             return (<div key={item} className={style.listItem}>
-                                <img src={check} alt="" />
+                                <img src='/images/check.webp' alt="" />
                                 <h5>{item}</h5>
                             </div>)
                         })}
@@ -182,7 +174,7 @@ const Detail = () => {
                     <div className={style.amenities}>
                         {propertyData.amenities.map(item => {
                             return (<div key={item} className={style.listItem}>
-                                <img src={check} alt="" />
+                                <img src='/images/check.webp' alt="" />
                                 <h5>{item}</h5>
                             </div>)
                         })}
@@ -193,7 +185,7 @@ const Detail = () => {
                     <div className={style.services}>
                         {propertyData.services.map(item => {
                             return (<div key={item} className={style.listItem}>
-                                <img src={check} alt="" />
+                                <img src='/images/check.webp' alt="" />
                                 <h5>{item}</h5>
                             </div>)
                         })}

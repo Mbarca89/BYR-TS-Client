@@ -91,7 +91,7 @@ const AdminV2 = () => {
             </div>
         </div>
         :
-        <div className=''>
+        <div className='bg-'>
             <Container fluid className="p-1">
                 <Nav variant="tabs" defaultActiveKey="patients" activeKey={currentTab}>
                     <Navbar.Brand>
@@ -104,13 +104,13 @@ const AdminV2 = () => {
                         />
                     </Navbar.Brand>
                     <Nav.Item>
-                        <Nav.Link eventKey="patients" onClick={() => handleTabChange("home")}>Propiedades</Nav.Link>
+                        <Nav.Link className="text-dark" eventKey="patients" onClick={() => handleTabChange("home")}>Propiedades</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link eventKey="newPatient" onClick={() => handleTabChange("createProperty")}>Cargar propiedad</Nav.Link>
+                        <Nav.Link className="text-dark" eventKey="newPatient" onClick={() => handleTabChange("createProperty")}>Cargar propiedad</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link onClick={logoutHandler}>Salir</Nav.Link>
+                        <Nav.Link className="text-dark" onClick={logoutHandler}>Salir</Nav.Link>
                     </Nav.Item>
                 </Nav>
             </Container>
