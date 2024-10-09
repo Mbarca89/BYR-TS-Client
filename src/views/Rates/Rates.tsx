@@ -5,13 +5,15 @@ import { ChangeEvent } from 'react'
 import emailjs from '@emailjs/browser'
 import { notifyError, notifySuccess } from '../../components/Toaster/Toaster'
 import ReactLoading from 'react-loading'
+import { Col, Form } from 'react-bootstrap'
+import { useFormik } from 'formik'
+import handleError from '../../utils/HandleErrors'
 
 export interface Data {
     name: string,
     mail: string,
     phone: string,
     comments: string,
-    eventName: string
 }
 
 const Rates = () => {
@@ -26,100 +28,24 @@ const Rates = () => {
         mail: '',
         phone: '',
         comments: '',
-        eventName: ''
     })
-
-    const [errors, setErrors] = useState({
-        name: '',
-        disabled1: true,
-        mail: '',
-        disabled2: true,
-        phone: '',
-        disabled3: true,
-    })
-
-    const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        setData({
-            ...data,
-            [event.target.name]: event.target.value,
-            eventName: event.target.name
-        })
-        setErrors({
-            ...errors,
-            [event.target.name]: ''
-        })
-    }
-
-    const CommentHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
-        setData({
-            ...data,
-            [event.target.name]: event.target.value,
-            eventName: event.target.name
-        })
-    }
-
-    useEffect(() => {
-        let val = Validations(data, data.eventName)
-        if (val) {
-            if (data.eventName === 'name') {
-                setErrors({
-                    ...errors,
-                    name: val.name,
-                    disabled1: val.disabled1
-                })
-            }
-            if (data.eventName === 'mail') {
-                setErrors({
-                    ...errors,
-                    mail: val.mail,
-                    disabled2: val.disabled2
-                })
-            }
-            if (data.eventName === 'phone') {
-                setErrors({
-                    ...errors,
-                    phone: val.phone,
-                    disabled3: val.disabled3
-                })
-            }
-        }
-        console.log(val)
-        console.log(errors)
-    }, [data])
 
     const sendEmail = async () => {
         setSending(true)
         try {
-            if (data.name === '' || data.phone === '' || data.mail === '') throw Error('Por favor complete todos los datos')
-            if(errors.disabled1 || errors.disabled2 || errors.disabled3) throw Error ('Por favor revise los datos ingresados')
-            if (formRef.current)
+            if (formRef.current) {
                 await emailjs.sendForm('service_2rg7tis', 'template_3omezxo', formRef.current, 'fup4O1b1tN2Rfnirg')
-            notifySuccess('Mensaje enviado correctamente.')
-            setSending(false)
-            setData({
-                name: '',
-                mail: '',
-                phone: '',
-                comments: '',
-                eventName: ''
-            })
-        } catch (error: any) {
-            let formErrors = {
-                name: '',
-                mail: '',
-                phone: '',
+                notifySuccess('Mensaje enviado correctamente.')
+                setSending(false)
+                setData({
+                    name: '',
+                    mail: '',
+                    phone: '',
+                    comments: '',
+                })
             }
-            if(data.name === '' || errors.disabled1) formErrors.name = 'El nombre no puede estar vacio'
-            if(data.mail === '' || errors.disabled2) formErrors.mail = 'Ingrese un mail válido'
-            if(data.phone === '' || errors.disabled3) formErrors.phone = 'Ingrese solo números'
-            setErrors({
-                ...errors,
-                name: formErrors.name,
-                mail:formErrors.mail,
-                phone: formErrors.phone
-            })
-            if (error.message) { notifyError(error.message) }
-            else { notifyError('No se pudo enviar el formulario') }
+        } catch (error: any) {
+            handleError(error)
             setSending(false)
         }
     }
@@ -131,53 +57,111 @@ const Rates = () => {
         }
     }, [])
 
+    const validate = (values: Data): Data => {
+        const errors: any = {};
+
+        if (!values.name.trim()) {
+            errors.name = 'Ingrese el nombre';
+        }
+
+        if (!values.mail.trim()) {
+            errors.mail = 'Ingrese su correo electrónico';
+        } else if (!/\S+@\S+\.\S+/.test(values.mail)) {
+            errors.mail = 'Ingrese un mail válido'
+        }
+
+        if (!/^\d+$/.test(values.phone)) {
+            errors.phone = 'Ingrese solo números'
+        }
+
+        if (!values.comments.trim()) {
+            errors.comments = 'Escriba algún comentario';
+        }
+        return errors;
+    };
+
+    const formik = useFormik({
+        initialValues: {
+            name: '',
+            mail: '',
+            phone: '',
+            comments: '',
+        },
+        validate,
+        onSubmit: async values => {
+
+        },
+    });
+
+    const resetForm = () => {
+        formik.resetForm();
+    }
+
     return (
         <div className={style.rates}>
             {loading && <div className={style.loading}>
                 <img src='/images/loading.gif' alt=''></img>
             </div>}
-            <div className={style.container}>
-                <div className={style.infoContainer}>
-                    <div className={style.info}>
+            <div className={`${style.container} text-center`}>
+                <div className={`${style.infoContainer}`}>
+                    <div className={`${style.info} text-center`}>
                         <h1>Tasaciones</h1>
                         <p>¿Querés vender tu propiedad? Acá podrás contactarte con nosotros para conocer el valor indicado.</p>
                         <p> Completá tus datos y describí las caracterí­sticas de tu propiedad. Un tasador de B&R se pondrá en contacto con vos, y te asesorará en tu consulta.</p>
                     </div>
                 </div>
                 <div className={style.formContainer}>
-                    <form ref={formRef} className={style.form}>
-                        <div className={style.inputContainer}>
-                            <div className={style.labelError}>
-                                <label htmlFor="name">Nombre:</label>
-                                {errors.name && <p>{errors.name}</p>}
-                            </div>
-                            <div className={style.formInput}>
-                                <input type="text" name='name' onChange={changeHandler} value={data.name} />
-                            </div>
-                        </div>
-                        <div className={style.inputContainer}>
-                            <div className={style.labelError}>
-                                <label htmlFor="mail">Email:</label>
-                                {errors.mail && <p>{errors.mail}</p>}
-                            </div>
-                            <div className={style.formInput}>
-                                <input type="text" name='mail' onChange={changeHandler} value={data.mail} />
-                            </div>
-                        </div>
-                        <div className={style.inputContainer}>
-                            <div className={style.labelError}>
-                                <label htmlFor="phone">Telefono:</label>
-                                {errors.phone && <p>{errors.phone}</p>}
-                            </div>
-                            <div className={style.formInput}>
-                                <input type="text" name='phone' onChange={changeHandler} value={data.phone} />
-                            </div>
-                        </div>
-                        <div className={style.commentsContainer}>
-                            <label htmlFor="comments">Comentario:</label>
-                            <textarea name="comments" id="" cols={30} rows={10} onChange={CommentHandler} value={data.comments}></textarea>
-                        </div>
-                    </form>
+                    <Form noValidate onSubmit={formik.handleSubmit} ref={formRef} className='w-100 mt-0 mb-3'>
+                        <Form.Group as={Col} xs={12} lg={{ span: 6, offset: 3 }}>
+                            <Form.Label >Nombre</Form.Label>
+                            <Form.Control type="text" placeholder="Nombre"
+                                id="name"
+                                name="name"
+                                value={formik.values.name}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                isInvalid={!!(formik.touched.name && formik.errors.name)}
+                            />
+                            <Form.Control.Feedback type="invalid">{formik.errors.name}</Form.Control.Feedback>
+                        </Form.Group>
+                        <Form.Group as={Col} xs={12} lg={{ span: 6, offset: 3 }}>
+                            <Form.Label >Mail</Form.Label>
+                            <Form.Control type="mail" placeholder="Mail"
+                                id="mail"
+                                name="mail"
+                                value={formik.values.mail}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                isInvalid={!!(formik.touched.mail && formik.errors.mail)}
+                            />
+                            <Form.Control.Feedback type="invalid">{formik.errors.mail}</Form.Control.Feedback>
+                        </Form.Group>
+                        <Form.Group as={Col} xs={12} lg={{ span: 6, offset: 3 }}>
+                            <Form.Label >Teléfono</Form.Label>
+                            <Form.Control type="text" placeholder="Teléfono"
+                                id="phone"
+                                name="phone"
+                                value={formik.values.phone}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                isInvalid={!!(formik.touched.phone && formik.errors.phone)}
+                            />
+                            <Form.Control.Feedback type="invalid">{formik.errors.phone}</Form.Control.Feedback>
+                        </Form.Group>
+                        <Form.Group as={Col} xs={12} lg={{ span: 6, offset: 3 }}>
+                            <Form.Label >Comentarios</Form.Label>
+                            <Form.Control type="text"
+                                as='textarea'
+                                id="comments"
+                                name="comments"
+                                value={formik.values.comments}
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                isInvalid={!!(formik.touched.comments && formik.errors.comments)}
+                            />
+                            <Form.Control.Feedback type="invalid">{formik.errors.comments}</Form.Control.Feedback>
+                        </Form.Group>
+                    </Form>
                     <div className={style.buttonDiv}>
                         {!sending && <button className={style.send} onClick={sendEmail}>Enviar</button>}
                     </div>
@@ -189,25 +173,25 @@ const Rates = () => {
                         <div className={style.option}>
                             <img src='/images/phone.webp' alt="" />
                             <a href="tel:+549 266 570187">
-                                <p>+549 266 570187</p>
+                                <p className='m-0'>+549 266 570187</p>
                             </a>
                         </div>
                         <div className={style.option}>
                             <img src='/images/whatsapp.webp' alt="" />
                             <a href={`https://api.whatsapp.com/send?phone=5492664570187&text=Hola, Necesito asesoramiento sobre una propiedad`} target="_blank" rel="noopener noreferrer">
-                                <p>+549 266 570187</p>
+                                <p className='m-0'>+549 266 570187</p>
                             </a>
                         </div>
                         <div className={style.option}>
                             <img src='/images/instagram.webp' alt="" />
                             <a href={`https://www.instagram.com/byrinmobiliaria/`} target="_blank" rel="noopener noreferrer">
-                                <p>@byrinmobiliaria</p>
+                                <p className='m-0'>@byrinmobiliaria</p>
                             </a>
                         </div>
                         <div className={style.option}>
                             <img src='/images/facebook.webp' alt="" />
                             <a href={`https://www.facebook.com/ByRdesarrollosinmobiliarios`} target="_blank" rel="noopener noreferrer">
-                                <p>Inmobiliaria B&R</p>
+                                <p className='m-0'>Inmobiliaria B&R</p>
                             </a>
                         </div>
                     </div>

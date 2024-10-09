@@ -5,7 +5,6 @@ import Home from './views/Home/Home'
 import Nav from './components/Nav/Nav'
 import Footer from './components/Footer/Footer';
 import Detail from './views/Detail/Detail';
-import Admin from './views/Admin/Admin';
 import AdminV2 from './views/AdminV2/AdminV2';
 import Properties from './views/Properties/Properties';
 import Rates from './views/Rates/Rates';

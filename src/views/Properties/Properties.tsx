@@ -41,7 +41,8 @@ const Properties = () => {
         services: [],
         amenities: [],
         featured: true,
-        images: []
+        images: [],
+        imageOrder:[]
     }])
     const [currentPage, setCurrentPage] = useState(1)
     const cardsPerPage = 6
@@ -66,7 +67,8 @@ const Properties = () => {
         services: [],
         amenities: [],
         featured: true,
-        images: []
+        images: [],
+        imageOrder:[]
     }])
     const [showType, setShowType] = useState<boolean>(false)
     const [showCategory, setShowCategory] = useState<boolean>(false)
@@ -93,7 +95,6 @@ const Properties = () => {
             const type: string = queryFilters.get('type') || ''
             const category: string = queryFilters.get('category') || ''
             const location: string = queryFilters.get('location') || ''
-            console.log(type,category,location)
             let filters: Filters = {
                 type: type !== 'Seleccionar' ? type : '',
                 category: category || '',

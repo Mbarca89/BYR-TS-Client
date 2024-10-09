@@ -32,7 +32,8 @@ const Detail = () => {
         services: [],
         amenities: [],
         featured: true,
-        images: []
+        images: [],
+        imageOrder: []
     })
     const [imageIndex, setImageIndex] = useState<number>(0)
     const [showGallery, setShowGallery] = useState<boolean>(false)
@@ -92,7 +93,7 @@ const Detail = () => {
                     <div className={style.galleryRight} onClick={next}> 〉 </div>
                     <h1 onClick={closeGallery}>X</h1>
                     {imageLoading && <div className={style.galleryOverlay}><ReactLoading type='spinningBubbles' color='#ffffff' height={'5%'} width={'5%'} /></div>}
-                    <img className={style.galleryPhoto} onLoad={handleImageLoading} src={propertyData.images[imageIndex].url} alt="" onClick={galleryHandler} />
+                    <img className={style.galleryPhoto} onLoad={handleImageLoading} src={propertyData.images[propertyData.imageOrder[imageIndex]].url} alt="" onClick={galleryHandler} />
                 </div>
             }
             <div className={style.basicInfo}>
@@ -102,7 +103,7 @@ const Detail = () => {
                     {propertyData.category === 'Venta' && <img className={style.categoryImg} src='/images/Venta.webp' alt="" />}
                     {propertyData.category === 'Alquiler' && <img className={style.categoryImg} src='/images/Alquiler.webp' alt="" />}
                     {imageLoading && <div className={style.photoOverlay}><ReactLoading type='spinningBubbles' color='#ffffff' height={'5%'} width={'5%'} /></div>}
-                    <img onLoad={handleImageLoading} onClick={!mobile ? galleryHandler : undefined} className={style.photo} src={propertyData.images[imageIndex].url} alt="" />
+                    <img onLoad={handleImageLoading} onClick={!mobile ? galleryHandler : undefined} className={style.photo} src={propertyData.images[propertyData.imageOrder[imageIndex]].url} alt="" />
                 </div>:
                 <div className={style.photos}>
                     <img onLoad={handleImageLoading} className={style.photo} src='/images/noImage.webp'alt="" />

@@ -20,6 +20,7 @@ export interface PropertyDetailType {
     services: Array<string>,
     amenities: Array<string>,
     images: Images[]
+    imageOrder: number[]
 }
 
 export interface Images {
@@ -47,6 +48,7 @@ export interface PropertyType {
     others: Array<string>,
     services: Array<string>,
     amenities: Array<string>,
+    imageOrder: number[]
 }
 
 export interface CarouselItemType {

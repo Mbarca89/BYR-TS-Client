@@ -6,6 +6,7 @@ import { ChangeEvent, MouseEvent } from 'react'
 import { notifyError } from '../../components/Toaster/Toaster'
 import { Container, Nav, Navbar } from 'react-bootstrap'
 import { useRecoilState } from 'recoil'
+import EditorV2 from "../../components/EditorV2/EditorV2"
 const ADMIN_USER = process.env.REACT_APP_ADMIN_USER
 const ADMIN_PASSWORD = process.env.REACT_APP_ADMIN_PASSWORD
 
@@ -13,11 +14,12 @@ const AdminV2 = () => {
 
     useEffect(() => {
         const user = localStorage.getItem('user')
-        if (user) setLogged(true)
+        if (user==="ByRadmin") setLogged(true)
     }, [])
 
     const [logged, setLogged] = useState<boolean>(false)
     const [remember, setRemember] = useState<boolean>(false)
+    const [selectedProperty, setSelectedProperty] = useState<string>("")
     const [loginData, setLoginData] = useState({
         user: '',
         password: ''
@@ -45,7 +47,7 @@ const AdminV2 = () => {
     const loginHandler = () => {
         if (loginData.user === ADMIN_USER && loginData.password === ADMIN_PASSWORD) {
             setLogged(true)
-            if (remember) localStorage.setItem('user', 'ByR')
+            if (remember) localStorage.setItem('user', 'ByRadmin')
         } else {
             notifyError('Usuario o contraseña incorrecta')
         }
@@ -63,6 +65,11 @@ const AdminV2 = () => {
     const rememberHandler = (event: ChangeEvent<HTMLInputElement>) => {
         if (event.target.checked) setRemember(true)
         else setRemember(false)
+    }
+
+    const enableEdit = (propertyId: string) => {
+        setSelectedProperty(propertyId)
+        setCurrentTab("edit")
     }
 
     return (!logged ?
@@ -104,10 +111,10 @@ const AdminV2 = () => {
                         />
                     </Navbar.Brand>
                     <Nav.Item>
-                        <Nav.Link className="text-dark" eventKey="patients" onClick={() => handleTabChange("home")}>Propiedades</Nav.Link>
+                        <Nav.Link className="text-dark" eventKey="home" onClick={() => handleTabChange("home")}>Propiedades</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link className="text-dark" eventKey="newPatient" onClick={() => handleTabChange("createProperty")}>Cargar propiedad</Nav.Link>
+                        <Nav.Link className="text-dark" eventKey="createProperty" onClick={() => handleTabChange("createProperty")}>Cargar propiedad</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
                         <Nav.Link className="text-dark" onClick={logoutHandler}>Salir</Nav.Link>
@@ -115,7 +122,8 @@ const AdminV2 = () => {
                 </Nav>
             </Container>
             <div className="mt-3">
-                {currentTab === "home" ? <ListV2 /> : null}
+                {currentTab === "home" ? <ListV2 enableEdit={enableEdit}/> : null}
+                {currentTab === "edit" ? <EditorV2 updateList={setTab} propertyId={selectedProperty}/> : null}
                 {currentTab === "createProperty" ? <UploaderV2 updateList={setTab} /> : null}
             </div>
         </div>

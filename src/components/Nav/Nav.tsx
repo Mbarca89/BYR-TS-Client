@@ -91,7 +91,7 @@ const Nav = () => {
                 <div className={style.phone}>
                     <img src='/images/phone.webp' alt="" />
                     <a href="tel:+549 266 570187">
-                        <p>+549 266 570187</p>
+                        <p className='m-0'>+549 266 570187</p>
                     </a>
                 </div>
             </div>

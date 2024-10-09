@@ -50,7 +50,8 @@ const LastCarousel = () => {
         services: [],
         amenities: [],
         featured: true,
-        images: []
+        images: [],
+        imageOrder: []
     }])
 
     useEffect(() => {
@@ -88,6 +89,7 @@ const LastCarousel = () => {
                 customLeftArrow={<CustomLeftArrow />}
             >
                 {lastProperties.map((property, index) => {
+                    console.log(property)
                     return (
                         <div className={styles.propertyContainer} key={index}>
                             <img
