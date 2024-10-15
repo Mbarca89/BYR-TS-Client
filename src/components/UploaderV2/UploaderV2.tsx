@@ -240,7 +240,7 @@ const UploaderV2: React.FC<UploaderV2Props> = ({ updateList }) => {
         return errors;
     };
 
-    const formik = useFormik({
+    const formik = useFormik<PropertyType>({
         initialValues: {
             id: "",
             featured: false,
@@ -269,6 +269,13 @@ const UploaderV2: React.FC<UploaderV2Props> = ({ updateList }) => {
             values.others=data.others
             values.services=data.services
             values.amenities=data.amenities
+            values.size =  values.size || 0
+            values.price = values.price || 0
+            values.constructed = values.constructed || 0
+            values.bedrooms = values.bedrooms || 0
+            values.bathrooms = values.bathrooms || 0
+            values.kitchen = values.kitchen || 0
+            values.garage = values.garage || 0
             const formData = new FormData()
             if (images) {
                 for (let i = 0; i < images.length; i++) {
