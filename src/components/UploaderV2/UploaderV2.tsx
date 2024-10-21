@@ -237,6 +237,8 @@ const UploaderV2: React.FC<UploaderV2Props> = ({ updateList }) => {
 
     const validate = (values: PropertyType): PropertyType => {
         const errors: any = {};
+        if(!values.name.trim())
+            errors.name = "Ingrese el nombre de la propiedad"
         return errors;
     };
 
@@ -336,7 +338,9 @@ const UploaderV2: React.FC<UploaderV2Props> = ({ updateList }) => {
                                 value={formik.values.name}
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
+                                isInvalid={!!(formik.touched.name && formik.errors.name)}
                             />
+                             <Form.Control.Feedback type="invalid">{formik.errors.name}</Form.Control.Feedback>
                         </Form.Group>
                     </Row>
                     <Row className='mb-5'>
