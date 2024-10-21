@@ -9,6 +9,7 @@ import { useRecoilState } from 'recoil'
 import { modalState } from '../../app/store'
 import CustomModal from '../CustomModal/CustomModal'
 import DeleteProperty from '../DeleteProperty/DeteleProperty'
+import handleError from '../../utils/HandleErrors'
 const SERVER_URL = process.env.REACT_APP_SERVER_URL
 
 interface ListV2Props {
@@ -25,9 +26,13 @@ const ListV2:React.FC<ListV2Props> = ({enableEdit}) => {
     const [show, setShow] = useRecoilState(modalState)
 
     const getPropertyList = async () => {
-        const res = await axios(`${SERVER_URL}/api/properties/getPropertyList`)
-        if (res.data) {
-            setProperties(res.data)
+        try {
+            const res = await axios(`${SERVER_URL}/api/properties/getPropertyList`)
+            if (res.data) {
+                setProperties(res.data)
+            }
+        } catch (error) {
+            handleError(error)
         }
     }
 

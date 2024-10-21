@@ -25,7 +25,6 @@ const MainCarousel = () => {
             try {
                 const res = await axios(`${SERVER_URL}/api/properties/featured`)
                 if (res.data)
-                    console.log(res.data)
                     await setSlides(res.data.map((item: any) => {
                         return { image: item.images[0].url, id: item.id, name: item.name, location: item.location }
                     }))

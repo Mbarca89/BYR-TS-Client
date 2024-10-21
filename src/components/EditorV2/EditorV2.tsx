@@ -129,6 +129,23 @@ const EditorV2: React.FC<EditorV2Props> = ({ propertyId, updateList }) => {
         };
     }, [selectedImages]);
 
+    const deleteImageFromDb = async (index: number, id:string) => {
+        try {
+            const res = await axios.delete(`${SERVER_URL}/api/images/delete?id=${id}`)
+            if(res.data) {
+                notifySuccess(res.data)
+            }
+            const newImages = [...propertyImages]
+            newImages.splice(index, 1)
+            setPropertyImages(newImages)
+            const newOrder = [...formik.values.imageOrder]
+            newOrder.splice(index,1)
+            formik.setFieldValue("imageOrder", newOrder)
+        } catch (error) {
+            handleError(error)
+        }
+    }
+
     const deleteImage = (index: number) => {
         const newImages = [...images]
         newImages.splice(index, 1)
@@ -137,7 +154,6 @@ const EditorV2: React.FC<EditorV2Props> = ({ propertyId, updateList }) => {
         newImagesPreview.splice(index, 1);
         setSelectedImages(newImagesPreview);
     }
-
 
     const moveRight = (index: number) => {
         const aux = images
@@ -223,7 +239,6 @@ const EditorV2: React.FC<EditorV2Props> = ({ propertyId, updateList }) => {
                     ...data,
                     description: DOMPurify.sanitize(data.description)
                 })
-                console.log(values.imageOrder)
                 const res = await axios.put(`${SERVER_URL}/api/properties/edit/${propertyId}`, formData)
                 if (res.data) {
                     notifySuccess(res.data)
@@ -241,7 +256,6 @@ const EditorV2: React.FC<EditorV2Props> = ({ propertyId, updateList }) => {
         const getProperty = async () => {
             try {
                 const { data } = await axios(`${SERVER_URL}/api/properties/getById?propertyId=${propertyId}`)
-                console.log(data)
                 setData({
                     id: data.id,
                     featured: data.featured,
@@ -264,6 +278,7 @@ const EditorV2: React.FC<EditorV2Props> = ({ propertyId, updateList }) => {
                     imageOrder: data.imageOrder
                 })
                 setPropertyImages(data.images)
+
                 let othersCheckBuffer = othersCheck
                 others.map((item, index) => {
                     if (data.others.toString().includes(item.name)) othersCheckBuffer[index] = true
@@ -577,7 +592,7 @@ const EditorV2: React.FC<EditorV2Props> = ({ propertyId, updateList }) => {
                                         <img src={propertyImages[image]?.thumbnailUrl} alt="Preview" className='w-50 h-50' />
                                         <div className='d-flex justify-content-center align-items-center'>
                                             <Button onClick={() => moveLeftOrder(index)}>{'<'}</Button>
-                                            <Button className="" onClick={() => deleteImage(index)}>X</Button>
+                                            <Button className="" onClick={() => deleteImageFromDb(index, propertyImages[image].id)}>X</Button>
                                             <Button onClick={() => moveRightOrder(index)}>{'>'}</Button>
                                         </div>
                                     </Col>
